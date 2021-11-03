@@ -1,0 +1,77 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                template="/WEB-INF/templates/GDFTemplate.xhtml">
+    <ui:define name="content">
+        <div class="col-sm-8">
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <h5><h:outputText value="#{profileLocatorMBean.name}"/></h5>
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <div class="col-sm-3">
+                                <h:form prependId="false">
+                                    <h:commandLink value="Site Home" action="#{homeMBean.redirectToSiteHome()}"/>
+                                </h:form>
+                            </div>
+                            <div class="col-sm-3">
+                                <h:form prependId="false">
+                                    <h:commandLink value="My Home" action="#{homeMBean.redirectToHome}"/>
+                                </h:form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h5><h:outputText value="#{profileLocatorMBean.name}"/></h5>
+                                    <div class="col-sm-4 well">
+                                        <h:form>
+                                            <p class="text-center">
+                                                <h:commandButton value="Amend Details" action="/amend/user/AmendUser.xhtml?faces-redirect=true"/>
+                                            </p>
+                                        </h:form>
+                                    </div>
+                                    <div class="col-sm-4 well">
+                                        <h:form>
+                                            <p class="text-center">
+                                                <h:commandButton value="Change Password" action="/amend/user/ChangePassword.xhtml?faces-redirect=true"/>
+                                            </p>
+                                        </h:form>
+                                    </div>
+                                    <div class="col-sm-4 well">
+                                        <h:form>
+                                            <p class="text-center">
+                                                <h:commandButton value="Nominate Deeder" action="UserDeederRegister"/>
+                                            </p>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--ul class="nav navbar-nav">
+                                <li class="active"><a href="#">Home</a></li>
+                                <li><a href="#">Page 1</a></li>
+                                <li><a href="#">Page 2</a></li>
+                                <li><a href="#">Page 3</a></li>
+                            </ul -->
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </ui:define>
+</ui:composition>

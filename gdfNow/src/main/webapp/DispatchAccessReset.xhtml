@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                template="/WEB-INF/templates/GDFTemplate.xhtml">
+
+    <ui:define name="content">
+        <h:form prependId="false">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">
+                <h3>Change Password</h3>
+                <h:form>
+                    <c:set var="access" value="#{resetPasswordMBean.access}" />
+                    <h:messages style="color: red;"/>
+                    <div class="form-group">
+                        <p class="text-left"><label for="email">Email:</label></p>
+                        <h:inputText id="email" pt:type="email" pt:placeholder="Enter email" value="#{access.email}" styleClass="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <p class="text-left"><label for="pwd1">Password:</label></p>
+                        <h:inputSecret id="pwd1" label="Password:" styleClass="form-control" value="#{access.password}" pt:placeholder="Enter password"/>
+                    </div>
+                    <div class="form-group">
+                        <p class="text-left"><label for="pwd2">Password Confirm:</label></p>
+                        <h:inputSecret id="pwd2" label="Confirm Password:" styleClass="form-control" value="#{access.passwordConfirm}" pt:placeholder="Confirm password"/>
+                    </div>
+                    <h:commandButton value="Submit" action="#{resetPasswordMBean.changePassword}" styleClass="btn btn-primary">
+                        <f:ajax execute="@form" render="@form" />
+                    </h:commandButton>
+                    <br/><br/>
+                </h:form>
+            </div>
+            <div class="col-sm-2"></div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

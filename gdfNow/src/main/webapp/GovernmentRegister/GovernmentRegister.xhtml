@@ -1,0 +1,60 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                template="/WEB-INF/templates/GDFTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="content">
+
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <h3><p class="text-center" style="margin-bottom: 1.5em;">Government Department/Agency Registration</p></h3>
+                        
+                        <h4 style="text-align: center; color: #800500">Pick Your Country</h4>
+                        <div class="panel-body">
+                            
+                            <h:form prependId="false">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <p class="text-center">
+                                            <h:commandLink action="#{governmentMBean.init}">
+                                                <h:graphicImage alt="India" library="images" name="in.jpg" style="width: 80px; height: 50px;" />
+                                                <f:param name="clientCountryCode" value="IN"/>
+                                            </h:commandLink>
+
+                                        </p>
+
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <p class="text-center">
+                                            <h:commandLink action="#{governmentMBean.init}">
+                                                <h:graphicImage library="images" name="gb.jpg" style="width: 80px; height: 50px;" />
+                                                <f:param name="clientCountryCode" value="GB"/>
+                                            </h:commandLink>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <p class="text-center">
+                                            <h:commandLink action="#{governmentMBean.init}">
+                                                <h:graphicImage library="images" name="us.jpg" style="width: 80px; height: 50px;" />
+                                                <f:param name="clientCountryCode" value="US"/>
+                                            </h:commandLink>
+                                        </p>
+                                    </div>
+                                </div>   
+                            </h:form>    
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ui:define>
+
+</ui:composition>

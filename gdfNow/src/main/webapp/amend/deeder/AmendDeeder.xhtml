@@ -1,0 +1,173 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="/WEB-INF/templates/GDFTemplate.xhtml">
+    <ui:define name="content">
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-4 well">
+
+                                        <h:form>
+                                           <p class="text-center">
+                                               <h:commandButton value="Amend Details" action="/amend/deeder/AmendDeeder.xhtml?faces-redirect=true"/>
+                                           </p>
+                                       </h:form>
+
+                                   </div>
+                                   <div class="col-sm-4 well">
+                                       <h:form>
+                                           <p class="text-center">
+                                               <h:commandButton value="Change Password" action="/amend/deeder/ChangePassword.xhtml?faces-redirect=true"/>
+                                           </p>
+                                       </h:form>
+                                   </div>
+                                   <div class="col-sm-4 well">
+                                       <h:form>
+                                           <p class="text-center">
+                                               <h:commandButton value="Nominate Deeder" action="/home/DeederHome.xhtml?faces-redirect=true"/>
+                                           </p>
+                                       </h:form>
+                                   </div>
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3 style="margin-top: 0px; margin-bottom: 20px;">Amend Details</h3>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-12">
+                        <h:form styleClass="form-horizontal" enctype="multipart/form-data" prependId="false">
+                            <h:messages infoStyle="color:blue;margin:5px;" errorStyle="color:red;margin:5px;"/>
+                            <h4>Personal Details</h4>
+                            <div class="form-group">
+                                <h:outputLabel value="First Name" styleClass="control-label col-sm-3"/>
+                                <div class="col-sm-5">
+                                    <h:inputText id="fname" styleClass="form-control" value="#{deederAmendMBean.deeder.firstname}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Last Name" styleClass="control-label col-sm-3"/>
+                                <div class="col-sm-5">
+                                    <h:inputText id="lname" styleClass="form-control" value="#{deederAmendMBean.deeder.lastname}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Email" styleClass="control-label col-sm-3"/>
+                                <div class="col-sm-5">
+                                    <h:outputLabel styleClass="control-label" value="#{deederAmendMBean.deeder.email} " /><span class="glyphicon glyphicon-exclamation-sign"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Gender" styleClass="control-label col-sm-3"/>
+                                <div class="col-sm-5">
+                                    <h:selectOneMenu id="gender" styleClass="form-control" value="#{deederAmendMBean.deeder.gender}">
+                                    <f:selectItem itemLabel="Select One" itemValue="" />
+                                    <f:selectItem itemValue="MALE" itemLabel="Male" />
+                                    <f:selectItem itemValue="FEMALE" itemLabel="Female" />
+                                    <f:selectItem itemValue="OTHER" itemLabel="Other" />
+                                </h:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="DOB" styleClass="control-label col-sm-3"/>
+                                <div class="col-sm-5">
+                                    <h:inputText id="dob" pt:placeholder="DD/MM/YYY" value="#{deederAmendMBean.deeder.dobStr}" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Phone" styleClass="control-label col-sm-3"/>
+                                <div class="col-sm-5">
+                                    <h:inputText id="phone" value="#{deederAmendMBean.deeder.phone}" label="Phone" styleClass="form-control" /> 
+                               
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="OR" styleClass="control-label col-sm-3"/>
+                                <div class="col-sm-5">
+                                    <h:outputText /> 
+                                
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Mobile" styleClass="control-label col-sm-3"/>
+                                <div class="col-sm-5">
+                                    <h:inputText id="mobile" value="#{deederAmendMBean.deeder.mobile}" label="Mobile" styleClass="form-control" /> 
+                                
+                                </div>
+                            </div>
+                            <!-- Profile Pic -->
+                                
+                                        <div class="form-group">
+                                            <h:outputLabel for="profilePic" value="Upload Profile Pic" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:inputFile id="profilePic" value="#{deederAmendMBean.profileFilePart}" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                            <h4>Address Details</h4>
+                            <div class="form-group">
+                                <h:outputLabel value="House/Flat Number" styleClass="control-label col-sm-3"/>
+                                <div class="col-sm-5">
+                                    <h:inputText id="line1" styleClass="form-control" value="#{deederAmendMBean.deeder.deederAddress.line1}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Street Name" styleClass="control-label col-sm-3"/>
+                                <div class="col-sm-5">
+                                    <h:inputText id="line2" styleClass="form-control" value="#{deederAmendMBean.deeder.deederAddress.line2}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Post/Zip Code" styleClass="control-label col-sm-3"/>
+                                <div class="col-sm-5">
+                                    <h:inputText id="postcode" styleClass="form-control" value="#{deederAmendMBean.deeder.deederAddress.postcode}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="City" styleClass="control-label col-sm-3"/>
+                                <div class="col-sm-5">
+                                    <h:inputText id="city" styleClass="form-control" value="#{deederAmendMBean.deeder.deederAddress.city}" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="State" styleClass="control-label col-sm-3"/>
+                                <div class="col-sm-5">
+                                    <h:inputText id="state" styleClass="form-control" value="#{deederAmendMBean.deeder.deederAddress.state}" /> 
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel value="Country" styleClass="control-label col-sm-3"/>
+                                <div class="col-sm-5">
+                                    <h:outputLabel styleClass="control-label" value="#{deederAmendMBean.deeder.deederAddress.country.name} " /><span class="glyphicon glyphicon-exclamation-sign"></span>
+                               
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel styleClass="control-label col-sm-3"/>
+                                <div class="col-sm-5">
+                                    
+                                    <h:commandButton value="Continue" action="#{deederAmendMBean.amendDeeder}" styleClass="btn btn-primary">
+                                        <f:ajax render="@form" execute="@form"/>
+                                    </h:commandButton>
+                                    
+                               
+                                </div>
+                            </div>
+                       </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+
+   

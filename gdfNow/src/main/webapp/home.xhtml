@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/templates/GDFHomeTemplate.xhtml">
+    <ui:define name="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10">
+                    <div class="text-center" style="color: #a31f51;">
+                        <h1>How it works.</h1>  
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 text-center">
+                    <p>
+                        <b>You may wish to like get conversant with the Key Terms first. See our <h:outputLink value="info/faq.xhtml">FAQ's</h:outputLink></b>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10 text-center">
+                    <h:graphicImage library="images" name="HomePage.jpg" height="718" width="600"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="panel-body">
+                    <div class="col-sm-10">
+                        <h5>I have understood the working of this Portal now. Do not show this page again.</h5>
+                    </div>
+                    <div class="col-sm-10">
+                        <h:form prependId="false">
+                            <div class="col-sm-5 text-right">
+                                <h:selectBooleanCheckbox value="#{visitorHomeMBean.rememberMe}"><h:outputText value="Remember Me&#160;&#160;"/></h:selectBooleanCheckbox>
+                            </div>
+                            <div class="col-sm-5 text-left">
+                                <h:commandButton value="Continue" action="#{visitorHomeMBean.saveVisitor}" styleClass="btn btn-primary"/>
+                            </div>
+
+
+                        </h:form>
+                    </div>
+                    <div class="col-sm-10">
+                        <h5 style="color: blue;">Note: You would still be able to view this information by following the Link "How it Works" in Header/Footer.</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <h6 align="left">&#169;Business, Government and NGO Icons Designed by Freepik from www.flaticon.com</h6>
+    </ui:define>
+
+</ui:composition>

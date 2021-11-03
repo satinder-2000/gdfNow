@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      >
+<div class="col-sm-2 well">
+    <div class="well">
+       <h:graphicImage value="/ImageServlet" height="150" width="120"/>
+        <!--h:graphicImage url="# { profileLocatorMBean.location}" height="150" width="120" / -->
+        <!--h:graphicImage library="images" name="GDFNow2.jpeg"  height="150" width="120" / -->
+    </div>
+    <!--div class="well">
+        <p><a href="#">Interests</a></p>
+        <p>
+            <span class="label label-default">News</span>
+            <span class="label label-primary">W3Schools</span>
+            <span class="label label-success">Labels</span>
+            <span class="label label-info">Football</span>
+            <span class="label label-warning">Gaming</span>
+            <span class="label label-danger">Friends</span>
+        </p>
+    </div>
+    <div class="alert alert-success fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        <p><strong>Ey!</strong></p>
+        People are looking at your profile. Find out who.
+    </div -->
+    <div class="well">
+        <h3>Register</h3>
+        <h4><h:outputText value="Individuals"/></h4>
+        <h:form>
+            <p><h:commandLink  value="User"  action="UserRegister"/></p>
+            <p><h:commandLink value="Deeder" action="DeederRegister"/></p>
+            <c:set var="mode" value="#{session.getAttribute('Access').accessType}"/>
+            <c:if test="${mode == 'USER'}">
+                <p><h:commandLink value="Nominate Deeder" action="UserDeederRegister"/></p>
+            </c:if>
+        </h:form>
+        <h4><h:outputText value="Organizations"/></h4>
+        <h:form>
+            <p><h:commandLink  value="Business"  action="BusinessRegister"/></p>
+            <p><h:commandLink value="Government Dept/Agency" action="GovernmentRegister"/></p>
+            <p><h:commandLink value="NGO" action="NgoRegister"/></p>
+        </h:form>
+    
+    </div>
+    <div class="well">
+            <p>ADS</p>
+        </div>
+</div>
+</html>

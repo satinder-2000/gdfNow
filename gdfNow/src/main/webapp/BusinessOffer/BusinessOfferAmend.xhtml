@@ -1,0 +1,108 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                template="/WEB-INF/templates/GDFTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="content">
+       
+        <div class="col-sm-8">
+            
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <h5><p class="text-left" style="padding-left: 1em;"><h:outputText value="#{profileLocatorMBean.name}"/></p></h5>
+                        <h3><p class="text-center">Business Offer - Amend</p></h3>
+                        <div class="panel-body">
+                            <h:form styleClass="form-horizontal">
+                                <h6 style="color: green;">Fields marked with asterisk (*) are mandatory </h6>
+                                <h:messages infoStyle="color:blue;margin:5px;" errorStyle="color:red;margin:5px;"/>
+                                <h4><h:outputText value="Deed Details"/></h4>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="well">
+                                            <p class="text-left">Category: <h:outputText value="#{businessOfferMBean.deed.deedCategory.type} &gt; #{businessOfferMBean.deed.deedCategory.subtype}"/></p>
+                                            <p class="text-left">Deed Date: 
+                                                <h:outputText value="#{businessOfferMBean.deed.dateStr}">
+                                                    
+                                                </h:outputText>
+                                            </p>
+                                            <p class="text-left">Location : 
+                                                <h:outputText value="#{businessOfferMBean.deed.deedAddress.city},#{businessOfferMBean.deed.deedAddress.state},#{businessOfferMBean.deed.deedAddress.country.name}"/>
+                                            </p>
+                                            <p class="text-left">Description: 
+                                                <h:outputText value="#{businessOfferMBean.deed.description}"/>
+                                            </p>
+                                            <p class="text-left">Evidence 1 : 
+                                                <a href="#{businessOfferMBean.deed.link1}" target="_blank">#{businessOfferMBean.deed.link1}</a>
+                                            </p>
+                                            <p class="text-left">Evidence 2 : 
+                                                <a href="#{businessOfferMBean.deed.link2}" target="_blank">#{businessOfferMBean.deed.link2}</a>
+                                            </p>
+                                            <p class="text-left">Evidence 3 : 
+                                                <a href="#{businessOfferMBean.deed.link3}" target="_blank">#{businessOfferMBean.deed.link3}</a>
+                                            </p>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <h4>Offer Details</h4>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <!-- Offer Type -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Select Type" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:selectOneMenu id="offerType" value="#{businessOfferMBean.businessOffer.offerType}" styleClass="form-control" >
+                                                    <f:selectItems value="#{businessOfferMBean.offerTypes}"/>
+                                                    <f:ajax listener="#{businessOfferMBean.ajaxTypeListener}" render="@this ofrSyb" />
+                                                </h:selectOneMenu> 
+                                            </div>
+                                        </div>
+                                        <!-- Offer Amount -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="amt" value="Amount" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-1">
+                                                <p class="text-center" style="padding-top: .5em;padding-left: 1em;"><h:outputText id="ofrSyb" value="#{businessOfferMBean.symbol}" /></p>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <h:inputText id="amt" p:placeholder="Cash(xx.yy), Discount(NN)%" value="#{businessOfferMBean.businessOffer.value}" label="Amount" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Offer Description -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="desc"  value="Description" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:inputTextarea id="desc" value="#{businessOfferMBean.businessOffer.description}" p:placeholder="Max chars 350" label="Description" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                            <h:outputLabel value="" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <p class="text-center">
+                                                <h:commandButton value="Continue" action="#{businessOfferMBean.offerFilled}" styleClass="btn btn-primary" />
+                                                </p>
+                                            </div>
+                                        </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

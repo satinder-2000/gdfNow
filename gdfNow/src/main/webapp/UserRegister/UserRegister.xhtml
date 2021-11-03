@@ -1,0 +1,154 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                template="/WEB-INF/templates/GDFTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="content">
+        
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <h3><p class="text-center">User Registration</p></h3>
+                        <div class="panel-body">
+                            <h:form styleClass="form-horizontal" enctype="multipart/form-data" prependId="false">
+                                <h6 style="color: green;">Fields marked with asterisk (*) are mandatory </h6>
+                                <h:messages infoStyle="color:blue;margin:5px;" errorStyle="color:red;margin:5px;"/>
+
+                                <h4>Personal Details</h4>
+                                
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+
+                                        <!-- First Name -->
+                                        <div class="form-group">
+
+                                            <h:outputLabel for="firstname" value="First Name*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="firstname" value="#{userRegisterMBean.user.firstname}" label="First Name"  pt:placeholder="2-45 chars" styleClass="form-control" />
+                                            </div>
+
+                                        </div>
+                                        <!-- Last Name -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="lastname" value="Last Name*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="lastname" value="#{userRegisterMBean.user.lastname}" label="Last Name"  pt:placeholder="2-45 chars" styleClass="form-control"  />
+                                            </div>
+                                        </div>
+                                        <!-- Email -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Email*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <input type="email" jsf:id="email" name="email" value="#{userRegisterMBean.user.email}" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- Gender -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="gender" value="Gender*" styleClass="control-label col-sm-5" />
+                                            <div class="col-sm-5">
+                                                <h:selectOneMenu id="gender" value="#{userRegisterMBean.user.gender}" label="Gender"  styleClass="form-control">
+                                                    <f:selectItem itemLabel="Select One" itemValue="" />
+                                                    <f:selectItem itemValue="MALE" itemLabel="Male" />
+                                                    <f:selectItem itemValue="FEMALE" itemLabel="Female" />
+                                                    <f:selectItem itemValue="OTHER" itemLabel="Other" />
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                        <!-- DOB -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="DOB*" styleClass="control-label col-sm-5" />
+                                            <div class="col-sm-5">
+                                                <h:inputText id="dob" pt:placeholder="DD/MM/YYY" value="#{userRegisterMBean.user.dobStr}" class="form-control"/>
+                                            </div>
+                                        </div>
+                                        <!-- Phone -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Phone" styleClass="control-label col-sm-5" />
+                                            <div class="col-sm-5">
+                                                <h:inputText id="phone" value="#{userRegisterMBean.user.phone}" label="Phone:" pt:placeholder="incl. area code" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                        <!-- OR -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Or" styleClass="control-label col-sm-5" />
+                                            <div class="col-sm-5">
+                                                <h:outputText />
+                                            </div>
+                                        </div>
+                                        <!-- Mobile -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Mobile" styleClass="control-label col-sm-5" />
+                                            <div class="col-sm-5">
+                                                <h:inputText id="mobile" value="#{userRegisterMBean.user.mobile}" label="Mobile:" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Profile Pic -->
+                                
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel for="profilePic" value="Upload Profile Pic*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <p class="text-right">
+                                                    <h:inputFile id="profilePic" value="#{userRegisterMBean.profileFile}" styleClass="form-control" />
+                                                </p>
+                                                <h6 style="color: crimson;">Note: Please try to avoid .png file if possible - and Max file size &lt; 1MB. </h6>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- T&C Confirm -->
+                                
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLink value="#{request.contextPath}/info/TermsAndConditions.xhtml?faces-redirect=true" target="_blank" styleClass="control-label col-sm-5">I accept T&amp;C's*</h:outputLink>
+                                            <div class="col-sm-5">
+                                                <p class="text-right">
+                                                    <h:selectBooleanCheckbox id="tcAcpt" value="#{userRegisterMBean.acceptedTC}" styleClass="form-control"/>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:outputText value=" "/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <p class="text-right">
+                                                    <h:commandButton value="Continue" action="#{userRegisterMBean.personalSave}" styleClass="btn btn-primary" />
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:form>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                                
+    </ui:define>
+
+</ui:composition>

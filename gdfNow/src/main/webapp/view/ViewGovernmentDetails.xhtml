@@ -1,0 +1,322 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/GDFTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                >
+
+    <ui:define name="content">
+        <div class="col-sm-8">
+
+
+            <h3 style="margin-top: 0px; margin-bottom: 20px;">Government Department/Agency Details</h3>
+            <h4><h:outputText value="Department/Agency Details"/></h4>
+            <div class="row">
+                <div class="col-sm-3">
+
+                    <div class="well">
+                        <p><h:graphicImage value="/TempImageServlet" height="120" width="100"/></p>
+
+                    </div>
+                    <!-- Just a spacer -->
+                    <div class="col-sm-12">
+                        <h:outputText value="&#160;" />
+                    </div>
+                </div>
+                <div class="col-sm-9">
+
+                    <!-- Agency Name -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="Office Name:"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="text-left">
+                                <h:outputText value="#{viewGovernmentDetailsMBean.government.name}"/>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Ministry -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="Ministry:"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="text-left">
+                                <h:outputText value="#{viewGovernmentDetailsMBean.government.governmentOrg.ministry}"/>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Department -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="Department"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="text-left">
+                                <h:outputText value="#{viewGovernmentDetailsMBean.government.governmentOrg.department}"/>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Contact Name -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="Contact"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="text-left">
+                                <h:outputText value="#{viewGovernmentDetailsMBean.government.contactName}"/>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <h4><h:outputText value="Department/Agency Details Cont..."/></h4>
+            <div class="row">
+                <div class="col-sm-3">
+
+                    <div class="col-sm-12">
+                        <h:outputText value="&#160;" />
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <!-- Email 1 -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="Email 1:"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="text-left">
+                                <h:outputText value="#{viewGovernmentDetailsMBean.government.email1}" />
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Email 2 -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="Email 2:"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="text-left">
+                                <h:outputText value="#{viewGovernmentDetailsMBean.government.email2}" />
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Web Site -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="Web Site:"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="text-left">
+                                <h:outputText value="#{viewGovernmentDetailsMBean.government.website}" />
+                            </p>
+                        </div>
+                    </div>
+                    <!-- About/Description -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="About:"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="text-left">
+                                <h:outputText value="#{viewGovernmentDetailsMBean.government.description}" />
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <h4><h:outputText value="Registered Address"/></h4>
+                <div class="row">
+                    <!-- Line 1 -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-3">
+
+                            <div class="col-sm-12">
+                                <h:outputText value="&#160;" />
+                            </div>
+                        </div>
+                        <div class="col-sm-9"><!-- Address Details Block -->
+                            <!-- Line 2 -->
+                            <div class="col-sm-12">
+                                <div class="col-sm-5">
+                                    <p class="text-left">
+                                        <h:outputLabel value="Line 1:"/>
+                                    </p>
+                                </div>
+                                <div class="col-sm-7">
+                                    <p class="text-left">
+                                        <h:outputText value="#{viewGovernmentDetailsMBean.government.governmentAddress.line1}" />
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Line 2 -->
+                            <div class="col-sm-12">
+                                <div class="col-sm-5">
+                                    <p class="text-left">
+                                        <h:outputLabel value="Line 2:"/>
+                                    </p>
+                                </div>
+                                <div class="col-sm-7">
+                                    <p class="text-left">
+                                        <h:outputText value="#{viewGovernmentDetailsMBean.government.governmentAddress.line2}" />
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Line 3 -->
+                            <div class="col-sm-12">
+                                <div class="col-sm-5">
+                                    <p class="text-left">
+                                        <h:outputLabel value="Line 3:"/>
+                                    </p>
+                                </div>
+                                <div class="col-sm-7">
+                                    <p class="text-left">
+                                        <h:outputText value="#{viewGovernmentDetailsMBean.government.governmentAddress.line3}" />
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Phone 1 -->
+                            <div class="col-sm-12">
+                                <div class="col-sm-5">
+                                    <p class="text-left">
+                                        <h:outputLabel value="Phone 1:"/>
+                                    </p>
+                                </div>
+                                <div class="col-sm-7">
+                                    <p class="text-left">
+                                        <h:outputText value="#{viewGovernmentDetailsMBean.government.governmentAddress.phone1}" />
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Phone 2 -->
+                            <div class="col-sm-12">
+                                <div class="col-sm-5">
+                                    <p class="text-left">
+                                        <h:outputLabel value="Phone 2:"/>
+                                    </p>
+                                </div>
+                                <div class="col-sm-7">
+                                    <p class="text-left">
+                                        <h:outputText value="#{viewGovernmentDetailsMBean.government.governmentAddress.phone2}" />
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Phone 3 -->
+                            <div class="col-sm-12">
+                                <div class="col-sm-5">
+                                    <p class="text-left">
+                                        <h:outputLabel value="Phone 3:"/>
+                                    </p>
+                                </div>
+                                <div class="col-sm-7">
+                                    <p class="text-left">
+                                        <h:outputText value="#{viewGovernmentDetailsMBean.government.governmentAddress.phone3}" />
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Post Code -->
+                            <div class="col-sm-12">
+                                <div class="col-sm-5">
+                                    <p class="text-left">
+                                        <h:outputLabel value="Post Code"/>
+                                    </p>
+                                </div>
+                                <div class="col-sm-7">
+                                    <p class="text-left">
+                                        <h:outputText value="#{viewGovernmentDetailsMBean.government.governmentAddress.postcode}" />
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- City -->
+                            <div class="col-sm-12">
+                                <div class="col-sm-5">
+                                    <p class="text-left">
+                                        <h:outputLabel value="City:"/>
+                                    </p>
+                                </div>
+                                <div class="col-sm-7">
+                                    <p class="text-left">
+                                        <h:outputText value="#{viewGovernmentDetailsMBean.government.governmentAddress.city}" />
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- State -->
+                            <div class="col-sm-12">
+                                <div class="col-sm-5">
+                                    <p class="text-left">
+                                        <h:outputLabel value="State:"/>
+                                    </p>
+                                </div>
+                                <div class="col-sm-7">
+                                    <p class="text-left">
+                                        <h:outputText value="#{viewGovernmentDetailsMBean.government.governmentAddress.state}" />
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Country -->
+                            <div class="col-sm-12">
+                                <div class="col-sm-5">
+                                    <p class="text-left">
+                                        <h:outputLabel value="Country:"/>
+                                    </p>
+                                </div>
+                                <div class="col-sm-7">
+                                    <p class="text-left">
+                                        <h:outputText value="#{viewGovernmentDetailsMBean.government.governmentAddress.country.name}" />
+                                    </p>
+                                </div>
+                            </div>
+                        </div><!-- col-sm-9 ends-->
+                    </div>
+                </div><!-- div row ends -->
+                <!-- Back -->
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <div class="col-sm-6">
+                                <h:outputText value=""/>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="text-left">
+                                    <h:form styleClass="form-horizontal">
+                                        <h:commandButton value="Go Back" action="#{homeMBean.redirectToSiteHome}" styleClass="btn btn-primary" />
+                                    </h:form>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div> <!-- div class="col-sm-8" -->
+
+
+
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <div class="col-sm-2 well">
+        <p><strong>Recent Activities</strong></p>      
+        <ui:repeat value="#{activityMBean.activities}" var="activity">
+            <p>
+                <h:form prependId="false">
+                    <f:ajax execute="@form">
+                        
+                        <h:commandLink value="#{activity.message}" action="#{activityMBean.redirect}">
+                            <f:param name="activityType" value="#{activity.activityType}"/>
+                            <f:param name="entityId" value="#{activity.accessId}"/>
+                            <f:param name="entityName" value="#{activity.entityName}"/>
+                        </h:commandLink>
+                    </f:ajax>
+                </h:form>
+            </p> 
+        </ui:repeat>
+        <div>
+            <p>
+                <h:outputText value="&#160;" />
+            </p>
+        </div>
+        <div class="well">
+            <p>ADS</p>
+        </div>
+    </div>
+</html>

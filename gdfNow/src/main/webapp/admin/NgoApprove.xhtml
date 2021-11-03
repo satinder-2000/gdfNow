@@ -1,0 +1,50 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/GDFTemplateAdmin.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                >
+
+    <ui:define name="content">
+        <div class="row">
+                    <div class="col-sm-3">
+                        <h:outputLabel value="NGO ID-Name"/>
+                    </div>
+                    <div class="col-sm-3">
+                        <h:outputLabel value="Category -Sub Category"/>
+                    </div>
+                    <div class="col-sm-3">
+                        <h:outputLabel value="Approve"/>
+                    </div>
+                    <div class="col-sm-3">
+                        <h:outputLabel value="Result"/>
+                    </div>
+            </div>
+        <ui:repeat value="#{adminMBean.ngos}" var="ngo">
+            
+            <div class="row">
+                <f:ajax render="output">
+                    <h:form>
+                        <div class="col-sm-3">
+                            <h:outputText value="#{ngo.id}-#{ngo.name}"/>
+                        </div>
+                        <div class="col-sm-3">
+                            <h:outputText value="#{ngo.ngoCategory.type} - #{ngo.ngoCategory.subtype}"/>
+                        </div>
+                        <div class="col-sm-3">
+                            <h:commandButton value="Approve" action="#{adminMBean.approveNgo}">
+                                <f:param name="ngoId" value="#{ngo.id}"/>
+                            </h:commandButton>
+                        </div>
+                        <div class="col-sm-3">
+                            <h:outputText id="output" value="#{adminMBean.message}"/>
+                        </div>
+                    </h:form>
+                </f:ajax>
+
+            </div>
+        </ui:repeat>
+        
+    </ui:define>
+</ui:composition>

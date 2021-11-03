@@ -1,0 +1,237 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                template="/WEB-INF/templates/GDFTemplate.xhtml">
+    <ui:define name="content">
+        <div class="col-sm-8">
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <h:form id='linkForm' prependId="false">
+                                <h:commandLink value="My Home" action="#{homeMBean.redirectToHome}"/>
+                            </h:form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <h4><h:outputText value="Deed Details"/></h4>
+                <div class="col-sm-12">
+                    <div class="well">
+                        <p class="text-left">Category: <h:outputText value="#{offersOnDeedMBean.deed.deedCategory.type} &gt; #{offersOnDeedMBean.deed.deedCategory.subtype}"/></p>
+                        <p class="text-left">Deed Date: 
+                            <h:outputText value="#{offersOnDeedMBean.deed.dateStr}">
+
+                            </h:outputText>
+                        </p>
+                        <p class="text-left">Location : 
+                            <h:outputText value="#{offersOnDeedMBean.deed.deedAddress.city},#{offersOnDeedMBean.deed.deedAddress.state},#{offersOnDeedMBean.deed.deedAddress.country.name}"/>
+                        </p>
+                        <p class="text-left">Description: 
+
+                            #{offersOnDeedMBean.deed.description}
+                        </p>
+                        <p class="text-left">Evidence 1 : 
+                            <a href="#{offersOnDeedMBean.deed.link1}" target="_blank">#{offersOnDeedMBean.deed.link1}</a>
+                        </p>
+                        <p class="text-left">Evidence 2 : 
+                            <a href="#{offersOnDeedMBean.deed.link2}" target="_blank">#{offersOnDeedMBean.deed.link2}</a>
+                        </p>
+                        <p class="text-left">Evidence 3 : 
+                            <a href="#{offersOnDeedMBean.deed.link3}" target="_blank">#{offersOnDeedMBean.deed.link3}</a>
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- Business Offers -->
+            <p class="text-center"><h4>Business Offers for the Deed </h4></p>
+            <c:choose>
+                <c:when test="#{offersOnDeedMBean.businessOffers.size()>0}">
+                    <c:forEach items="#{offersOnDeedMBean.businessOffers}" var="boffer">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="well">
+                                    <p>By:</p>
+                                    <p><h:graphicImage value="/ImageMapServlet?imgId=BO#{boffer.business.id}" height="55" width="45"/></p>
+                                    <p>#{boffer.business.name}</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="well">
+                                    <p>Offer Date:<br/>
+                                        <h:outputText value="#{boffer.offerDate}" >
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                        </h:outputText>
+                                    </p>
+                                    <p>Summary:<br/>
+                                        <h:outputText value="#{boffer.description}" /></p>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="well">
+                                    <p>Deed Date:<br/>
+                                        <h:outputText value="#{boffer.deed.dateStr}" >
+
+                                        </h:outputText>
+                                    </p>
+                                    <p>Summary:<br/>
+                                        <h:outputText value="#{boffer.deed.intro}" /></p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="well">
+
+                                    <p><h:form>
+                                            <h:commandButton value="Offer Details" styleClass="btn btn-default btn-sm" action="#{viewBusinessOfferDetailsMBean.loadOffer}">
+                                                <f:param name="offerId" value="#{boffer.id}"/>
+                                            </h:commandButton>
+                                        </h:form>
+                                    </p>
+                                    <p><h:form>
+                                            <h:commandButton value="Deed Details" styleClass="btn btn-default btn-sm" action="#{deedDetailsMBean.loadDeedDetails}">
+                                                <f:param name="deedId" value="#{boffer.deed.id}"/>
+                                            </h:commandButton>
+                                        </h:form>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </c:when>
+                <c:otherwise>
+                    <h:outputText style="color: crimson" value="Sorry, no offers found!"/> 
+                </c:otherwise>
+            </c:choose>
+            <!-- Government Offers -->
+            <p class="text-center"><h4>Government Offers for the Deed </h4></p>
+            <c:choose>
+                <c:when test="#{offersOnDeedMBean.governmentOffers.size()>0}">
+                    <c:forEach items="#{offersOnDeedMBean.governmentOffers}" var="goffer">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="well">
+                                    <p>By:</p>
+                                    <p><h:graphicImage value="/ImageMapServlet?imgId=GO#{goffer.government.id}" height="55" width="45"/></p>
+                                    <p>#{goffer.government.name}</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="well">
+                                    <p>Offer Date:<br/>
+                                        <h:outputText value="#{goffer.offerDate}" >
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                        </h:outputText>
+                                    </p>
+                                    <p>Summary:<br/>
+                                        <h:outputText value="#{goffer.description}" /></p>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="well">
+                                    <p>Deed Date:<br/>
+                                        <h:outputText value="#{goffer.deed.dateStr}" >
+
+                                        </h:outputText>
+                                    </p>
+                                    <p>Summary:<br/>
+                                        <h:outputText value="#{goffer.deed.intro}" /></p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="well">
+
+                                    <p><h:form>
+                                            <h:commandButton value="Offer Details" styleClass="btn btn-default btn-sm" action="#{viewGovernmentOfferDetailsMBean.loadOffer}">
+                                                <f:param name="offerId" value="#{goffer.id}"/>
+                                            </h:commandButton>
+                                        </h:form>
+                                    </p>
+                                    <p><h:form>
+                                            <h:commandButton value="Deed Details" styleClass="btn btn-default btn-sm" action="#{deedDetailsMBean.loadDeedDetails}">
+                                                <f:param name="deedId" value="#{goffer.deed.id}"/>
+                                            </h:commandButton>
+                                        </h:form>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </c:when>
+                <c:otherwise>
+                    <h:outputText style="color: crimson"  value="Sorry, no offers found!"/> 
+                </c:otherwise>
+            </c:choose>
+            <!-- NGO Offers -->
+            <p class="text-center"><h4>NGO Offers for the Deed </h4></p>
+            <c:choose>
+                <c:when test="#{offersOnDeedMBean.ngoOffers.size()>0}">
+                    <c:forEach items="#{offersOnDeedMBean.ngoOffers}" var="noffer">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="well">
+                                    <p>By:</p>
+                                    <p><h:graphicImage value="/ImageMapServlet?imgId=NO#{noffer.ngo.id}" height="55" width="45"/></p>
+                                    <p>#{noffer.ngo.name}</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="well">
+                                    <p>Offer Date:<br/>
+                                        <h:outputText value="#{noffer.offerDate}" >
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                        </h:outputText>
+                                    </p>
+                                    <p>Summary:<br/>
+                                        <h:outputText value="#{noffer.description}" /></p>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="well">
+                                    <p>Deed Date:<br/>
+                                        <h:outputText value="#{noffer.deed.dateStr}" >
+
+                                        </h:outputText>
+                                    </p>
+                                    <p>Summary:<br/>
+                                        <h:outputText value="#{noffer.deed.intro}" /></p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="well">
+
+                                    <p><h:form>
+                                            <h:commandButton value="Offer Details" styleClass="btn btn-default btn-sm" action="#{viewNgoOfferDetailsMBean.loadOffer}">
+                                                <f:param name="offerId" value="#{noffer.id}"/>
+                                                <f:param name="offeror" value="NGO"/>
+                                            </h:commandButton>
+                                        </h:form>
+                                    </p>
+                                    <p><h:form>
+                                            <h:commandButton value="Deed Details" styleClass="btn btn-default btn-sm" action="#{deedDetailsMBean.loadDeedDetails}">
+                                                <f:param name="deedId" value="#{noffer.deed.id}"/>
+                                            </h:commandButton>
+                                        </h:form>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </c:when>
+                <c:otherwise>
+                    <h:outputText style="color: crimson" value="Sorry, no offers found!"/> 
+                </c:otherwise>
+            </c:choose>
+
+        </div>
+    </ui:define>
+</ui:composition>

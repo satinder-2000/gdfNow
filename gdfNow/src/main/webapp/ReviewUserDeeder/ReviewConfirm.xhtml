@@ -1,0 +1,243 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/GDFTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <ui:define name="content">
+        <h:form styleClass="form-horizontal" enctype="multipart/form-data" prependId="false">
+            <div class="col-sm-8">
+                <h3 style="margin-top: 0px; margin-bottom: 20px;">Review Deeder Details</h3>
+                <h4><h:outputText value="Personal Details"/></h4>
+                <div class="row">
+                    <div class="col-sm-3">
+
+                        <div class="well">
+                            <p><h:graphicImage value="/TempImageServlet" height="120" width="100"/></p>
+
+                        </div>
+                        <!-- Just a spacer -->
+                        <div class="col-sm-12">
+                            <h:outputText value="&#160;" />
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+
+                        <!-- First Name -->
+                        <div class="col-sm-12">
+                            <div class="col-sm-5">
+                                <p class="text-left">
+                                    <h:outputLabel value="First Name:"/>
+                                </p>
+                            </div>
+                            <div class="col-sm-7">
+                                <p class="text-left">
+                                    <h:outputText value="#{reviewUserDeederMBean.deeder.firstname}" />
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Last Name -->
+                        <div class="col-sm-12">
+                            <div class="col-sm-5">
+                                <p class="text-left">
+                                    <h:outputLabel value="Last Name:"/>
+                                </p>
+                            </div>
+                            <div class="col-sm-7">
+                                <p class="text-left">
+                                    <h:outputText value="#{reviewUserDeederMBean.deeder.lastname}" />
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Gender -->
+                        <div class="col-sm-12">
+                            <div class="col-sm-5">
+                                <p class="text-left">
+                                    <h:outputLabel value="Gender:"/>
+                                </p>
+                            </div>
+                            <div class="col-sm-7">
+                                <p class="text-left">
+                                    <h:outputText value="#{reviewUserDeederMBean.deeder.gender}" />
+                                    
+                                </p>
+                            </div>
+                        </div>
+                        <!-- DOB -->
+                        <div class="col-sm-12">
+                            <div class="col-sm-5">
+                                <p class="text-left">
+                                    <h:outputLabel value="Date of Birth:"/>
+                                </p>
+                            </div>
+                            <div class="col-sm-7">
+                                <p class="text-left">
+                                   <h:outputText value="#{reviewUserDeederMBean.deeder.dobStr}" />
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Email -->
+                        <div class="col-sm-12">
+                            <div class="col-sm-5">
+                                <p class="text-left">
+                                    <h:outputLabel value="Contact Email:"/>
+                                </p>
+                            </div>
+                            <div class="col-sm-7">
+                                <p class="text-left">
+                                    <h:outputText value="#{reviewUserDeederMBean.deeder.email}" />
+                                    
+                                </p>
+                            </div>
+                        </div>
+                        <!-- About -->
+                        <div class="col-sm-12">
+                            <div class="col-sm-5">
+                                <p class="text-left">
+                                    <h:outputLabel value="About the Deeder:"/>
+                                </p>
+                            </div>
+                            <div class="col-sm-7">
+                                <p class="text-left">
+                                    <h:outputText value="#{reviewUserDeederMBean.deeder.about}"/>
+                                    
+                                </p>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+                </div>
+                <h4><h:outputText value="Deeder's Address"/></h4>
+                <div class="row">
+                    <div class="col-sm-3">
+
+                        <div class="col-sm-12">
+                            <h:outputText value="&#160;" />
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <!-- Line 1 -->
+                        <div class="col-sm-12">
+                            <div class="col-sm-5">
+                                <p class="text-left">
+                                    <h:outputLabel value="Line 1:*"/>
+                                </p>
+                            </div>
+                            <div class="col-sm-7">
+                                <p class="text-left">
+                                    <h:outputText id="line1" value="#{reviewUserDeederMBean.deeder.deederAddress.line1}" />
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Line 2 -->
+                        <div class="col-sm-12">
+                            <div class="col-sm-5">
+                                <p class="text-left">
+                                    <h:outputLabel value="Line 2:*"/>
+                                </p>
+                            </div>
+                            <div class="col-sm-7">
+                                <p class="text-left">
+                                    <h:outputText id="line2" value="#{reviewUserDeederMBean.deeder.deederAddress.line2}" />
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Post Code -->
+                        <div class="col-sm-12">
+                            <div class="col-sm-5">
+                                <p class="text-left">
+                                    <h:outputLabel value="Post Code"/>
+                                </p>
+                            </div>
+                            <div class="col-sm-7">
+                                <p class="text-left">
+                                    <h:outputText id="postcode" value="#{reviewUserDeederMBean.deeder.deederAddress.postcode}" />
+                                </p>
+                            </div>
+                        </div>
+                        <!-- City -->
+                        <div class="col-sm-12">
+                            <div class="col-sm-5">
+                                <p class="text-left">
+                                    <h:outputLabel value="City:*"/>
+                                </p>
+                            </div>
+                            <div class="col-sm-7">
+                                <p class="text-left">
+                                    <h:outputText id="city" value="#{reviewUserDeederMBean.deeder.deederAddress.city}" />
+                                </p>
+                            </div>
+                        </div>
+                        <!-- State -->
+                        <div class="col-sm-12">
+                            <div class="col-sm-5">
+                                <p class="text-left">
+                                    <h:outputLabel value="State:"/>
+                                </p>
+                            </div>
+                            <div class="col-sm-7">
+                                <p class="text-left">
+                                    <h:outputText id="state" value="#{reviewUserDeederMBean.deeder.deederAddress.state}"/>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Country -->
+                        <div class="col-sm-12">
+                            <div class="col-sm-5">
+                                <p class="text-left">
+                                    <h:outputLabel value="Country:"/>
+                                </p>
+                            </div>
+                            <div class="col-sm-7">
+                                <p class="text-left">
+                                    <h:outputText value="#{reviewUserDeederMBean.deeder.deederAddress.country.name}" />
+                                </p>
+                            </div>
+                        </div>
+                        <!-- spacers -->
+                        <div class="col-sm-12">
+                            <div class="col-sm-5">
+                                <p class="text-left">
+                                    <br/>
+                                    
+                                </p>
+                            </div>
+                            <div class="col-sm-7">
+                                <p class="text-left">
+                                   <br/> 
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Buttons -->
+                        <div class="col-sm-12">
+                            <div class="col-sm-5">
+                                <p class="text-left">
+                                    <h:commandButton value="Amend" action="#{reviewUserDeederMBean.amendDetails}" styleClass="btn btn-primary" />
+                                </p>
+                            </div>
+                            <div class="col-sm-7">
+                                <p class="text-left">
+                                    <h:commandButton value="Continue" action="#{reviewUserDeederMBean.submitDetails}" styleClass="btn btn-primary" />
+                                </p>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

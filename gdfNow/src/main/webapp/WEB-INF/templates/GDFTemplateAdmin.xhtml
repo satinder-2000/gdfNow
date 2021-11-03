@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+  <title>GDFNow-Admin</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="shortcut icon" type="image/x-icon" href="#{resource['images/favicon.ico']}"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <h:outputStylesheet library="css" name="gdf.css" />
+  <h:outputScript library="javax.faces" name="jsf.js" target="body" />
+   <h:outputScript library="js" name="gdf.js" target="body" />
+  <style>    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+  </style>
+</h:head>
+
+    <h:body>
+        
+        <ui:include src="header.xhtml" />
+
+        
+
+        <div class="container text-center">    
+            <div class="row">
+                <ui:insert name="content"/>
+            </div>
+        </div>
+
+        
+        <ui:include src="footer.xhtml" />
+
+
+    </h:body>
+
+</html>

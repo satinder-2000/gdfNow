@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                template="/WEB-INF/templates/GDFHomeTemplate.xhtml">
+
+    <ui:define name="content">
+        <div class="col-sm-8">
+            <h1 class="text-center">All Deed Categories</h1>
+            <p class="text-center" style="font-size: 1.2em; color: rgb(140,13,63); ">
+                <b>
+                    Deeders can register their Deeds under the following categories: 
+                </b>
+            </p>
+            <br/>
+
+            <h:form prependId="false">
+
+                <div class="row">
+                    <div class="col-sm-1"><h:outputText value="&nbsp;"/></div>
+                    <div class="col-sm-5"><h:outputLabel value="Deed Category"/></div>
+                    <div class="col-sm-5"><h:outputLabel value="Deed Sub-Category"/></div>
+                    <div class="col-sm-1"><h:outputText value="&nbsp;"/></div>
+                </div>
+                <c:forEach items="#{deedCagegoryViewMBean.deedCategories}" var="dc">
+                    <div class="row">
+                        <div class="col-sm-12"><h:outputText value="&nbsp;"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-1"><h:outputText value="&nbsp;"/></div>
+                        <div class="col-sm-5"><h:outputText value="#{dc.type}" styleClass="form-control"/></div>
+                        <div class="col-sm-5"><h:outputText value="#{dc.subtype}" styleClass="form-control"/></div>
+                        <div class="col-sm-1"><h:outputText value="&nbsp;"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12"><h:outputText value="&nbsp;"/></div>
+                    </div>
+
+                </c:forEach>
+
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <!--The paging buttons-->
+                        <h:commandButton value="first" action="#{deedCagegoryViewMBean.pageFirst}" styleClass="btn-default btn-lg"
+                                         disabled="#{deedCagegoryViewMBean.firstRow == 0}" />
+                        <h:outputText value="&nbsp;" escape="false"/>
+                        <h:commandButton value="prev" action="#{deedCagegoryViewMBean.pagePrevious}"  styleClass="btn-default btn-lg"
+                                         disabled="#{deedCagegoryViewMBean.firstRow == 0}" />
+                        <h:outputText value="&nbsp;" escape="false"/>
+                        <h:outputText value="Page #{deedCagegoryViewMBean.currentPage} / #{deedCagegoryViewMBean.totalPages}" />
+                        <h:outputText value="&nbsp;" escape="false"/>
+                        <h:commandButton value="next" action="#{deedCagegoryViewMBean.pageNext}" styleClass="btn-default btn-lg"
+                                         disabled="#{deedCagegoryViewMBean.firstRow + deedCagegoryViewMBean.rowsPerPage >= deedCagegoryViewMBean.totalRows}" />
+                        <h:outputText value="&nbsp;" escape="false"/>
+                        <h:commandButton value="last" action="#{deedCagegoryViewMBean.pageLast}" styleClass="btn-default btn-lg"
+                                         disabled="#{deedCagegoryViewMBean.firstRow + deedCagegoryViewMBean.rowsPerPage >= deedCagegoryViewMBean.totalRows}" />
+                        <h:outputText value="&nbsp;" escape="false"/>
+
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>

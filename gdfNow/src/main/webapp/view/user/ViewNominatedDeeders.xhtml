@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/templates/GDFTemplate.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="content">
+        <div class="col-sm-8">
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <h5><h:outputText value="#{profileLocatorMBean.name}"/></h5>
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <div class="col-sm-3">
+                                <a href="#{request.contextPath}">Site Home</a>
+                            </div>
+                            <div class="col-sm-3">
+                                <h:form prependId="false">
+                                    <h:commandLink value="My Home" action="#{homeMBean.redirectToHome}"/>
+                                </h:form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div><!--row ends-->
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h5><h:outputText value="#{profileLocatorMBean.name}"/></h5>
+                                    <div class="col-sm-4 well">
+                                        <h:form>
+                                            <p class="text-center">
+                                               <h:commandButton value="Amend Details" action="/amend/user/AmendUser.xhtml?faces-redirect=true"/>
+                                            </p>
+                                        </h:form>
+                                    </div>
+                                    <div class="col-sm-4 well">
+                                        <h:form>
+                                            <p class="text-center">
+                                                <h:commandButton value="Change Password" action="/amend/user/ChangePassword.xhtml?faces-redirect=true"/>
+                                            </p>
+                                        </h:form>
+                                    </div>
+                                    <div class="col-sm-4 well">
+                                        <h:form>
+                                            <p class="text-center">
+                                                <h:commandButton value="Nominate Deeder" action="UserDeederRegister"/>
+                                            </p>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--row ends-->
+            <h4><h:outputText value="Your Nominated Deeders"/></h4>
+            <div class="row">
+                <div class="col-sm-12">
+                    <c:choose>
+                        <c:when test="#{viewNominatedDeedersMBean.nominatedDeeders.size()>0}">
+                            <c:forEach items="#{viewNominatedDeedersMBean.nominatedDeeders}" var="nd">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="well">
+                                            <h:graphicImage value="/ImageMapServlet?imgId=DR#{nd.id}" height="120" width="90"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="well">
+                                            <p class="text-left">Name:<h:outputText value="#{nd.firstname} #{nd.lastname}"/> </p>
+                                            <p class="text-left">Address:<h:outputText value="#{nd.deederAddress.city},#{nd.deederAddress.state},#{nd.deederAddress.country.name}"/></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <h:outputText value="You have not nominated any Deeder yet."/>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+            </div><!--row ends-->
+        </div><!--Parent div ends-->
+    </ui:define>
+
+</ui:composition>

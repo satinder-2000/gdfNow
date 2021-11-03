@@ -1,0 +1,146 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                template="/WEB-INF/templates/GDFHomeTemplate.xhtml"
+                >
+
+    <ui:define name="content">
+        <div class="col-sm-8">
+            <h2 class="text-center">All Business Offers</h2>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <c:forEach items="#{offersViewMBean.businessOffers}" var="boffer">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="well">
+                                    <p>By:</p>
+                                    <p>
+                                        <h:graphicImage value="/ImageMapServlet?imgId=BO#{boffer.business.id}" height="55" width="55"/></p>
+
+                                    <p>#{boffer.business.name}</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="well">
+                                    <p>Offer Date:<br/>
+                                        <h:outputText value="#{boffer.offerDate}" >
+
+                                        </h:outputText>
+                                    </p>
+                                    <p>Summary:<br/>
+                                        <h:outputText value="#{boffer.intro}" /></p>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="well">
+                                    <p>Deed Date:<br/>
+                                        <h:outputText value="#{boffer.deed.deedDate}" >
+
+                                        </h:outputText>
+                                    </p>
+                                    <p>Summary:<br/>
+                                        <h:outputText value="#{boffer.deed.intro}" /></p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </c:forEach>
+                </div>
+            </div>
+            <br/>
+            <h2><h:outputText value="Government Offers"/></h2>
+            <div class="row">
+                <div class="col-sm-12">
+                    <c:forEach items="#{offersViewMBean.governmentOffers}" var="goffer">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="well">
+                                    <p>By:</p>
+                                    <p>
+                                        <h:graphicImage value="/ImageMapServlet?imgId=GO#{goffer.government.id}" height="55" width="55"/>
+                                    </p>
+                                    <p>#{goffer.government.name}</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="well">
+                                    <p>Offer Date:<br/>
+                                        <h:outputText value="#{goffer.offerDate}" >
+
+                                        </h:outputText>
+                                    </p>
+                                    <p>Summary:<br/>
+                                        <h:outputText value="#{goffer.intro}" /></p>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="well">
+                                    <p>Deed Date:<br/>
+                                        <h:outputText value="#{goffer.deed.deedDate}" >
+
+                                        </h:outputText>
+                                    </p>
+                                    <p>Summary:<br/>
+                                        <h:outputText value="#{goffer.deed.intro}" /></p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </c:forEach>
+                </div>
+            </div>
+            <br/>
+            <h2><h:outputText value="NGO Offers"/></h2>
+            <div class="row">
+                <div class="col-sm-12">
+                    <c:forEach items="#{offersViewMBean.ngoOffers}" var="noffer">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="well">
+                                    <p>By:</p>
+                                    <p><h:graphicImage value="/ImageMapServlet?imgId=NO#{noffer.ngo.id}" height="55" width="55"/></p>
+                                    <p>#{noffer.ngo.name}</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="well">
+                                    <p>Offer Date:<br/>
+                                        <h:outputText value="#{noffer.offerDate}" >
+
+                                        </h:outputText>
+                                    </p>
+                                    <p>Summary:<br/>
+                                        <h:outputText value="#{noffer.intro}" /></p>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="well">
+                                    <p>Deed Date:<br/>
+                                        <h:outputText value="#{noffer.deed.deedDate}" >
+
+                                        </h:outputText>
+                                    </p>
+                                    <p>Summary:<br/>
+                                        <h:outputText value="#{noffer.deed.intro}" /></p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </c:forEach>
+                </div>
+            </div>
+
+        </div>    
+
+    </ui:define>
+
+</ui:composition>

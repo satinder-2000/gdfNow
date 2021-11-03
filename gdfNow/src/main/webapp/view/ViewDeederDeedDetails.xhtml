@@ -1,0 +1,201 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/GDFTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                >
+    <ui:define name="content">
+        <div class="col-sm-8">
+
+            <div class="row">
+                
+                <div class="col-sm-12">
+                    <h5><h:outputText value="#{profileLocatorMBean.name}"/></h5>
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <div class="col-sm-3">
+                                <h:form prependId="false">
+                                    <h:commandLink value="Site Home" action="#{homeMBean.redirectToSiteHome()}"/>
+                                </h:form>
+                            </div>
+                            <div class="col-sm-3">
+                                <h:form prependId="false">
+                                    <h:commandLink value="My Home" action="#{homeMBean.redirectToHome}"/>
+                                </h:form>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3 style="margin-top: 0px; margin-bottom: 20px;">Deed Details</h3>
+            <div class="row">
+                <div class="col-sm-8">
+                        <div class="well">
+                            <p class="text-left">Category: <h:outputText value="#{viewDeederDeedDetailsMBean.deed.deedCategory.type} &gt; #{viewDeederDeedDetailsMBean.deed.deedCategory.subtype}"/></p>
+                            <p class="text-left">Deed Date: 
+                                <h:outputText value="#{viewDeederDeedDetailsMBean.deed.dateStr}">
+                                    
+                                </h:outputText>
+                            </p>
+                            <p class="text-left">Title: <h:outputText value="#{viewDeederDeedDetailsMBean.deed.title}"/></p>
+                            <p class="text-left">Location : 
+                                <h:outputText value="#{viewDeederDeedDetailsMBean.deed.deedAddress.city},#{viewDeederDeedDetailsMBean.deed.deedAddress.state},#{viewDeederDeedDetailsMBean.deed.deedAddress.country.name}"/>
+                            </p>
+                            <p class="text-left">Description: 
+                                #{viewDeederDeedDetailsMBean.deed.description}
+                            </p>
+                            <p class="text-left">Evidence 1 : 
+                                <a href="#{viewDeederDeedDetailsMBean.deed.link1}" target="_blank">#{viewDeederDeedDetailsMBean.deed.link1}</a>
+                            </p>
+                            <p class="text-left">Evidence 2 : 
+                                <a href="#{viewDeederDeedDetailsMBean.deed.link2}" target="_blank">#{viewDeederDeedDetailsMBean.deed.link2}</a>
+                            </p>
+                            <p class="text-left">Evidence 3 : 
+                                <a href="#{viewDeederDeedDetailsMBean.deed.link3}" target="_blank">#{viewDeederDeedDetailsMBean.deed.link3}</a>
+                            </p>
+                            
+                        </div>
+                    </div>
+                <div class="col-sm-4">
+                    <div class="row">
+                    <div class="well">
+                    <h:form>
+                        <h:commandLink value="View All Offers on Deed" action="#{offersOnDeedMBean.loadOffersForDeed}">
+                            <f:param name="deedId" value="#{viewDeederDeedDetailsMBean.deed.id}"/>
+                        </h:commandLink>    
+                    </h:form>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2"/>
+                        <div class="col-sm-8 well">
+                        <h:form prependId="false">
+                            <p>
+                                <div class="popup" onclick="myFunction()"><h:outputText value="Likes: "/><h:outputText id="deedlikes" value="#{viewDeederDeedDetailsMBean.deedLikesStr}"/>
+                                    <span class="popuptext" id="bOLPopup">
+                                        <h:outputText value="#{viewDeederDeedDetailsMBean.likesBy}"/>
+                                    </span>
+                                </div>
+                            </p>
+                            <p>
+
+                                <span class="glyphicon glyphicon-thumbs-up">
+                                    
+                                    <h:commandLink id="deedlike" action="#{viewDeederDeedDetailsMBean.addLike}" value="Like">
+                                        <f:ajax execute="@this" render="deedlikes"></f:ajax>
+                                       
+                                    </h:commandLink>
+                                    
+                                </span>
+
+                            </p>
+                        </h:form>
+                        </div>
+                        <div class="col-sm-2"/>
+                    </div>
+                </div>
+                
+            </div>
+            <h4><h:outputText value="Deeder Details"/></h4>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="well">
+                        <h:graphicImage value="/TempImageServlet" height="120" width="90"/>
+                    </div>
+                </div>
+                <div class="col-sm-7">
+                        <div class="well">
+                            <p class="text-left">Name:<h:outputText value="#{viewDeederDeedDetailsMBean.deed.deeder.firstname} #{viewDeederDeedDetailsMBean.deed.deeder.lastname}"/> </p>
+                            <p class="text-left">Address:<h:outputText value="#{viewDeederDeedDetailsMBean.deed.deeder.deederAddress.city},#{viewDeederDeedDetailsMBean.deed.deeder.deederAddress.state},#{viewDeederDeedDetailsMBean.deed.deeder.deederAddress.country.name}"/></p>
+                        </div>
+                </div>
+                <div class="col-sm-2">
+                        <div class="well">
+                            
+                            <h:form prependId="false">
+                            <p>
+                                <div class="popup" onclick="myFunction()"><h:outputText value="Likes: "/><h:outputText id="dlikes" value="#{viewDeederDeedDetailsMBean.deederLikesStr}"/>
+                                    <span class="popuptext" id="bOLPopup">
+                                        <h:outputText value="#{viewDeederDeedDetailsMBean.deederLikesBy}"/>
+                                    </span>
+                                </div>
+                            </p>
+                            <p>
+
+                                <span class="glyphicon glyphicon-thumbs-up">
+                                    
+                                    <h:commandLink id="dlike" action="#{viewDeederDeedDetailsMBean.addDeederLike}" value="Like">
+                                        <f:ajax execute="@this" render="dlikes"></f:ajax>
+                                       
+                                    </h:commandLink>
+                                    
+                                </span>
+
+                            </p>
+                        </h:form>
+                            
+                        </div>
+                </div>
+                
+            </div>
+            <h5><h:outputText value="Comments"/></h5>
+            <!--Existing Comments go here -->
+            <div class="row">
+                <div class="col-sm-12">
+                    
+                        <ui:repeat value="#{viewDeederDeedDetailsMBean.deedComments}" var="comment">
+                            <div class="col-sm-9">
+                                <div class="well">
+                                    <p class="text-left"><b><h:outputText value="#{comment.postedBy}" /></b>
+                                        <small><h:outputText value=" on  #{comment.dateStr}"/></small>
+                                    </p>
+                                    <p class="text-left"><h:outputText value="#{comment.text}" /></p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <h:form prependId="false">
+                                    <div class="well">
+                                        <p>
+                                            <h:outputText id="likesCmt" value="Likes: #{comment.likes}"/>
+                                        </p>
+                                        <p><span class="glyphicon glyphicon-thumbs-up">
+                                                <h:commandLink id="likeCmt" action="#{viewDeederDeedDetailsMBean.addCommentLike(comment.id)}" value="Like">
+                                                    <f:ajax execute="@form" render="@form"/> 
+                                                </h:commandLink>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </ui:repeat>
+                    
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h:form>
+                        <div class="form-group">
+                            <p><h:outputText value="#{session.getAttribute('LoggedInGDF')}"/></p>
+                            <p class="text-left"><label>Comment:</label></p>
+                            <h:messages infoStyle="color:blue;" errorStyle="color:red;"/>
+                            <p><h:inputTextarea id="comment" pt:placeholder="Max chars allowed: 1000"  value="#{viewDeederDeedDetailsMBean.deedComment.text}" styleClass="form-control" rows="5" /></p>
+                            <p class="text-right">
+                                
+                                <h:commandButton value="Post" class="btn btn-default btn-sm" action="#{viewDeederDeedDetailsMBean.addComment}">
+                                    <f:ajax execute="@form" render="@form"/>
+                                </h:commandButton>
+                            </p>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            
+        </div>    
+
+        
+    </ui:define>
+</ui:composition>

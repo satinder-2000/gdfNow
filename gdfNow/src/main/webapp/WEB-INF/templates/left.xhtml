@@ -1,0 +1,111 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      >
+<div class="col-sm-2 well">
+    <div class="well">
+       <h:graphicImage value="/ImageServlet" height="150" width="120"/>
+        <!--h:graphicImage url="# { profileLocatorMBean.location}" height="150" width="120" / -->
+        <!--h:graphicImage library="images" name="GDFNow2.jpeg"  height="150" width="120" / -->
+    </div>
+    <!--div class="well">
+        <p><a href="#">Interests</a></p>
+        <p>
+            <span class="label label-default">News</span>
+            <span class="label label-primary">W3Schools</span>
+            <span class="label label-success">Labels</span>
+            <span class="label label-info">Football</span>
+            <span class="label label-warning">Gaming</span>
+            <span class="label label-danger">Friends</span>
+        </p>
+    </div>
+    <div class="alert alert-success fade in">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        <p><strong>Ey!</strong></p>
+        People are looking at your profile. Find out who.
+    </div -->
+    <div class="well">
+       
+        <c:set var="mode" value="#{session.getAttribute('Access').accessType}"/>
+            <c:choose>
+                <c:when test="${empty mode}"><!-- No Entity has logged in -->
+                    <h3>Register</h3>
+                    <h4><h:outputText value="Individuals"/></h4>
+                    <h:form>
+                        <p><h:commandLink  value="User"  action="UserRegister" /></p>
+                        <p><h:commandLink value="Deeder" action="DeederRegister"/></p>
+                    </h:form>
+                    <h4><h:outputText value="Organizations"/></h4>
+                    <h:form>
+                        <p><h:commandLink  value="Business"  action="BusinessRegister"/></p>
+                        <p><h:commandLink value="Government Dept/Agency" action="GovernmentRegister"/></p>
+                        <p><h:commandLink value="NGO" action="NgoRegister"/></p>
+                    </h:form>
+                </c:when>
+                <c:when test="${mode == 'USER'}" ><!-- A USER is logged in -->
+                    <h:form>
+                    <p><h:commandLink value="Nominate Deeder" action="UserDeederRegister"/></p>
+                    <p>
+                        <h:link value="List Nominated Deeders" outcome="/view/user/ViewNominatedDeeders?faces-redirect=true" >
+                            <f:param name="userId" value="#{session.getAttribute('Access').entityId}" />
+                        </h:link>  
+                    </p>
+                    </h:form>
+                </c:when>
+                <c:when test="${mode == 'DEEDER'}" ><!-- A DEEDER is logged in -->
+                    <h:form>
+                        <p><h:link value="List Your Deeds" outcome="/home/DeederHome?faces-redirect=true"/>
+                        </p>
+                        
+                    <p><h:link value="List Offers Received" outcome="/view/deeder/ViewDeederOffersDetails?faces-redirect=true"/></p>
+                    
+                    </h:form>
+                </c:when>
+                <c:when test="${mode == 'BUSINESS'}" ><!-- A BUSINESS is logged in -->
+                    <h:form>
+                    <p><h:link value="View Offers made" outcome="/view/business/ViewBusinessOffersMade?faces-redirect=true"/>
+                    </p>    
+                    <p>
+                        <h:link value="List Rewarded Deeders" outcome="/view/business/ViewBusinessRewardedDeeders?faces-redirect=true" >
+                            <f:param name="businessId" value="#{session.getAttribute('Access').entityId}" />
+                        </h:link>
+                    </p>   
+                    </h:form>
+                </c:when>
+                <c:when test="${mode == 'GOVERNMENT'}" ><!-- A GOVERNMENT is logged in -->
+                    <h:form>
+                    <p><h:link value="View Offers made" outcome="/view/government/ViewGovernmentOffersMade?faces-redirect=true"/>
+                    </p>    
+                    <p>
+                        <h:link value="List Rewarded Deeders" outcome="/view/government/ViewGovernmentRewardedDeeders?faces-redirect=true" >
+                            <f:param name="governmentId" value="#{session.getAttribute('Access').entityId}" />
+                        </h:link>
+                    </p>   
+                    </h:form>
+                </c:when>
+                <c:when test="${mode == 'NGO'}" ><!-- An NGO is logged in -->
+                    <h:form>
+                    <p><h:link value="View Offers made" outcome="/view/ngo/ViewNgoOffersMade?faces-redirect=true"/>
+                    </p>    
+                    <p>
+                        <h:link value="List Rewarded Deeders" outcome="/view/ngo/ViewNgoRewardedDeeders?faces-redirect=true" >
+                            <f:param name="ngoId" value="#{session.getAttribute('Access').entityId}" />
+                        </h:link>
+                    </p>   
+                    </h:form>
+                </c:when>
+                
+            </c:choose>
+            
+            
+        
+    
+    </div>
+    <div class="well">
+            <p>ADS</p>
+        </div>
+</div>
+</html>

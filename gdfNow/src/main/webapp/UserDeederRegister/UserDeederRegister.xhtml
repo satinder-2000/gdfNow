@@ -1,0 +1,208 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                template="/WEB-INF/templates/GDFTemplate.xhtml">
+    <ui:define name="content">
+        
+        <div class="col-sm-8">
+            <div class="row">
+                
+                <div class="col-sm-12">
+                    <h5><h:outputText value="#{profileLocatorMBean.name}"/></h5>
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <div class="col-sm-3">
+                                <h:form prependId="false">
+                                    <h:commandLink value="Site Home" action="#{homeMBean.redirectToSiteHome()}"/>
+                                </h:form>
+                            </div>
+                            <div class="col-sm-3">
+                                <h:form prependId="false">
+                                    <h:commandLink value="My Home" action="#{homeMBean.redirectToHome}"/>
+                                </h:form>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <h3><p class="text-center">Deeder Nomination</p></h3>
+                        <div class="panel-body">
+                            <div class="alert alert-warning fade in">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                <p><strong>Please make sure you have all Deeder's details marked with * below</strong></p>
+                                
+                            </div>
+                            <div class="alert alert-success fade in">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                <p><strong>If you don't know the actual DOB, just enter an approx DOB (min age is 13 years)</strong></p>
+                            </div>
+                            <h3><p class="text-center">Deeder's Details</p></h3>
+                            <h:form styleClass="form-horizontal">
+                                <h6 style="color: green;">Fields marked with asterisk (*) are mandatory </h6>
+                                <h:messages infoStyle="color:blue;margin:5px;" errorStyle="color:red;margin:5px;"/>
+
+                                <h4>Personal Details</h4>
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+
+                                        <!-- First Name -->
+                                        <div class="form-group">
+
+                                            <h:outputLabel for="firstname" value="First Name*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="firstname" value="#{userDeederMBean.deeder.firstname}" label="First Name"  pt:placeholder="2-45 chars" styleClass="form-control" />
+                                            </div>
+
+                                        </div>
+                                        <!-- Last Name -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="lastname" value="Last Name*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="lastname" value="#{userDeederMBean.deeder.lastname}" label="Last Name"  pt:placeholder="2-45 chars" styleClass="form-control"  />
+                                            </div>
+                                        </div>
+                                        <!-- Email -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Email*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <input type="email" jsf:id="email" name="email" value="#{userDeederMBean.deeder.email}" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- About -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="About*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:inputTextarea id="about" value="#{userDeederMBean.deeder.about}" pt:placeholder="2- 350 chars" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                        <!-- Gender -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="gender" value="Gender*" styleClass="control-label col-sm-5" />
+                                            <div class="col-sm-5">
+                                                <h:selectOneMenu id="gender" value="#{userDeederMBean.deeder.gender}" styleClass="form-control">
+                                                    <f:selectItem itemLabel="Select One" itemValue="" />
+                                                    <f:selectItem itemValue="MALE" itemLabel="Male" />
+                                                    <f:selectItem itemValue="FEMALE" itemLabel="Female" />
+                                                    <f:selectItem itemValue="OTHER" itemLabel="Other" />
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                        <!-- DOB -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="DOB*" styleClass="control-label col-sm-5" />
+                                            <div class="col-sm-5">
+                                                <h:inputText id="dob" label="DOB*" pt:placeholder="DD/MM/YYY" value="#{userDeederMBean.deeder.dobStr}" class="form-control"/>
+                                            </div>
+                                        </div>
+                                        <!-- Phone -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Phone*" styleClass="control-label col-sm-5" />
+                                            <div class="col-sm-5">
+                                                <h:inputText id="phone" value="#{userDeederMBean.deeder.phone}" label="Phone:" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                        <!-- OR -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Or" styleClass="control-label col-sm-5" />
+                                            <div class="col-sm-5">
+                                                <h:outputText />
+                                            </div>
+                                        </div>
+                                        <!-- Mobile -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Mobile*" styleClass="control-label col-sm-5" />
+                                            <div class="col-sm-5">
+                                                <h:inputText id="mobile" value="#{userDeederMBean.deeder.mobile}" label="Mobile:" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h4>Address Details</h4>
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+                                        <!-- Line 1 -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="line1" value="Line 1" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="line1" value="#{userDeederMBean.deederAddress.line1}" label="Line 1" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- Line 2 -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="line2" value="Line 2" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="line2" value="#{userDeederMBean.deederAddress.line2}" label="Line 2"  styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- Post Code -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="postcode" value="Post Code*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="postcode" value="#{userDeederMBean.deederAddress.postcode}" label="Post Code*"  styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- City -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="city" value="City*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="city" value="#{userDeederMBean.deederAddress.city}" label="City*"  styleClass="form-control" pt:placeholder="2-45 chars" />
+                                            </div>
+                                        </div>
+                                        <!-- State -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="state" value="State/Province*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="state" value="#{userDeederMBean.deederAddress.state}" label="State/Province*"  styleClass="form-control" pt:placeholder="2-45 chars" />
+                                            </div>
+                                        </div>
+                                        <!-- Country -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="country" value="Country*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:selectOneMenu id="country" value="#{userDeederMBean.deederAddress.country.code}" styleClass="form-control">
+                                                    <f:selectItem itemLabel="Select One" itemValue="" />
+                                                    <f:selectItem itemValue="GB" itemLabel="UNITED KINGDOM" />
+                                                    <f:selectItem itemValue="IN" itemLabel="INDIA" />
+                                                    <f:selectItem itemValue="US" itemLabel="UNITED STATES OF AMERICA" /> 
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:commandButton value="Continue" action="#{userDeederMBean.validateDetails}" styleClass="btn btn-primary" />
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+
+                                </div>
+                            </h:form> 
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </ui:define>
+</ui:composition>

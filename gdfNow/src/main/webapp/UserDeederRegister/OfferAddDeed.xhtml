@@ -1,0 +1,84 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/templates/GDFTemplate.xhtml">
+    <ui:define name="content">
+        <p class="text-center"><h2>Deed Nomination</h2></p>
+        <div class="col-sm-8">
+            <div class="row">
+                
+                <div class="col-sm-12">
+                    <h5><h:outputText value="#{profileLocatorMBean.name}"/></h5>
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <div class="col-sm-3">
+                                <h:form prependId="false">
+                                    <h:commandLink value="Site Home" action="#{homeMBean.redirectToSiteHome()}"/>
+                                </h:form>
+                            </div>
+                            <div class="col-sm-3">
+                                <h:form prependId="false">
+                                    <h:commandLink value="My Home" action="#{homeMBean.redirectToHome}"/>
+                                </h:form>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <p contenteditable="true">
+                                <h5><h:outputText value="Deeder: #{userDeederMBean.deeder.firstname} #{userDeederMBean.deeder.lastname}" /></h5>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3><p class="text-left">Success!!</p></h3>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-8">
+                            <p class="text-center">
+                                <h:outputText value="You have successfully nominated a Deeder: #{userDeederMBean.deeder.firstname} #{userDeederMBean.deeder.lastname}" />
+                            </p>
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <h5>What would you like to do next</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="col-sm-5">
+                                    <h:form>
+                                        <h:commandButton value="Suggest Deed" action="#{userDeederMBean.suggestDeed}" styleClass="btn btn-primary"/>
+                                    </h:form>
+                                </div>
+                                <div class="col-sm-2">
+                                    <h:outputText value="OR"/>
+                                </div>
+                                <div class="col-sm-5">
+                                    <h:form>
+                                        <h:commandButton value="Finish" action="returnFromUserDeederRegisterFlow" styleClass="btn btn-primary"/>  
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </ui:define>
+</ui:composition>
+

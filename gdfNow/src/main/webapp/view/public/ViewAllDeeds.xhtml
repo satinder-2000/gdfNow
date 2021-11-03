@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                template="/WEB-INF/templates/GDFHomeTemplate.xhtml">
+
+    <ui:define name="content">
+        <h1 class="text-center">All Deeds</h1>
+        <p class="text-center" style="font-size: 1.2em; color: rgb(140,13,63); ">
+                <b>
+                    Below is the listing of all the Deeds recoganized and approved by GDFNow.org. The Deeds belong to the following Deed Categories. 
+                </b>
+            </p>
+            <br/>
+        <h:form prependId="false">
+
+            <c:forEach items="#{deedViewMBean.deeds}" var="deed">
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <div class="well">
+                            <p class="text-left">Category: <h:outputText value="#{deed.deedCategory.type} &gt; #{deed.deedCategory.subtype}"/></p>
+                            <p class="text-left">Deed Date: 
+                                <h:outputText value="#{deed.dateStr}">
+
+                                </h:outputText>
+                            </p>
+                            <p class="text-left">Title: <h:outputText value="#{deed.title}"/></p>
+                            <p class="text-left">Location : 
+                                <h:outputText value="#{deed.deedAddress.city},#{deed.deedAddress.state},#{deed.deedAddress.country.name}"/>
+                            </p>
+                            <p class="text-left">Description: 
+                                #{deed.description}
+                            </p>
+                            <p class="text-left">Evidence 1 : 
+                                <a href="#{deed.link1}" target="_blank">#{deed.link1}</a>
+                            </p>
+                            <p class="text-left">Evidence 2 : 
+                                <a href="#{deed.link2}" target="_blank">#{deed.link2}</a>
+                            </p>
+                            <p class="text-left">Evidence 3 : 
+                                <a href="#{deed.link3}" target="_blank">#{deed.link3}</a>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+
+            </c:forEach>
+
+
+
+
+
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <!--The paging buttons-->
+                    <h:commandButton value="first" action="#{deedViewMBean.pageFirst}" styleClass="btn-default btn-lg"
+                                     disabled="#{deedViewMBean.firstRow == 0}" />
+                    <h:outputText value="&nbsp;" escape="false"/>
+                    <h:commandButton value="prev" action="#{deedViewMBean.pagePrevious}"  styleClass="btn-default btn-lg"
+                                     disabled="#{deedViewMBean.firstRow == 0}" />
+                    <h:outputText value="&nbsp;" escape="false"/>
+                    <h:outputText value="Page #{deedViewMBean.currentPage} / #{deedViewMBean.totalPages}" />
+                    <h:outputText value="&nbsp;" escape="false"/>
+                    <h:commandButton value="next" action="#{deedViewMBean.pageNext}" styleClass="btn-default btn-lg"
+                                     disabled="#{deedViewMBean.firstRow + deedViewMBean.rowsPerPage >= deedViewMBean.totalRows}" />
+                    <h:outputText value="&nbsp;" escape="false"/>
+                    <h:commandButton value="last" action="#{deedViewMBean.pageLast}" styleClass="btn-default btn-lg"
+                                     disabled="#{deedViewMBean.firstRow + deedViewMBean.rowsPerPage >= deedViewMBean.totalRows}" />
+                    <h:outputText value="&nbsp;" escape="false"/>
+
+                    <br />
+
+
+                    <br />
+                </div>
+            </div>
+        </h:form>
+       
+    </ui:define>
+
+</ui:composition>

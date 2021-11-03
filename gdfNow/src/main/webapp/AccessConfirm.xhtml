@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/templates/GDFTemplate.xhtml">
+    <ui:define name="content">
+        
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <h3><p class="text-center">Create Log In</p></h3>
+                        <div class="panel-body">
+                            <h4 class="text-center"><small style="color: blue;">NOTE: Password must be between 8 and 14 chars long and include at least one numeric digit.</small></h4>
+                            <h:form styleClass="form-horizontal">
+                                <h:messages style="color: red;"/>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <!-- Email -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Email" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <p class="text-left">
+                                                    <h:outputText id="email" value="#{accessConfirmMBean.access.email}" styleClass="form-control" />   
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- Password -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Password" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <p class="text-left">
+                                                    <h:inputSecret id="pwd1" label="Password" value="#{accessConfirmMBean.access.password}"  styleClass="form-control"/>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- Password Confirm -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Password Confirm" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <p class="text-left">
+                                                    <h:inputSecret id="pwd2" label="Password  Confirm" value="#{accessConfirmMBean.access.passwordConfirm}"  styleClass="form-control"/>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- Submit -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="" styleClass="control-label col-sm-5" />
+                                            <div class="col-sm-5">
+                                                <p class="text-left">
+                                                    <h:commandButton value="Confirm" action="#{accessConfirmMBean.processForm}" styleClass="btn btn-primary">
+                                                        <f:ajax execute="@form" render="@form" />
+                                                    </h:commandButton>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                template="/WEB-INF/templates/GDFHomeTemplate.xhtml">
+
+    <ui:define name="content">
+        <div class="col-sm-8">
+            <h1 class="text-center">All NGOs</h1>
+            <h:form prependId="false">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <c:forEach items="#{ngoViewMBean.ngos}" var="ngo">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="well">
+                                        <h:graphicImage value="/PublicNgoImageServlet?ngoImgId=PNGO#{ngo.id}" height="85" width="75"/>
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="well">
+                                        <p  class="text-left"><h:outputLabel value="Name:&#xA0;"/><h:outputText value="#{ngo.name}"/></p>
+                                        <p  class="text-left"><h:outputLabel value="Address:&#xA0;"/><h:outputText value="#{ngo.ngoAddress.line1} ,
+                                                                                                                  #{ngo.ngoAddress.line2} ,
+                                                                                                                  #{ngo.ngoAddress.postcode},
+                                                                                                                  #{ngo.ngoAddress.city},
+                                                                                                                  #{ngo.ngoAddress.city},
+                                                                                                                    #{ngo.ngoAddress.country.name}"/> </p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </c:forEach>
+
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <!--The paging buttons-->
+                        <h:commandButton value="first" action="#{ngoViewMBean.pageFirst}" styleClass="btn-default btn-lg"
+                                         disabled="#{ngoViewMBean.firstRow == 0}" />
+                        <h:outputText value="&nbsp;" escape="false"/>
+                        <h:commandButton value="prev" action="#{ngoViewMBean.pagePrevious}"  styleClass="btn-default btn-lg"
+                                         disabled="#{ngoViewMBean.firstRow == 0}" />
+                        <h:outputText value="&nbsp;" escape="false"/>
+                        <h:outputText value="Page #{ngoViewMBean.currentPage} / #{ngoViewMBean.totalPages}" />
+                        <h:outputText value="&nbsp;" escape="false"/>
+                        <h:commandButton value="next" action="#{ngoViewMBean.pageNext}" styleClass="btn-default btn-lg"
+                                         disabled="#{ngoViewMBean.firstRow + ngoViewMBean.rowsPerPage >= ngoViewMBean.totalRows}" />
+                        <h:outputText value="&nbsp;" escape="false"/>
+                        <h:commandButton value="last" action="#{ngoViewMBean.pageLast}" styleClass="btn-default btn-lg"
+                                         disabled="#{ngoViewMBean.firstRow + ngoViewMBean.rowsPerPage >= ngoViewMBean.totalRows}" />
+                        <h:outputText value="&nbsp;" escape="false"/>
+                        
+                        <br />
+
+                        
+
+                    </div>
+                </div>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>

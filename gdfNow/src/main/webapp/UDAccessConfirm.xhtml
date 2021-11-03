@@ -1,0 +1,94 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/templates/GDFTemplate.xhtml">
+    <ui:define name="content">
+        
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <h3><p class="text-center">Create Log In</p></h3>
+                        <div class="panel-body">
+                            <h:form styleClass="form-horizontal" enctype="multipart/form-data" prependId="false">
+                                <h:messages style="color: red;"/>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <!-- Email -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Email" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <p class="text-left">
+                                                    <h:outputText id="email" value="#{uDAccessConfirmMBean.access.email}" styleClass="form-control" />   
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- Password -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Password" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <p class="text-left">
+                                                    <h:inputSecret id="pwd1" label="Password" value="#{uDAccessConfirmMBean.access.password}"  styleClass="form-control"/>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- Password Confirm -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Password Confirm" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <p class="text-left">
+                                                    <h:inputSecret id="pwd2" label="Password  Confirm" value="#{uDAccessConfirmMBean.access.passwordConfirm}"  styleClass="form-control"/>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- Profile Pic -->
+                                
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel for="profilePic" value="Upload Profile Pic" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <p class="text-right">
+                                                    <h:inputFile id="profilePic" value="#{uDAccessConfirmMBean.profileFilePart}" styleClass="form-control" />
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                        <!-- T&C Confirm -->
+
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                               <h:outputLink value="#{request.contextPath}/info/TermsAndConditions.xhtml?faces-redirect=true" target="_blank" styleClass="control-label col-sm-5">I accept T&amp;C's*</h:outputLink>
+                                            
+                                                    <div class="col-sm-5">
+                                                        <p class="text-right">
+                                                            <h:selectBooleanCheckbox id="tcAcpt" value="#{uDAccessConfirmMBean.acceptedTC}" styleClass="form-control"/>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Submit -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <p class="text-left">
+                                                    <h:commandButton value="Confirm" action="#{uDAccessConfirmMBean.submitDetails}" styleClass="btn btn-primary">
+                                                        <f:ajax execute="@form" render="@form" />
+                                                    </h:commandButton>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

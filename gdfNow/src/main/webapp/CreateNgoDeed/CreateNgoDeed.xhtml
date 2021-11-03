@@ -1,0 +1,196 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                template="/WEB-INF/templates/GDFTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="content">
+        <div class="col-sm-8">
+            
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <h3><p class="text-center">Create Deed NGO</p></h3>
+                        <div class="panel-body">
+                            <h:form styleClass="form-horizontal">
+                                <h6 style="color: green;">Fields marked with asterisk (*) are mandatory </h6>
+                                <h:messages infoStyle="color:blue;margin:5px;" errorStyle="color:red;margin:5px;"/>
+
+                                <h4>Deed Details</h4>
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+
+                                        <!-- Deed Date -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="deeddate" value="Deed Date*" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <h:inputText id="deeddate" pt:placeholder="DD/MM/YYY" value="#{ngoDeedMBean.deed.dateStr}" label="Deed Date" class="form-control"/>
+                                            </div>
+                                        </div>
+                                        <!-- Deed Title -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="title" value="Title*" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <h:inputText id="title" value="#{ngoDeedMBean.deed.title}" pt:placeholder="2 to 50 chars" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- Description -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="description" value="Deed Description*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:inputTextarea id="description" cols="25"  rows="7" value="#{ngoDeedMBean.deed.description}" pt:placeholder="Max chars 500" label="Deed Description" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- Deed Type -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="deedtype" value="Deed Type*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:selectOneMenu id="deedtype" value="#{ngoDeedMBean.deedType}" label="Deed Type" styleClass="form-control" >
+                                                    <f:selectItems value="#{ngoDeedMBean.deedTypes}" />
+                                                    <f:ajax listener="#{ngoDeedMBean.ajaxTypeListener}" render="@this deedSubtype" />
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                        <!-- OR -->
+                                         <div class="form-group">
+                                            <h:outputLabel value="" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:outputText value="OR"/>
+                                            </div>
+                                        </div>
+                                         <!-- Deed Type Suggest -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Suggest Deed Type" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="typeNew" value="#{ngoDeedMBean.deed.deedCategory.typeTemp}" pt:placeholder="2 - 45 chars" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- Deed Sub Type -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="deedSubtype" value="Deed Sub Type*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:selectOneMenu id="deedSubtype" value="#{ngoDeedMBean.deedSubtype}" label="Deed Sub Type" styleClass="form-control" >
+                                                    <f:selectItems value="#{ngoDeedMBean.deedSubtypes}" />
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                         <!-- OR -->
+                                         <div class="form-group">
+                                            <h:outputLabel value="" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:outputText value="OR"/>
+                                            </div>
+                                        </div>
+                                         <!-- Deed Sub Type Suggest -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Suggest Deed Sub Type" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="subTypeNewtypeNew" value="#{ngoDeedMBean.deed.deedCategory.subTypeTemp}" pt:placeholder="2 - 45 chars" styleClass="form-control" />
+                                            </div>
+                                        </div>
+
+                                        <!-- Link 1 -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="link1" value="External URL 1*" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <h:inputText id="link1" value="#{ngoDeedMBean.deed.link1}" label="External URL 1" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                        <!-- Link 2 -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="link2" value="External URL 2*" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <h:inputText id="link2" value="#{ngoDeedMBean.deed.link2}" label="External URL 2*" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                        <!-- Link 3 -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="link3" value="External URL 3*" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <h:inputText id="link3" value="#{ngoDeedMBean.deed.link3}" label="External URL 3*" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h4>Deed Address</h4>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <!-- Line1 -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="line1" value="Line 1*" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <h:inputText id="line1" value="#{ngoDeedMBean.deed.deedAddress.line1}" label="Line1*" pt:placeholder="2 - 75 chars" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                        <!-- Line2 -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="line2" value="Line 2" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <h:inputText id="line2" value="#{ngoDeedMBean.deed.deedAddress.line2}" label="Line2" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                        <!-- Line3 -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="line3" value="Line 3" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <h:inputText id="line3" value="#{ngoDeedMBean.deed.deedAddress.line3}" label="Line 3" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                        <!-- Post Code -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="postcode" value="Post Code*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="postcode" value="#{ngoDeedMBean.deed.deedAddress.postcode}" label="Post Code*" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                        <!-- City -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="city" value="City*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="city" value="#{ngoDeedMBean.deed.deedAddress.city}" label="City*" pt:placeholder="2 - 45 chars" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                        <!-- State -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="state" value="State/Region*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="state" value="#{ngoDeedMBean.deed.deedAddress.state}" label="State/Region*" pt:placeholder="2 - 45 chars" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                        <!-- Country -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="country" value="Country*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:selectOneMenu id="country" value="#{ngoDeedMBean.country}" label="Country" styleClass="form-control" >
+                                                    <f:selectItems value="#{ngoDeedMBean.countries}" />
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                        <!-- Submit -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <h:outputLabel value="" styleClass="control-label col-sm-3"/>
+                                                    <div class="col-sm-5">
+                                                        <h:commandButton value="Continue" action="#{ngoDeedMBean.detailsFilled}" styleClass="btn btn-primary" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

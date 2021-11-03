@@ -1,0 +1,299 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/GDFTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                >
+
+    <ui:define name="content">
+        <div class="col-sm-8">
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <div class="col-sm-3">
+                                <h:form prependId="false">
+                                    <h:commandLink value="Site Home" action="#{homeMBean.redirectToSiteHome()}"/>
+                                </h:form>
+                            </div>
+                            <div class="col-sm-3">
+                                <h:form prependId="false">
+                                    <h:commandLink value="My Home" action="#{homeMBean.redirectToHome}"/>
+                                </h:form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 0px; margin-bottom: 20px;">Business Details</h3>
+            <h4><h:outputText value="Business Details"/></h4>
+            <div class="row">
+                <div class="col-sm-3">
+
+                    <div class="well">
+                        <p>
+                         <h:graphicImage value="/TempImageServlet" height="120" width="100"/>
+                        </p>
+
+                    </div>
+                    <!-- Just a spacer -->
+                    <div class="col-sm-12">
+                        <h:outputText value="&#160;" />
+                    </div>
+                </div>
+                <div class="col-sm-9">
+
+                    <!-- Agency Name -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="Business Name:"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="text-left">
+                                <h:outputText value="#{viewBusinessDetailsMBean.business.name}"/>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Business Type -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="Industry Classification:"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="text-left">
+                                <h:outputText value="#{viewBusinessDetailsMBean.business.businessCategory.type}"/>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Business Sub Type -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="Business Type:"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="text-left">
+                                <h:outputText value="#{viewBusinessDetailsMBean.business.businessCategory.subtype}"/>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Web Site -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="Web Site:"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="text-left">
+                                <h:outputText value="#{viewBusinessDetailsMBean.business.website}"/>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Email -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="Contact Email:"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="text-left">
+                                <h:outputText value="#{viewBusinessDetailsMBean.business.email}"/>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- About -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="About the Business:"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="text-left">
+                                <h:outputText value="#{viewBusinessDetailsMBean.business.description}"/>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <h4><h:outputText value="Registered Address"/></h4>
+            <div class="row">
+                <div class="col-sm-3">
+
+                    <div class="col-sm-12">
+                        <h:outputText value="&#160;" />
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <!-- Line 1 -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="Line 1:"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="text-left">
+                                <h:outputText value="#{viewBusinessDetailsMBean.business.businessAddress.line1}" />
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Line 2 -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="Line 2:"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="text-left">
+                                <h:outputText value="#{viewBusinessDetailsMBean.business.businessAddress.line2}" />
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Line 3 -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="Line 3:"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="text-left">
+                                <h:outputText value="#{viewBusinessDetailsMBean.business.businessAddress.line3}" />
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Phone 1 -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="Phone 1:"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="text-left">
+                                <h:outputText value="#{viewBusinessDetailsMBean.business.businessAddress.phone1}" />
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Phone 2 -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="Phone 2:"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="text-left">
+                                <h:outputText value="#{viewBusinessDetailsMBean.business.businessAddress.phone2}" />
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Phone 3 -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="Phone 3:"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="text-left">
+                                <h:outputText value="#{viewBusinessDetailsMBean.business.businessAddress.phone3}" />
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Post Code -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="Post Code"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="text-left">
+                                <h:outputText value="#{viewBusinessDetailsMBean.business.businessAddress.postcode}" />
+                            </p>
+                        </div>
+                    </div>
+                    <!-- City -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="City:"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="text-left">
+                                <h:outputText value="#{viewBusinessDetailsMBean.business.businessAddress.city}" />
+                            </p>
+                        </div>
+                    </div>
+                    <!-- State -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="State:"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="text-left">
+                                <h:outputText value="#{viewBusinessDetailsMBean.business.businessAddress.state}" />
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Country -->
+                    <div class="col-sm-12">
+                        <div class="col-sm-5">
+                            <p class="text-left">
+                                <h:outputLabel value="Country:"/>
+                            </p>
+                        </div>
+                        <div class="col-sm-7">
+                            <p class="text-left">
+                                <h:outputText value="#{viewBusinessDetailsMBean.business.businessAddress.country.name}" />
+                            </p>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <!-- Back -->
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="col-sm-6">
+                            <h:outputText value=""/>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="text-left">
+                                <h:form styleClass="form-horizontal">
+                                    <h:commandButton value="Go Back" action="#{homeMBean.redirectToSiteHome}" styleClass="btn btn-primary" />
+                                </h:form>
+                            </p>
+                        </div>
+                    </div>
+                </div> 
+        </div>
+
+
+
+
+
+    </ui:define>
+</ui:composition>

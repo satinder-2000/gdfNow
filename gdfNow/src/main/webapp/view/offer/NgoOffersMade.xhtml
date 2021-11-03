@@ -1,0 +1,100 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                template="/WEB-INF/templates/GDFTemplate.xhtml">
+    <ui:define name="content">
+        <div class="col-sm-8">
+            <div class="row">
+                
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-4 well">
+
+                                        <h:form>
+                                            <p class="text-center">
+                                                <h:commandButton value="Home" action="/home/NgoHome.xhtml?faces-redirect=true"/>
+                                            </p>
+                                        </h:form>
+
+                                    </div>
+                                    <div class="col-sm-4 well">
+
+                                        <h:form>
+                                            <p class="text-center">
+                                                <h:commandButton value="Amend Details" action="/amend/ngo/AmendNgo.xhtml?faces-redirect=true"/>
+                                            </p>
+                                        </h:form>
+
+                                    </div>
+                                    <div class="col-sm-4 well">
+
+                                        <h:form>
+                                            <p class="text-center">
+                                                <h:commandButton value="Change Password" action="/amend/ngo/ChangePassword.xhtml?faces-redirect=true"/>
+                                            </p>
+                                        </h:form>
+                                    </div>
+                                    
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4><h:outputText value="All Offers Made"/></h4>
+            <c:forEach items="#{ngoOffersMBean.ngoOffers}" var="noffer">
+                
+            <div class="row">
+                    <div class="col-sm-4">
+                        <div class="well">
+                            <p>Offer Date:<br/>
+                                <h:outputText value="#{noffer.offerDate}" >
+                                    
+                                </h:outputText>
+                            </p>
+                            <p>Summary:<br/>
+                                <h:outputText value="#{noffer.description}" />
+                            </p>
+                            
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="well">
+                            <p>Deed Date:<br/>
+                                <h:outputText value="#{noffer.deed.dateStr}" >
+                                    
+                                </h:outputText>
+                            </p>
+                            <p>Summary:<br/>
+                                <h:outputText value="#{noffer.deed.intro}" /></p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="well">
+                            
+                            <p><h:form>
+                                    <h:commandButton value="Offer Details" styleClass="btn btn-default btn-sm" action="#{offerDetailsMBean.loadOffer}">
+                                    <f:param name="offerId" value="#{noffer.id}"/>
+                                    <f:param name="offeror" value="NGO"/>
+                                </h:commandButton>
+                                </h:form>
+                            </p>
+                            <p><h:form>
+                                <h:commandButton value="Deed Details" styleClass="btn btn-default btn-sm" action="#{deedDetailsMBean.loadDeedDetails}">
+                                    <f:param name="deedId" value="#{noffer.deed.id}"/>
+                                </h:commandButton>
+                                </h:form>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+    </ui:define>
+</ui:composition>

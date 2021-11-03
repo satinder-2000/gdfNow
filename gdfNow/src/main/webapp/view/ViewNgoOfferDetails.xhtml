@@ -1,0 +1,220 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/GDFTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                >
+
+    <ui:define name="content">
+        <div class="col-sm-8">
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <div class="col-sm-3">
+                                <h:form prependId="false">
+                                    <h:commandLink value="Site Home" action="#{homeMBean.redirectToSiteHome()}"/>
+                                </h:form>
+                            </div>
+                            <div class="col-sm-3">
+                                <h:form prependId="false">
+                                    <h:commandLink value="My Home" action="#{homeMBean.redirectToHome}"/>
+                                </h:form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3 style="margin-top: 0px; margin-bottom: 20px;">NGO Offer Details</h3>
+            <h4><h:outputText value="NGO Details"/></h4>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="well">
+                        <p>By:</p>
+                        <p><h:graphicImage value="/TempImageServlet" height="120" width="90"/></p>
+                        <p>#{viewNgoOfferDetailsMBean.ngoOffer.ngo.name}</p>
+                    </div>
+                </div>
+                <div class="col-sm-7">
+                    <div class="well">
+                        <p class="text-left"><h:outputLabel value="NGO Activity Area:"/><br/>
+                            <h:outputText value="#{viewNgoOfferDetailsMBean.ngoOffer.ngo.ngoCategory.type}"/>
+                            <br/>
+                            <h:outputText value="#{viewNgoOfferDetailsMBean.ngoOffer.ngo.ngoCategory.subtype}" />
+                        </p>
+                        <p  class="text-left"><h:outputLabel value="About:"/> <h:outputText value="#{viewNgoOfferDetailsMBean.ngoOffer.ngo.description}"/><br/>
+                            <h:outputLabel value="Address:"/><h:outputText value="#{viewNgoOfferDetailsMBean.ngoOffer.ngo.ngoAddress.city}"/><br/>
+                            <h:outputText value="#{viewNgoOfferDetailsMBean.ngoOffer.ngo.ngoAddress.state}, #{viewNgoOfferDetailsMBean.ngoOffer.ngo.ngoAddress.country.name}"/><br/>
+
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="well">
+                        <h:form prependId="false">
+                            <p>
+                                <div class="popup" onclick="myFunction()"><h:outputText value="Likes: "/><h:outputText id="olikes" value="#{viewNgoOfferDetailsMBean.ngoOfferLikesStr}"/>
+                                    <span class="popuptext" id="bOLPopup">
+                                        <h:outputText value="#{viewNgoOfferDetailsMBean.likesBy}"/>
+                                    </span>
+                                </div>
+                            </p>
+                            <p>
+
+                                <span class="glyphicon glyphicon-thumbs-up">
+
+                                    <h:commandLink id="olike" action="#{viewNgoOfferDetailsMBean.addLike}" value="Like">
+                                        <f:ajax execute="@this" render="olikes"></f:ajax>
+
+                                    </h:commandLink>
+
+                                </span>
+
+                            </p>
+                        </h:form>    
+                    </div>
+                </div>   
+
+            </div>
+            <h4><h:outputText value="Offer Details"/></h4>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="well">
+                        <p class="text-left"><h:outputLabel value="Offer Date:&#xA0;"/>
+                            <h:outputText value="#{viewNgoOfferDetailsMBean.ngoOffer.offerDate}">
+                                <f:convertDateTime pattern="dd-MM-yyyy HH:mm"/> 
+                            </h:outputText>
+                        </p>
+                        <p class="text-left"><h:outputLabel value="Offer Description:&#xA0;"/><h:outputText value="#{viewNgoOfferDetailsMBean.ngoOffer.description}"/></p>
+                    </div>
+                </div>
+
+            </div>
+            <h4><h:outputText value="Deed Details"/></h4>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="well">
+                        <p class="text-left"><h:outputLabel value="Deed Date:&#xA0;"/></p>
+                        <p class="text-left"><h:outputText value="#{viewNgoOfferDetailsMBean.ngoOffer.deed.deedDate}"/></p>
+                        <p class="text-left"><h:outputLabel value="Deed Description:&#xA0;"/></p>
+                        <p class="text-left"><h:outputText value="#{viewNgoOfferDetailsMBean.ngoOffer.deed.description}"/></p>
+                        <p class="text-left"><h:outputLabel value="Evidences:&#xA0;"/></p>
+                        <p class="text-left"><h:outputLink target="_blank" value="#{viewNgoOfferDetailsMBean.ngoOffer.deed.link1}">#{viewNgoOfferDetailsMBean.ngoOffer.deed.link1}</h:outputLink></p>
+                        <p class="text-left"><h:outputLink target="_blank" value="#{viewNgoOfferDetailsMBean.ngoOffer.deed.link2}">#{viewNgoOfferDetailsMBean.ngoOffer.deed.link2}</h:outputLink></p>
+                        <p class="text-left"><h:outputLink target="_blank" value="#{viewNgoOfferDetailsMBean.ngoOffer.deed.link3}">#{viewNgoOfferDetailsMBean.ngoOffer.deed.link3}</h:outputLink></p>
+                    </div>
+                </div>
+
+            </div>
+            <h4><h:outputText value="Deeder Details"/></h4>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="well">
+                        <h:graphicImage value="/TempImageServlet2" height="110" width="90"/>
+                    </div>
+                </div>
+                <div class="col-sm-7">
+                    <div class="well">
+                        <p  class="text-left"><h:outputLabel value="By:&#xA0;"/><h:outputText value="#{viewNgoOfferDetailsMBean.ngoOffer.deed.deeder.firstname} #{viewNgoOfferDetailsMBean.ngoOffer.deed.deeder.lastname}"/></p>
+                        <p  class="text-left"><h:outputLabel value="Location:&#xA0;"/><h:outputText value="#{viewNgoOfferDetailsMBean.ngoOffer.deed.deeder.deederAddress.city},#{viewNgoOfferDetailsMBean.ngoOffer.deed.deeder.deederAddress.state},
+                                                                                                    #{viewNgoOfferDetailsMBean.ngoOffer.deed.deeder.deederAddress.country.name}"/> </p>
+                    </div>
+                </div>
+                <!-- Deeder Likes -->
+                <div class="col-sm-2">
+                    <div class="well">
+                        <h:form prependId="false">
+                            <p>
+                                <div class="popup" onclick="myFunction()"><h:outputText value="Likes: "/><h:outputText id="dlikes" value="#{viewNgoOfferDetailsMBean.deederLikesStr}"/>
+                                    <span class="popuptext" id="bOLPopup">
+                                        <h:outputText value="#{viewNgoOfferDetailsMBean.deederLikesBy}"/>
+                                    </span>
+                                </div>
+                            </p>
+                            <p>
+
+                                <span class="glyphicon glyphicon-thumbs-up">
+
+                                    <h:commandLink id="dlike" action="#{viewNgoOfferDetailsMBean.addDeederLike}" value="Like">
+                                        <f:ajax execute="@this" render="dlikes"></f:ajax>
+
+                                    </h:commandLink>
+
+                                </span>
+
+                            </p>
+                        </h:form>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- COMMENT SYSTEM -->
+            <h5><h:outputText value="Comments"/></h5>
+            <div class="row">
+                <!--Existing Comments go here -->
+                <ui:repeat value="#{viewNgoOfferDetailsMBean.ngoOfferComments}" var="comment">
+                    <div class="col-sm-9">
+                        <div class="well">
+                            <p class="text-left"><b><h:outputText value="#{comment.postedBy}" /></b>
+                                <small><h:outputText value=" on  #{comment.dateStr}"/></small>
+                            </p>
+                            <p class="text-left"><h:outputText value="#{comment.text}" /></p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <h:form prependId="false">
+                            <div class="well">
+                                <p>
+                                    <h:outputText id="likesCmt" value="Likes: #{comment.likes}"/>
+                                </p>
+                                <p>
+
+                                    <span class="glyphicon glyphicon-thumbs-up">
+                                        <h:commandLink id="likeCmt" action="#{viewNgoOfferDetailsMBean.addCommentLike(comment.id)}" value="Like">
+                                            <f:ajax execute="@form" render="@form"/> 
+                                        </h:commandLink>
+                                    </span>
+
+                                </p>
+                            </div>
+                        </h:form>
+                    </div>
+
+
+                </ui:repeat>
+
+
+
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h:form>
+                        <div class="form-group">
+                            <p><h:outputText value="#{session.getAttribute('LoggedInGDF')}"/></p>
+                            <p class="text-left"><label>Comment:</label></p>
+                            <h:messages infoStyle="color:blue;" errorStyle="color:red;"/>
+                            <p><h:inputTextarea id="comment" pt:placeholder="Max chars allowed: 1000"  value="#{viewNgoOfferDetailsMBean.ngoOfferComment.text}" styleClass="form-control" rows="5" /></p>
+                            <p class="text-right">
+
+                                <h:commandButton value="Post" class="btn btn-default btn-sm" action="#{viewNgoOfferDetailsMBean.addComment}">
+                                    <f:ajax execute="@form" render="@form"/>
+                                </h:commandButton>
+                            </p>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+
+
+
+        </div>    
+
+
+    </ui:define>
+</ui:composition>

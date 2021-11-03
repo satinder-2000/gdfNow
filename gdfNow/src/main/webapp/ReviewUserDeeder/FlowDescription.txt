@@ -1,0 +1,22 @@
+1. User receives the Nomination email and agrees to Review and then create an access.
+2. User clicks a link to the ReviewUserDeederServlet. The Servlet fetches UD Id and forwards the control to the faces/view/ReviewUserDeederDetails.xhtml page
+3. This page prompts the User to start the flow - ReviewUserDeeder
+4. The Deeder details are loaded in MBean and all the data is made available for update-that includes Email as well. Country is not editable though.Q- WHAT IF THE USER OPTS TO CHANGE THE EMAIL?
+5. After validation and ReviewConfirm.xhtml the Deeder details are persisted in the DB. (submitDetails method)
+6. The Deeder is then prompted to create the Access/Login details. (CreateAccess.xhtml). validate Passwords to return null or if everything is OK, do return (step below)
+7. Acknowledge.xhtml is generated from where the User will return/finish the Flow.
+8. flowreturns/ReviewUserDeeder-return ends the Flow.
+
+ALL THIS WILL DEPRECATE THE UDACCESSCONFIRM MODULE.
+
+AS IS --------- AS IS
+
+1. Manually invokes the Link to the ReviewUserDeederServlet with parameter.
+2. Servlet forwards to faces/view/ReviewUserDeederDetails.xhtml
+3. Flows started by clicking the button.
+4. Page ReviewUserDeeder - validateDetails - leads to Error messaages if anything is wrong.
+5. Page ReviewConfirm with options or AmendDetails (takes back to Step 4) or SubmitDetails (where Access object is created too)
+6. Goes to CreateAccess
+7. Enter details and validateAccess - if errors same page, else Access created and Acknowledge page is generated.
+
+NO NEED TO GENERATE Acknowledge page. ENOUGH HAS BEEN DONE AND RETURN THE FLOW FROM HERE.

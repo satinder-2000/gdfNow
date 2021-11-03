@@ -1,0 +1,118 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                template="/WEB-INF/templates/GDFTemplate.xhtml"
+                >
+
+    <ui:define name="content">
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h5><h:outputText value="#{profileLocatorMBean.name}"/></h5>
+                                    <div class="col-sm-3 well">
+
+                                        <h:form>
+                                            <p class="text-center">
+                                                <h:commandButton value="Amend Details" action="/amend/ngo/AmendNgo.xhtml?faces-redirect=true"/>
+                                            </p>
+                                        </h:form>
+
+                                    </div>
+                                    <div class="col-sm-3 well">
+
+                                        <h:form>
+                                            <p class="text-center">
+                                                <h:commandButton value="Change Password" action="/amend/ngo/ChangePassword.xhtml?faces-redirect=true"/>
+                                            </p>
+                                        </h:form>
+                                    </div>
+                                    <div class="col-sm-3 well">
+
+                                        <h:form>
+                                            <p class="text-center">
+                                                <h:commandButton value="Offers Made" action="/view/offer/NgoOffersMade.xhtml?faces-redirect=true"/>
+                                            </p>
+                                        </h:form>
+
+                                    </div>
+                                    <div class="col-sm-3 well">
+
+                                        <h:form>
+                                            <p class="text-center">
+                                                <h:commandButton value="Tell A Deed" action="CreateNgoDeed"/>
+                                            </p>
+                                        </h:form>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <h3 style="margin-top: 0px; margin-bottom: 20px;"><h:outputText value="Deeds for your attention."/></h3>
+            <c:forEach items="#{deedsListingMBean.deeds}" var="deed">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="well">
+                            <p>Category:</p>
+                            <p><h:outputText value="#{deed.deedCategory.type}"/></p>
+                            <p>Sub Category:</p>
+                            <p><h:outputText value="#{deed.deedCategory.subtype}"/></p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="well">
+                            <p>Deed Date:<br/>
+                                <h:outputText value="#{deed.dateStr}" >
+                                    
+                                </h:outputText>
+                            </p>
+                            <p>Description:<br/>
+                                <h:outputText value="#{deed.title}" /></p>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="well">
+                            <p>Main Links:<br/>
+                                <a href="#{deed.link1}" target="_blank" >#{deed.link1}</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="well">
+                            <p><h:form prependId="false">
+                                    <h:commandLink value="View Deed" action="#{activityMBean.redirect}" styleClass="btn btn-default" role="button">
+                                        <f:ajax execute="@form">
+                                            <f:param name="activityType" value="DEED"/>
+                                            <f:param name="entityId" value="#{deed.id}"/>
+                                        </f:ajax>
+                                    </h:commandLink>
+
+                                </h:form>
+                            </p>
+                            <p><h:form>
+                                    <h:commandButton value="Make Offer" styleClass="btn btn-default" action="NgoOffer">
+                                        <f:param name="deedId" value="#{deed.id}"/>
+                                    </h:commandButton>
+                                </h:form>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+
+        </div>    
+
+    </ui:define>
+
+</ui:composition>

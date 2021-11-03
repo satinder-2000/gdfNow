@@ -1,0 +1,193 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/templates/GDFTemplate.xhtml">
+    <ui:define name="content">
+
+        <div class="col-sm-8">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <h3><p class="text-center">Deeder Registration - Confirm</p></h3>
+                        <div class="panel-body">
+                            <h:form styleClass="form-horizontal">
+                                <h6 style="color: green;">Fields marked with asterisk (*) are mandatory </h6>
+                                <h:messages infoStyle="color:blue;margin:5px;" errorStyle="color:red;margin:5px;"/>
+                                <h4>Personal Details</h4>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <div class="well">
+                                                <p class="text-center">
+                                                    <h:graphicImage value="/TempImageServlet" height="120" width="100"/>
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-8">
+                                            <!-- First Name -->
+                                            <div class="form-group">
+
+                                                <h:outputLabel for="firstname" value="First Name*" styleClass="control-label col-sm-5"/>
+                                                <div class="col-sm-5">
+                                                    <h:outputText id="firstname" value="#{deederMBean.deeder.firstname}" styleClass="form-control" />
+                                                </div>
+
+                                            </div>
+                                            <!-- Last Name -->
+                                            <div class="form-group">
+                                                <h:outputLabel for="lastname" value="Last Name*" styleClass="control-label col-sm-5"/>
+                                                <div class="col-sm-5">
+                                                    <h:outputText id="lastname" value="#{deederMBean.deeder.lastname}" styleClass="form-control"  />
+                                                </div>
+                                            </div>
+                                            <!-- Email -->
+                                            <div class="form-group">
+                                                <h:outputLabel value="Email" styleClass="control-label col-sm-5"/>
+                                                <div class="col-sm-5">
+                                                    <h:outputText id="email" value="#{deederMBean.deeder.email}" styleClass="form-control"  />
+                                                </div>
+                                            </div>
+                                            <!-- About -->
+                                            <div class="form-group">
+                                                <h:outputLabel for="about" value="About*" styleClass="control-label col-sm-5"/>
+                                                <div class="col-sm-5" style="word-wrap: break-word;">
+                                                    <h:outputText value="#{deederMBean.deeder.about}"/>
+                                                </div>
+                                            </div>
+                                            <!-- Gender -->
+                                            <div class="form-group">
+                                                <h:outputLabel for="gender" value="Gender*" styleClass="control-label col-sm-5" />
+                                                <div class="col-sm-5">
+                                                    <h:outputText id="gender" value="#{deederMBean.deeder.gender}" styleClass="form-control"  />
+                                                </div>
+                                            </div>
+                                            <!-- DOB -->
+                                            <div class="form-group">
+                                                <h:outputLabel value="DOB" styleClass="control-label col-sm-5" />
+                                                <div class="col-sm-5">
+                                                    <h:outputText id="dob" value="#{deederMBean.deeder.dobStr}" styleClass="form-control">
+
+                                                    </h:outputText>
+                                                </div>
+                                            </div>
+                                            <!-- Phone -->
+                                            <div class="form-group">
+                                                <h:outputLabel value="Phone" styleClass="control-label col-sm-5" />
+                                                <div class="col-sm-5">
+                                                    <h:outputText id="phone" value="#{deederMBean.deeder.phone}" styleClass="form-control"/>
+                                                </div>
+                                            </div>
+                                            <!-- OR -->
+                                            <div class="form-group">
+                                                <h:outputLabel value="Or" styleClass="control-label col-sm-5" />
+                                                <div class="col-sm-5">
+                                                    <h:outputText />
+                                                </div>
+                                            </div>
+                                            <!-- Mobile -->
+                                            <div class="form-group">
+                                                <h:outputLabel value="Mobile" styleClass="control-label col-sm-5" />
+                                                <div class="col-sm-5">
+                                                    <h:outputText id="mobile" value="#{deederMBean.deeder.mobile}" styleClass="form-control"/>
+                                                </div>
+                                            </div>
+                                            <!-- Amend -->
+                                            <div class="form-group">
+                                                <h:outputLabel value="" styleClass="control-label col-sm-5" />
+                                                <div class="col-sm-5">
+                                                    <h:commandButton action="#{deederMBean.amendPersonal}" value="Amend" styleClass="btn btn-primary" />
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                                <h4>Address Details</h4>
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+
+                                        <!-- Line 1 -->
+                                        <div class="form-group">
+
+                                            <h:outputLabel for="line1" value="House/Flat Number*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:outputText id="line1" value="#{deederMBean.deederAddress.line1}" styleClass="form-control" />
+                                            </div>
+
+                                        </div>
+                                        <!-- Line 2 -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="line2" value="Street Name" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:outputText id="line2" value="#{deederMBean.deederAddress.line2}" styleClass="form-control"  />
+                                            </div>
+                                        </div>
+                                        <!-- Post Code -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Post/Zip Code*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:outputText id="postcode" value="#{deederMBean.deederAddress.postcode}" styleClass="form-control"  />
+                                            </div>
+                                        </div>
+                                        <!-- City -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="city" value="City*" styleClass="control-label col-sm-5" />
+                                            <div class="col-sm-5">
+                                                <h:outputText id="city" value="#{deederMBean.deederAddress.city}" styleClass="form-control"  /> 
+                                            </div>
+                                        </div>
+                                        <!-- State -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="state" value="State*" styleClass="control-label col-sm-5" />
+                                            <div class="col-sm-5">
+                                                <h:outputText id="state" value="#{deederMBean.deederAddress.state}" styleClass="form-control"  /> 
+                                            </div>
+                                        </div>
+                                        <!-- Country -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Country*" styleClass="control-label col-sm-5" />
+                                            <div class="col-sm-5">
+                                                <h:outputText id="country" value="#{deederMBean.deederAddress.country.name}" styleClass="form-control"  />
+                                            </div>
+                                        </div>
+                                        <!-- Amend -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="" styleClass="control-label col-sm-5" />
+                                            <div class="col-sm-5">
+                                                <h:commandButton action="#{deederMBean.amendDeederAddress}" value="Amend" styleClass="btn btn-primary" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Form Submit div -->
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <p class="text-right">
+                                                    <h:commandButton value="Submit" action="returnFromDeederRegisterFlow" styleClass="btn btn-primary" />
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+

@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/templates/GDFTemplate.xhtml">
+    <ui:define name="content">
+        <h:form prependId="false">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">
+                <h3>Log In</h3>
+                <h:form>
+                    <h:messages style="color: red;"/>
+                    <div class="form-group">
+                        <p class="text-left"><label for="email">Email:</label></p>
+                        <h:inputText id="email" pt:type="email" pt:placeholder="Enter email" value="#{loginMBean.email}" styleClass="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <p class="text-left"><label for="pwd">Password:</label></p>
+                        <h:inputSecret id="pwd" label="Password:" styleClass="form-control" value="#{loginMBean.password}" pt:placeholder="Enter password"/>
+                    </div>
+                    <h:commandButton value="Log In" action="#{loginMBean.logIn}" styleClass="btn btn-primary">
+                        <f:ajax execute="@form" render="@form" />
+                    </h:commandButton>
+                    <br/><br/>
+                    <h:outputLink value="DispatchAccessReset.xhtml?faces-redirect=true">
+                        Forgot Password? Click Here
+                    </h:outputLink>
+                </h:form>
+            </div>
+            <div class="col-sm-2"></div>
+        </h:form>
+    </ui:define>
+</ui:composition>

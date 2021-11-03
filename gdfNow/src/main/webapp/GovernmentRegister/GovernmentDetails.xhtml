@@ -1,0 +1,286 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                template="/WEB-INF/templates/GDFTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="content">
+        
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <h3><p class="text-center">Government Department/Agency Registration</p></h3>
+                        <div class="panel-body">
+                            <h:form styleClass="form-horizontal"  enctype="multipart/form-data" prependId="false">
+                                <h6 style="color: green;">Fields marked with asterisk (*) are mandatory </h6>
+                                <h:messages infoStyle="color:blue;margin:5px;" errorStyle="color:red;margin:5px;"/>
+                                <h4>Department/Agency Details</h4>
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+
+                                        <!-- Name -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="name" value="Department Name*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="name" value="#{governmentMBean.government.name}" label="Business Name*"  pt:placeholder="2-150 chars"   styleClass="form-control" />
+                                            </div>
+
+                                        </div>
+                                        <!-- Email 1 -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="email" value="Email 1*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText pt:type="email" id="email" value="#{governmentMBean.government.email1}" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                         <!-- Email 2 -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="email2" value="Email 2*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText pt:type="email2" id="email2" value="#{governmentMBean.government.email2}" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Web Site -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Web Site*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="website" value="#{governmentMBean.government.website}" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- Contact Name -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Contact Name*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="contact" value="#{governmentMBean.government.contactName}" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- Government Description -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="desc" value="Description*" styleClass="control-label col-sm-5" />
+                                            <div class="col-sm-5">
+                                                <h:inputTextarea id="desc" value="#{governmentMBean.government.description}" pt:placeholder="2- 250 chars" rows="5" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- Government Type -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Ministry*" for="gTyp" styleClass="control-label col-sm-5" />
+                                            <div class="col-sm-5">
+                                                <h:selectOneMenu id="gTyp" value="#{governmentMBean.ministry}" label="Ministry*" style="height: 2.5em;" styleClass="form-control">
+                                                    <f:selectItems value="#{governmentMBean.ministries}"/>
+                                                    <f:ajax listener="#{governmentMBean.ajaxTypeListener}" render="@this gSTyp" />
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                         <!-- OR -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="" styleClass="control-label col-sm-5" />
+                                            <div class="col-sm-5">
+                                                <h:outputText value="OR"/>
+                                            </div>
+                                        </div>
+                                        <!-- Government Type Suggest -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Specify Ministry" for="typeNew" styleClass="control-label col-sm-5" />
+                                            <div class="col-sm-5">
+                                                <h:inputText id="typeNew" value="#{governmentMBean.government.governmentOrg.ministryTemp}" pt:placeholder="2 - 45 chars" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- Government Department -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Department/Agency*" styleClass="control-label col-sm-5" />
+                                            <div class="col-sm-5">
+                                                <h:selectOneMenu id="gSTyp" value="#{governmentMBean.department}" label="Department" style="height: 2.5em;" styleClass="form-control">
+                                                    <f:selectItems value="#{governmentMBean.departments}"/>
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                        <!-- OR -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="" styleClass="control-label col-sm-5" />
+                                            <div class="col-sm-5">
+                                                <h:outputText value="OR"/>
+                                            </div>
+                                        </div>
+                                        <!-- NGO Type Suggest -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Specify Department/Agency" for="subTypeNew" styleClass="control-label col-sm-5" />
+                                            <div class="col-sm-5">
+                                                <h:inputText id="subTypeNew" value="#{governmentMBean.government.governmentOrg.departmentTemp}" pt:placeholder="2 - 45 chars" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <h4>Registered Address</h4>
+                                <!-- Line 1 -->
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel value="Line 1*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="line1" value="#{governmentMBean.governmentAddress.line1}" label="Line 1" pt:placeholder="2-45 chars"   styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Line 2 -->
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel value="Line 2*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="line2" value="#{governmentMBean.governmentAddress.line2}" label="Line 2*" pt:placeholder="2-45 chars"   styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Line 2 -->
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel value="Line 3" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="line3" value="#{governmentMBean.governmentAddress.line3}" label="Line 3"  styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel value="Phone 1*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="Phone1" value="#{governmentMBean.governmentAddress.phone1}" label="Phone 1*" pt:placeholder="incl. area code"   styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel value="Phone 2*"  styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="Phone2" value="#{governmentMBean.governmentAddress.phone2}" label="Phone 2" pt:placeholder="incl. area code"   styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel value="Phone 3"  styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                 <h:inputText id="Phone3" value="#{governmentMBean.governmentAddress.phone3}" label="Phone 3"  styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel value="Post Code*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="postcode" value="#{governmentMBean.governmentAddress.postcode}" label="Post Code*"  styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel value="City*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="cty" value="#{governmentMBean.governmentAddress.city}" label="City*" pt:placeholder="2-45 chars"  styleClass="form-control"  />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel value="State*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="stt" value="#{governmentMBean.governmentAddress.state}" label="State*" pt:placeholder="2-45 chars" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel value="Country*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:selectOneMenu id="ctry" value="#{governmentMBean.country}" label="Country*" style="height: 2.5em;" styleClass="form-control">
+                                                    <f:selectItems value="#{governmentMBean.countries}"/>
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Profile Pic -->
+                                
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel for="logoPic" value="Upload Logo" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <p class="text-right">
+                                                    <h:inputFile id="logoPic" value="#{governmentMBean.logoFile}" styleClass="form-control" />
+                                                </p>
+                                                <h6 style="color: crimson;">Note: Please try to avoid .png file if possible.</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- T&C Confirm -->
+                                
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLink value="#{request.contextPath}/info/TermsAndConditions.xhtml?faces-redirect=true" target="_blank" styleClass="control-label col-sm-5">I accept T&amp;C's*</h:outputLink>
+                                            
+                                            <div class="col-sm-5">
+                                                <p class="text-right">
+                                                    <h:selectBooleanCheckbox id="tcAcpt" value="#{governmentMBean.acceptedTC}" styleClass="form-control"/>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <p class="text-right">
+                                                    <h:commandButton value="Continue" action="#{governmentMBean.detailsCaptured}" styleClass="btn btn-primary" />
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:form>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                                
+    </ui:define>
+
+</ui:composition>

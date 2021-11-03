@@ -1,0 +1,308 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/templates/GDFHomeTemplate.xhtml">
+
+    <ui:define name="content">
+        <div class="container">
+            <br />
+            <div class="faqHeader"><h2>Frequently Asked Questions</h2></div>
+            <br />
+            <br />
+
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true"></span><span class="sr-only">Close</span></button>
+                This section contains information, related to <strong>GdfNow.org</strong> portal. If you cannot find an answer to your question, 
+                please contact us at <a href="mailto:contact@gdfNow.org">admin@gdfNow.org</a>. 
+            </div>
+
+            <br />
+
+            <div class="panel-group" id="accordion">
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1">Who is a User?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse in">
+                        <div class="panel-body" >
+                            <p class="text-left">
+                                Most basic Entity of the Portal - it's driving force in a sense that the Portal will rely on the User for Comments and Likes on the Deeders and their Deeds. Not to mention, A User may also nominate a Deeder (full details of the Deeder would be required)
+                            </p>   
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse2">Who is a Deeder?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p class="text-left">
+                            The hero of the Portal who is an achiever in her/his own right- either have performed a special Deed to contribute to the well being in the world or possess special skills to do so. Their Deeds are rewarded by Businesses, Government and NGOs.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse3">Who is a Nominated Deeder?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse3" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p class="text-left">
+                            A Nominated Deeder is a Deeder in all respects, except that he/she is "nominated" by a User and subsequent to that the "nominated" Deeder accepts the nomination. After that, there is no difference left between a Deeder (self-registered) and a Nominated Deeder.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- minimum age -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse5">What is the minimum age to join the Portal?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse5" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p class="text-left">
+                            Minimum age to register as a User or a Deeder is 13 years. Needless, to say the nominated Deeder must also be at least 13 years old. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faqHeader"><h3>Deed related questions</h3></div>
+                <!-- Deed Defn -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse4">What is a Deed?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse4" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p class="text-left">
+                            A Deed is any heroic act performed by a Deeder that have served humanity or our Planet either by directly serving (performing the act) or by creating examples to others and inspiring them. Similarly, a special talent possessed by someone that either inspires the others or entertain them in a positive/constructive manner get qualified as a "Deed".  
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- What qualifies a Deed -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse6">What qualifies a Deed?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse6" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p class="text-left">
+                            A Deed must have an evidence on the Internet somewhere such as Links to news coverage that give details of Deed and also mentions the Deeder within those details. The Portal expects 3 Links in the Internet 
+                            as a proof of Deed to have happened, as our administrators shall go through the supplied Links and authenticate the Deed.  
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse7">What if there is not sufficient evidence for the Deed?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse7" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p class="text-left">
+                            At this stage, unfortunately, the Portal will mandatorily ask for three distinct links to the publicity given to the Deed. However, should a Deeder insists the Deed got less attention/coverage,
+                            then the same Link can be copied over "3 TIMES" and the Deeder MUST let know the Administrator of the Portal, pressing their case for the originality of the Deed. The case must be presented in an Email 
+                            to <a href="mailto:contact@gdfNow.org">contact@gdfNow.org</a> and the subject of the email must begin with 'Deed assertion - {supply Deed Title here}'. The Admin will validate the Deed from the case asserted in the email.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!--Purpose of Deed -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse8">What is the purpose of publishing the Deed on GDFNow.org?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse8" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p class="text-left">
+                            Below are some of the key benefits:
+                            <ol>
+                                <li>
+                                    Numerous good deeds are being performed across the world and a great many Individuals are performing these kind acts on day to day basic. The aim of GDFNow.org is to 
+                                    bring more visibility to these acts.  
+                                </li>
+                                <li>
+                                    More people become aware of these Deeds, more they will get inspired to do new Deeds and more will be collective effort by people to serve our beautiful  
+                                    Planet Earth.
+                                </li>
+                                <li>
+                                    The Deeders, who perform the Deeds, are our heroes and they deserve recognition and applause from rest of the humanity - Users and other Deeders will recognize their efforts 
+                                    by giving Likes on the Deeds(and Deeders) and commenting on their efforts.
+                                </li>
+                                <li>
+                                    The Deeders via the Deeds will  get recognized and rewarded by the Businesses, Governments and the NGOs, building goodwill and cohesion in the society.
+                                </li>
+
+                            </ol>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Who records the Deed -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse9">Who logs the Deed in GDFNow.org Portal?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse9" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p class="text-left">
+                            Deed Details can be specified in two ways:
+                            <ol>
+                                <li>
+                                    Deeder herself/himself gives the details of the Deed while registering on the Portal.  
+                                </li>
+                                <li>
+                                    User, while nominating the Deeder, may wish to supply the Deed details as well, assuming the User has full details of the Deed performed by the Deeder,
+                                    as mentioned above. 
+                                </li>
+                            </ol>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Role of Organisations -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse10">What role do the Organisations Play?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse10" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p class="text-left">
+                            The Organisations viz - Businesses, Government Agencies and NGOs are useful in the following manner: 
+                            <ol>
+                                <li>
+                                    They get opportunity to directly recognise the Deed (and hence the Deeder), and this recognition is made in full view of the other members of GDFNow.org, hence fulfilling 
+                                    one of the key prerequisite of Democracy i.e. recognise the individuals, who serve the society.  
+                                </li>
+                                <li>
+                                    While recognising, the Individuals, these Organisations get free publicity on the GDFNow.org Portal. All the Users and Deeders become "potential" Customers of the Organisation.  
+                                </li>
+                            </ol>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- How do Organisations recognise the Deeds/Deeders  -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse11">How exactly do the Organisations recognise/reward the Deeds- hence Deeders?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse11" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p class="text-left">
+                            The Organisations viz - Businesses, Government Agencies and NGOs make 'Offers' on the Deeds that need to ultimately collected by the Deeders. The Offers could be of the following types: 
+                            <ol>
+                                <li>
+                                    CASH: Cash rewards that an Organisation may wish to give to a Deed/Deeder.  
+                                </li>
+                                <li>
+                                    DISCOUNTS: This is where the Organisation may offer a discount to the Deeders on the products purchased or services availed by a Deeder. A discount on product is a classic example of this. 
+                                    Similarly, a rebate in accessing the Public Services may be provided by a Government agency. 
+                                </li>
+                                <li>
+                                    KIND: The Deeder may also be rewarded in Kind, if not in Cash.   
+                                </li>
+                                <li>
+                                    SPONSORSHIP: Organisations may sponsor the Deeder. Example of sponsorship would be a scholarship to a student or a sports kit to an upcoming sports star. 
+                                </li>
+                                <li>
+                                    PRIZE: At time, an Organisation may offer a PRIZE with or without any monetary value. For example, a memento such as Shield or a Cup etc.  
+                                </li>
+                            </ol>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- How may NGOs reward the Deeders?  -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse12">How may NGOs reward the Deeders</a>
+                        </h4>
+                    </div>
+                    <div id="collapse12" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p class="text-left">
+                            The NGOs may also recognise the Deeds performed by the Deeders by offering them 'PRIZE' Offer (Memento). Also, if the NGOs can afford, they may wish to offer Cash/Discount offers as well.  
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Offers Validity  -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse13">Is there any time limit before which the Deeders have to accept and redeem the Offer(s)</a>
+                        </h4>
+                    </div>
+                    <div id="collapse13" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p class="text-left">
+                            GDFNow.org as such impose no such restriction because that is the domain of the Organisation making an Offer. Should the Organisation wish to keep an Expiry of the Offer, they need to specify in the Offer Description.  
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Purpose of Comments and Likes  -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse14">What is the purpose of posting Comments and Likes on GDFNow.org?</a>
+                        </h4>
+                    </div>
+                    <div id="collapse14" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p class="text-left">
+                            <ol>
+                                <li>The main purpose of Likes and Comments (On Deeds and Offers) is to build more popularity of the Deed and the Offers that it receive from various Organisations. Eventually, this will inspire other members of the Site 
+                            to get some inspiration and in turn do the kind Deeds.
+                                </li>
+                                <li>
+                                    More the Deeders and the Deeds, more would be the offers and more prosperous our World in all aspects. 
+                                </li>
+                                <li>
+                                    Eventually, the world would be based on 'Compassionate Capitalism' and 'Inclusive Governance' - the ultimate goal and vision of GDFNow.org. 
+                                </li>
+                                    
+                            </ol>
+                            </p>    
+                            
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

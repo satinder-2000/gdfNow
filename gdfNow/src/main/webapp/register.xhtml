@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/templates/GDFHomeTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="content">
+        <div class="col-sm-12">
+            
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body text-center">
+                            <div class="alert alert-success fade in">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                <p><strong>Option to 'Nominate a Deeder' will be available ONLY if you are registered as a 'User'!</strong></p>
+                            </div>
+                            
+                            <h:form>
+                                <h2>GDFNow.org Registrations</h2> 
+                                <h3 style="color: brown">Individuals</h3>
+                                
+                                <p><h:commandLink  value="User Registration"  action="UserRegister" class="btn btn-primary btn-lg" /></p>
+                                <br/><br/>
+                                <p><h:commandLink value="Deeder  Registration" action="DeederRegister" class="btn btn-primary btn-lg"/></p>
+                                
+                            </h:form>
+                            
+                        </div>
+                        <h3 style="color: brown">Organisations</h3>
+                        <div class="panel-body text-center">
+                            <h:form>
+                                <p><h:commandLink  value="Business  Registration"  action="BusinessRegister" class="btn btn-primary btn-lg"/></p><br/><br/>
+                                <p><h:commandLink value="Government Dept/Agency  Registration" action="GovernmentRegister" class="btn btn-primary btn-lg"/></p><br/><br/>
+                                <p><h:commandLink value="NGO  Registration" action="NgoRegister" class="btn btn-primary btn-lg"/></p><br/><br/>
+                            </h:form>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

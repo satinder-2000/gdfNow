@@ -1,0 +1,104 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                template="/WEB-INF/templates/GDFTemplate.xhtml">
+    <ui:define name="content">
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <h5>Home page of: <h:outputText value="#{session.getAttribute('Access').email}" /></h5>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h5><h:outputText value="#{profileLocatorMBean.name}"/></h5>
+                                    <div class="col-sm-4 well">
+                                        <h:form>
+                                            <p class="text-center">
+                                                <h:commandButton value="Amend Details" action="/amend/deeder/AmendDeeder.xhtml?faces-redirect=true"/>
+                                            </p>
+                                        </h:form>
+                                    </div>
+                                    <div class="col-sm-4 well">
+
+                                        <h:form>
+                                            <p class="text-center">
+                                                <h:commandButton value="Change Password" action="/amend/deeder/ChangePassword.xhtml?faces-redirect=true"/>
+                                            </p>
+                                        </h:form>
+                                    </div>
+                                    <div class="col-sm-4 well">
+                                        <h:form>
+                                            <p class="text-center">
+                                                <h:commandButton value="Tell A Deed" action="CreateDeed"/>
+                                            </p>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <p class="text-center"><h4>Your Deeds Listing</h4></p>
+            <c:forEach items="#{deedsListingMBean.deedsOfLoggedInDeeder}" var="deed">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                           
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="well">
+                                        <p>Deed Date:<br/>
+                                            <h:outputText value="#{deed.deedDate}"/>
+                                        </p>
+                                        <p>Title:<br/>
+                                            <h:outputText value="#{deed.title}"/>
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="well">
+                                        <p>Evidence Links:</p>
+                                        <a href="#{deed.link1}" target="_blank">#{deed.link1}</a><br/>
+                                        <a href="#{deed.link2}" target="_blank">#{deed.link2}</a><br/>
+                                        <a href="#{deed.link3}" target="_blank">#{deed.link3}</a><br/>
+                                        <br/>
+                                     </div>
+                                </div>
+                                
+                                <div class="col-sm-3">
+                                    <div class="well text-center">
+                                        <p>
+                                            <h:form>
+                                                <h:outputLink value="../../view/ViewDeedDetails.xhtml?faces-redirect=true" styleClass="btn btn-default btn-sm">
+                                                    <h:outputText value="Deed Details" />
+                                                    <f:param name="deedId" value="#{deed.id}" />
+                                                    
+                                                </h:outputLink>
+                                            </h:form>
+                                        </p>
+                                        <p>
+                                            <h:form>
+                                                <h:commandButton value="Offers Details" styleClass="btn btn-default btn-sm" action="#{offersOnDeedMBean.loadOffersForDeed()}">
+                                                    <f:param name="deedId" value="#{deed.id}"/>
+                                                </h:commandButton>
+                                            </h:form>
+                                        </p>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </c:forEach>
+        </div>
+    </ui:define>
+</ui:composition>

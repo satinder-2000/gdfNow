@@ -1,0 +1,177 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                template="/WEB-INF/templates/GDFTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="content">
+        
+        <div class="col-sm-8">
+            
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <h3><p class="text-center">Create NGO Deed - Confirm</p></h3>
+                        <div class="panel-body">
+                            <h:form styleClass="form-horizontal">
+                                <h6 style="color: green;">Fields marked with asterisk (*) are mandatory </h6>
+                                <h:messages infoStyle="color:blue;margin:5px;" errorStyle="color:red;margin:5px;"/>
+
+                                <h4>Deed Details</h4>
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+
+                                        <!-- Deed Date -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="deeddate" value="Deed Date*" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <h:outputText value="#{ngoDeedMBean.deed.dateStr}" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- Deed Title -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="title" value="Title*" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <h:outputText id="title" value="#{ngoDeedMBean.deed.title}" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- Description -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="description" value="Deed Description*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:inputTextarea id="description" cols="25"  rows="7" value="#{ngoDeedMBean.deed.description}" disabled="true" label="Deed Description" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- Deed Type -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="deedtype" value="Deed Type*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:outputText value="#{ngoDeedMBean.deed.deedCategory.type}" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- Deed Type -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="deedSubtype" value="Deed Sub Type*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:outputText value="#{ngoDeedMBean.deed.deedCategory.subtype}" styleClass="form-control" />
+                                            </div>
+                                        </div>
+
+                                        <!-- Link 1 -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="link1" value="External URL 1*" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <p><a href="#{ngoDeedMBean.deed.link1}" target="_blank">#{ngoDeedMBean.deed.link1}</a></p>
+                                                
+                                            </div>
+                                        </div>
+                                        <!-- Link 2 -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="link2" value="External URL 2*" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <p><a href="#{ngoDeedMBean.deed.link2}" target="_blank">#{ngoDeedMBean.deed.link2}</a></p>
+                                                
+                                            </div>
+                                        </div>
+                                        <!-- Link 3 -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="link3" value="External URL 3*" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <p><a href="#{ngoDeedMBean.deed.link3}" target="_blank">#{ngoDeedMBean.deed.link3}</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h4>Deed Address</h4>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <!-- Line1 -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="line1" value="Line 1*" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <h:outputText id="line1" value="#{ngoDeedMBean.deed.deedAddress.line1}" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                        <!-- Line2 -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="line2" value="Line 2" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <h:outputText id="line2" value="#{ngoDeedMBean.deed.deedAddress.line2}" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                        <!-- Line3 -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="line3" value="Line 3" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <h:outputText id="line3" value="#{ngoDeedMBean.deed.deedAddress.line3}" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                        <!-- Post Code -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="postcode" value="Post Code*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:outputText id="postcode" value="#{ngoDeedMBean.deed.deedAddress.postcode}" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                        <!-- City -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="city" value="City*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:outputText id="city" value="#{ngoDeedMBean.deed.deedAddress.city}" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                        <!-- State -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="state" value="State/Region*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:outputText id="state" value="#{ngoDeedMBean.deed.deedAddress.state}"  styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                        <!-- Country -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="country" value="Country*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:outputText id="country" value="#{ngoDeedMBean.deed.deedAddress.country.name}"  styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                        <!-- Submit -->
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <div class="col-sm-1">
+                                                        <h:outputText value=""/>
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <p class="text-center">
+                                                            <h:commandButton value="Amend" action="#{ngoDeedMBean.amendDetails}" styleClass="btn btn-primary" />
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <p class="text-center">
+                                                            <h:commandButton value="Continue" action="returnFromCreateNgoDeedFlow" styleClass="btn btn-primary" />
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                        <h:outputText value=""/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>
+

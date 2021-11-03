@@ -1,0 +1,97 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                template="/WEB-INF/templates/GDFTemplate.xhtml">
+    <ui:define name="content">
+        <div class="col-sm-8">
+            <div class="row">
+                
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-4 well">
+                                        
+                                            <h:form>
+                                                <p class="text-center">
+                                                <h:commandButton value="Home" action="/home/BusinessHome.xhtml?faces-redirect=true"/>
+                                                </p>
+                                            </h:form>
+                                        
+                                    </div>
+                                    <div class="col-sm-4 well">
+                                        
+                                            <h:form>
+                                                <p class="text-center">
+                                                <h:commandButton value="Amend Details" action="/amend/business/AmendBusiness.xhtml?faces-redirect=true"/>
+                                                </p>
+                                            </h:form>
+                                        
+                                    </div>
+                                    <div class="col-sm-4 well">
+                                        
+                                            <h:form>
+                                                <p class="text-center">
+                                                <h:commandButton value="Offers Made" action="/view/offer/BusinessOffersMade.xhtml?faces-redirect=true"/>
+                                                </p>
+                                            </h:form>
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3><h:outputText value="All Offers Made"/></h3>
+            <c:forEach items="#{businessOffersMBean.businessOffers}" var="boffer">
+                
+            <div class="row">
+                    
+                    <div class="col-sm-5">
+                        <div class="well">
+                            <h5>Offer Date:</h5>
+                                <h:outputText value="#{boffer.offerDate}" >
+                                    
+                                </h:outputText>
+                            <h5>Description:</h5>
+                                <h:outputText value="#{boffer.description}"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="well">
+                            <h5>Deed Date:</h5>
+                            <h:outputText value="#{boffer.deed.dateStr}" >
+                                
+                            </h:outputText>
+                            <h5>Summary:</h5>
+                            <h:outputText value="#{boffer.deed.intro}" />
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="well">
+                            
+                            <p><h:form>
+                                    <h:commandButton value="Offer Details" styleClass="btn btn-default btn-sm" action="#{viewBusinessOfferDetailsMBean.loadOffer}">
+                                    <f:param name="offerId" value="#{boffer.id}"/>
+                                </h:commandButton>
+                                </h:form>
+                            </p>
+                            <p><h:form>
+                                <h:commandButton value="Deed Details" styleClass="btn btn-default btn-sm" action="#{deedDetailsMBean.loadDeedDetails}">
+                                    <f:param name="deedId" value="#{boffer.deed.id}"/>
+                                </h:commandButton>
+                                </h:form>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+    </ui:define>
+</ui:composition>

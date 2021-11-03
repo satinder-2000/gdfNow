@@ -1,0 +1,32 @@
+# HTTPS www.gdfNow.org
+
+User-agent: *
+Sitemap: https://www.gdfnow.org/gdfNow-web/sitemap.xml
+
+User-agent: *
+Allow: https://www.gdfnow.org/gdfNow-web/
+Allow: https://www.gdfnow.org/gdfNow-web/view/public/ViewAllDeeders.xhtml
+Allow: https://www.gdfnow.org/gdfNow-web/view/public/ViewAllDeeds.xhtml
+Allow: https://www.gdfnow.org/gdfNow-web/view/public/ViewAllBusinesses.xhtml
+Allow: https://www.gdfnow.org/gdfNow-web/view/public/ViewAllGovernments.xhtml
+Allow: https://www.gdfnow.org/gdfNow-web/view/public/ViewAllNgos.xhtml
+Allow: https://www.gdfnow.org/gdfNow-web/view/public/ViewAllDeedCategories.xhtml
+Disallow: /BusinessOffer/
+Disallow: /BusinessRegister/
+Disallow: /CreateDeed/
+Disallow: /DeederRegister/
+Disallow: /GovernmentOffer/
+Disallow: /GovernmentRegister/
+Disallow: /NgoOffer/
+Disallow: /NgoRegister/
+Disallow: /ReviewUserDeeder/
+Disallow: /UserDeederRegister/
+Disallow: /UserRegister/
+Disallow: /acknowledge/
+Disallow: /admin/
+Disallow: /flowreturns/
+Disallow: /home/
+Disallow: /info/
+Disallow: /register/
+Disallow: /resource/
+Disallow: /view/

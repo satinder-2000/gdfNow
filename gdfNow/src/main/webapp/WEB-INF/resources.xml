@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <Resource id="jdbc/gdf" type="javax.sql.DataSource">
+jdbcDriver=com.mysql.cj.jdbc.Driver
+password=IL@ve2nu69
+userName=root
+jdbcUrl=jdbc\:mysql\://localhost\:3306/gdf?zeroDateTimeBehavior\=CONVERT_TO_NULL
+</Resource>
+</resources>

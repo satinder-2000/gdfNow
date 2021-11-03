@@ -1,0 +1,187 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                template="/WEB-INF/templates/GDFTemplate.xhtml">
+    <ui:define name="content">
+        <div class="col-sm-8">
+            <div class="row">
+                
+                <div class="col-sm-12">
+                    <h5><h:outputText value="#{profileLocatorMBean.name}"/></h5>
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <div class="col-sm-3">
+                                <h:form prependId="false">
+                                    <h:commandLink value="Site Home" action="#{homeMBean.redirectToSiteHome()}"/>
+                                </h:form>
+                            </div>
+                            <div class="col-sm-3">
+                                <h:form prependId="false">
+                                    <h:commandLink value="My Home" action="#{homeMBean.redirectToHome}"/>
+                                </h:form>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <p class="text-center"><h3>Deeder Nomination</h3></p>
+                        <div class="panel-body">
+                            <h3><p class="text-center">Confirm Details</p></h3>
+                            <h:form styleClass="form-horizontal">
+                                <h6 style="color: green;">Fields marked with asterisk (*) are mandatory </h6>
+                                <h:messages infoStyle="color:blue;margin:5px;" errorStyle="color:red;margin:5px;"/>
+
+                                <h4>Personal Details</h4>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-3">
+                                            <div class="well">
+                                                <p><h:graphicImage value="/UserDeederImageServlet" height="120" width="100"/></p>
+
+                                            </div>
+                                        </div>
+                                         <div class="col-sm-9">
+                                            <!-- First Name -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="First Name*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:outputText value="#{userDeederMBean.deeder.firstname}" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- Last Name -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Last Name*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:outputText value="#{userDeederMBean.deeder.lastname}" styleClass="form-control"  />
+                                            </div>
+                                        </div>
+                                        <!-- Email -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Email" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:outputText value="#{userDeederMBean.deeder.email}" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- About -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="About" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:inputTextarea id="about" value="#{userDeederMBean.deeder.about}" disabled="true" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                        <!-- Gender -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="gender" value="Gender*" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <h:outputText value="#{userDeederMBean.deeder.gender}" styleClass="form-control"  />
+                                            </div>
+                                        </div>
+                                        <!-- DOB -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="DOB" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <h:outputText value="#{userDeederMBean.deeder.dobStr}" styleClass="form-control"  />
+                                            </div>
+                                        </div>
+                                        <!-- Phone -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Phone" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <h:outputText value="#{userDeederMBean.deeder.phone}" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                        <!-- Mobile -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Mobile" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <h:outputText id="mobile" value="#{userDeederMBean.deeder.mobile}" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                        
+                                        </div>
+                                    </div>
+                                </div><!-- row ends -->
+                                
+                               
+                                <h4>Address Details</h4>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <!-- Line 1 -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="line1" value="Line 1" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:outputText id="line1" value="#{userDeederMBean.deederAddress.line1}" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- Line 2 -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="line2" value="Line 2" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:outputText id="line2" value="#{userDeederMBean.deederAddress.line2}" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- Post Code -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="postcode" value="Post Code*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:outputText id="postcode" value="#{userDeederMBean.deederAddress.postcode}" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- City -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="city" value="City*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:outputText id="city" value="#{userDeederMBean.deederAddress.city}" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- State -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="state" value="State/Province*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:outputText id="state" value="#{userDeederMBean.deederAddress.state}" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- Country -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="country" value="Country*" styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <h:outputText id="country" value="#{userDeederMBean.deederAddress.country.name}" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <div class="col-sm-6">
+                                                <p class="text-center">
+                                                <h:commandButton value="Amend" action="AmendDetails?faces-redirect=true"  styleClass="btn btn-primary" />
+                                                </p>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <p class="text-center">
+                                                    <h:commandButton value="Continue" action="#{userDeederMBean.submitDetails}"  styleClass="btn btn-primary"  />
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:form> 
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </ui:define>
+</ui:composition>

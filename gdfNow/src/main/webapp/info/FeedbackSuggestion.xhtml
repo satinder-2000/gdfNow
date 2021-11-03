@@ -1,0 +1,75 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/WEB-INF/templates/GDFHomeTemplate.xhtml">
+
+    <ui:define name="content">
+        <div class="col-sm-8">
+            
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <h2>Feedback and Suggestion Form</h2>
+                        <div class="panel-body">
+                            <h:form styleClass="form-horizontal" prependId="false">
+                                <h6 style="color: green;">Fields marked with asterisk (*) are mandatory </h6>
+                                <h:messages infoStyle="color:blue;margin:5px;" errorStyle="color:red;margin:5px;"/>
+                                <!-- Name -->
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                        <div class="col-sm-5">
+                                            <h:outputLabel for="name" value="Your Name*" styleClass="control-label" />
+                                         </div>
+                                        <div class="col-sm-5">
+                                            <h:inputText id="name" value="#{feedbackMBean.feedback.name}" label="Your Name*"  pt:placeholder="2-75 chars" styleClass="form-control" />
+                                         </div>
+                                        </div>
+                                        <!-- Email -->
+                                        <div class="form-group">
+                                            <div class="col-sm-5">
+                                            <h:outputLabel for="email" value="Email*" styleClass="control-label"/>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <h:inputText pt:type="email" id="email" value="#{feedbackMBean.feedback.email}" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- Feedback Text -->
+                                        <div class="form-group">
+                                            <div class="col-sm-5">
+                                                <h:outputLabel for="feedbackText" value="FeedBack Text*" styleClass="control-label"/>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <h:inputTextarea id="feedbackText" value="#{feedbackMBean.feedback.feedBackText}" styleClass="form-control" cols="25" rows="10" pt:placeholder="10-1000 chars"  />
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <!-- Form Submit -->
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <div class="col-sm-5">
+                                                <h:outputLabel value=""/>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <h:commandButton value="Continue" action="#{feedbackMBean.validateForm}" styleClass="btn btn-primary">
+                                                    <f:ajax execute="@form" render="@form"/>  
+                                                </h:commandButton>
+                                            </div> 
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

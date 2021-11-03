@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                template="/WEB-INF/templates/GDFHomeTemplate.xhtml">
+
+    <ui:define name="content">
+        <div class="col-sm-8">
+            <h1 class="text-center">All Deeders</h1>
+            <p class="text-center" style="font-size: 1.2em; color: rgb(140,13,63); ">
+                <b>
+                    Below is the listing of all the Deeders recoganized and approved by GDFNow.org. A Deeder perform and register Deeds here as per the following Deed Categories. 
+                </b>
+            </p>
+            <br/>
+                
+            <h:form prependId="false">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <c:forEach items="#{deederViewMBean.deeders}" var="deeder">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="well">
+                                        <h:graphicImage value="/PublicDeederImageServlet?pvImgId=PDR#{deeder.id}" height="85" width="75"/>
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="well">
+                                        <p  class="text-left"><h:outputLabel value="By:&#xA0;"/><h:outputText value="#{deeder.firstname} #{deeder.lastname}"/></p>
+                                        <p  class="text-left"><h:outputLabel value="Location:&#xA0;"/><h:outputText value="#{deeder.deederAddress.city},#{deeder.deederAddress.state},
+                                                                                                                    #{deeder.deederAddress.country.name}"/> </p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </c:forEach>
+
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <!--The paging buttons-->
+                        <h:commandButton value="first" action="#{deederViewMBean.pageFirst}" styleClass="btn-default btn-lg"
+                                         disabled="#{deederViewMBean.firstRow == 0}" />
+                        <h:outputText value="&nbsp;" escape="false"/>
+                        <h:commandButton value="prev" action="#{deederViewMBean.pagePrevious}"  styleClass="btn-default btn-lg"
+                                         disabled="#{deederViewMBean.firstRow == 0}" />
+                        <h:outputText value="&nbsp;" escape="false"/>
+                        <h:outputText value="Page #{deederViewMBean.currentPage} / #{deederViewMBean.totalPages}" />
+                        <h:outputText value="&nbsp;" escape="false"/>
+                        <h:commandButton value="next" action="#{deederViewMBean.pageNext}" styleClass="btn-default btn-lg"
+                                         disabled="#{deederViewMBean.firstRow + deederViewMBean.rowsPerPage >= deederViewMBean.totalRows}" />
+                        <h:outputText value="&nbsp;" escape="false"/>
+                        <h:commandButton value="last" action="#{deederViewMBean.pageLast}" styleClass="btn-default btn-lg"
+                                         disabled="#{deederViewMBean.firstRow + deederViewMBean.rowsPerPage >= deederViewMBean.totalRows}" />
+                        <h:outputText value="&nbsp;" escape="false"/>
+                        
+                        <br />
+
+                        <!--The paging links-->
+                        <!-- ui:repeat value="# {deederViewMBean.pages}" var="page">
+                            <h:commandLink value="# {page}" actionListener="# { deederViewMBean.page}"
+                                           rendered=" # { page != deederViewMBean.currentPage}" />
+                            <h:outputText value=" # {page}" escape="false"
+                                          rendered=" # {page == deederViewMBean.currentPage}" />
+                        </ui:repeat -->
+                        <br />
+
+                        <!-- Set rows per page -->
+                        <!--h:outputLabel for="rowsPerPage" value="Rows per page" />
+                        <h:inputText id="rowsPerPage" value=" # {deederViewMBean.rowsPerPage}" size="3" maxlength="3" />
+                        <h:commandButton value="Set" action="# {deederViewMBean.pageFirst}" />
+                        <h:message for="rowsPerPage" errorStyle="color: red;" / -->
+
+                    </div>
+                </div>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,37 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    template="/WEB-INF/templates/GDFTemplate.xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:define name="content">
+        <div class="col-sm-8">
+        
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <h3><p class="text-center">Nominated Deeder - Registration</p></h3>
+                        <div class="panel-body">
+                            <h:form styleClass="form-horizontal">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <p class="text-center"><h5><h:outputText value="Congratulations!! Your Registration is now Complete. You may wish to proceed to Login Page."/></h5></p>
+                                        <div class="form-group">
+
+                                            <h:outputLabel styleClass="control-label col-sm-5"/>
+                                            <div class="col-sm-5">
+                                                <p class="text-left">
+                                                    <h:commandButton id="login" value="Log In" action="/Login.xhtml?faces-redirect=true" styleClass="btn btn-primary" />  
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

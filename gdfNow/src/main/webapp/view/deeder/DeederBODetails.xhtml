@@ -1,0 +1,102 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/GDFTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                >
+
+    <ui:define name="content">
+        <div class="col-sm-8">
+
+            <div class="row">
+                
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <h:form id='linkForm' prependId="false">
+                                    <h:commandLink id="allOffersLink" value="All Offers" action="/index.xhtml"/>
+                            </h:form>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3 style="margin-top: 0px; margin-bottom: 20px;">Business Offer Details</h3>
+            <h4><h:outputText value="Business Details"/></h4>
+            <div class="row">
+                <div class="col-sm-3">
+                        <div class="well">
+                            <p>By:</p>
+                            <p><h:graphicImage library="images" name="BruceGate.jpg" height="55" width="45"/></p>
+                            <p>#{deederOfferDetailsMBean.businessOffer.business.name}</p>
+                        </div>
+                    </div>
+                <div class="col-sm-7">
+                        <div class="well">
+                            <p>Industry:<br/>
+                            <h:outputText value="#{deederOfferDetailsMBean.businessOffer.business.businessCategory.type}"/>
+                                <br/>
+                                <h:outputText value="#{deederOfferDetailsMBean.businessOffer.business.businessCategory.subtype}" />
+                            </p>
+                            <p>About: <h:outputText value="#{deederOfferDetailsMBean.businessOffer.business.description}"/><br/>
+                                <h:outputText value="#{deederOfferDetailsMBean.businessOffer.business.businessAddress.city}"/><br/>
+                                <h:outputText value="#{deederOfferDetailsMBean.businessOffer.business.businessAddress.state}, #{deederOfferDetailsMBean.businessOffer.business.businessAddress.country.name}"/><br/>
+                                
+                            </p>
+                        </div>
+                 </div>
+                 <div class="col-sm-2">
+                        <div class="well">
+                            <p>Like</p>
+                            <p>Etc.</p>
+                            <p>Etc.</p>
+                        </div>
+                 </div>   
+                
+            </div>
+            <h4><h:outputText value="Offer Details"/></h4>
+            <div class="row">
+                <div class="col-sm-12">
+                        <div class="well">
+                            <p>Offer Date:</p>
+                            <p><h:outputText value="#{deederOfferDetailsMBean.businessOffer.offerDate}"/></p>
+                            <p>Offer Description</p>
+                            <p><h:inputTextarea disabled="true" value="#{deederOfferDetailsMBean.businessOffer.description}"/></p>
+                        </div>
+                    </div>
+                
+            </div>
+            <h4><h:outputText value="Deed Details"/></h4>
+            <div class="row">
+                <div class="col-sm-12">
+                        <div class="well">
+                            <p>Deed Date:</p>
+                            <p><h:outputText value="#{deederOfferDetailsMBean.businessOffer.deed.deedDate}"/></p>
+                            <p>Deed Description</p>
+                            <p><h:outputText value="#{deederOfferDetailsMBean.businessOffer.deed.description}"/></p>
+                            <p>Evidences</p>
+                            <p><h:outputLink target="_blank" value="#{deederOfferDetailsMBean.businessOffer.deed.link1}">#{deederOfferDetailsMBean.businessOffer.deed.link1}</h:outputLink></p>
+                            <p><h:outputLink target="_blank" value="#{deederOfferDetailsMBean.businessOffer.deed.link2}">#{deederOfferDetailsMBean.businessOffer.deed.link2}</h:outputLink></p>
+                            <p><h:outputLink target="_blank" value="#{deederOfferDetailsMBean.businessOffer.deed.link3}">#{deederOfferDetailsMBean.businessOffer.deed.link3}</h:outputLink></p>
+                        </div>
+                    </div>
+                
+            </div>
+            <h4><h:outputText value="Deeder Details"/></h4>
+            <div class="row">
+                <div class="col-sm-12">
+                        <div class="well">
+                            <p>By: <h:outputText value="#{deederOfferDetailsMBean.businessOffer.deed.deeder.firstname} #{deederOfferDetailsMBean.businessOffer.deed.deeder.lastname}"/></p>
+                            <p>Location: <h:outputText value="#{deederOfferDetailsMBean.businessOffer.deed.deeder.deederAddress.city},#{deederOfferDetailsMBean.businessOffer.deed.deeder.deederAddress.state},
+                                                       #{deederOfferDetailsMBean.businessOffer.deed.deeder.deederAddress.country.name}"/> </p>
+                        </div>
+                    </div>
+                
+            </div>
+            
+        </div>    
+
+    
+    </ui:define>
+</ui:composition>

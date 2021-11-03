@@ -1,0 +1,258 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                template="/WEB-INF/templates/GDFTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="content">
+        
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                       <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-4 well">
+                                        
+                                             <h:form>
+                                                <p class="text-center">
+                                                <h:commandButton value="Home" action="/home/BusinessHome.xhtml?faces-redirect=true"/>
+                                                </p>
+                                            </h:form>
+                                        
+                                    </div>
+                                    <div class="col-sm-4 well">
+                                        
+                                            <h:form>
+                                                <p class="text-center">
+                                                <h:commandButton value="Change Password" action="/amend/business/ChangePassword.xhtml?faces-redirect=true"/>
+                                                </p>
+                                            </h:form>
+                                        
+                                    </div>
+                                    <div class="col-sm-4 well">
+                                        
+                                            <h:form>
+                                                <p class="text-center">
+                                                <h:commandButton value="Offers Made" action="/view/offer/BusinessOffersMade.xhtml?faces-redirect=true"/>
+                                                </p>
+                                            </h:form>
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3 style="margin-top: 0px; margin-bottom: 20px;">Business: Amend Details</h3>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default text-left">
+                        <div class="panel-body">
+                            <h:form styleClass="form-horizontal" enctype="multipart/form-data" prependId="false">
+                                <h6 style="color: green;">Fields marked with asterisk (*) are mandatory </h6>
+                                <h:messages infoStyle="color:blue;margin:5px;" errorStyle="color:red;margin:5px;"/>
+
+                                <h4>Business Details</h4>
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+
+                                        <!-- Name -->
+                                        <div class="form-group">
+
+                                            <h:outputLabel for="name" value="Business Name*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="name" value="#{businessAmendMBean.business.name}" label="Business Name*"  styleClass="form-control" />
+                                            </div>
+
+                                        </div>
+                                        <!-- Email -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="email" value="Email*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:outputText id="email" value="#{businessAmendMBean.business.email}" styleClass="form-control" /> 
+                                            </div>
+                                        </div>
+                                        <!-- Web Site -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Web Site" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="website" value="#{businessAmendMBean.business.website}" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- Business Description -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="desc" value="Business Description*" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <h:inputTextarea id="desc" value="#{businessAmendMBean.business.description}" rows="5" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        <!-- Business Type -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Business Type*" for="bTyp" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <h:selectOneMenu id="bTyp" value="#{businessAmendMBean.type}" label="Business Type" styleClass="form-control">
+                                                    <f:selectItem itemValue="#{businessAmendMBean.type}" itemLabel="#{businessAmendMBean.type}" />
+                                                    <f:selectItems value="#{businessAmendMBean.businessTypes}"/>
+                                                    <f:ajax listener="#{businessAmendMBean.ajaxTypeListener}" render="@this bSTyp" />
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                        <!-- Business Sub Type -->
+                                        <div class="form-group">
+                                            <h:outputLabel value="Business Sub Type*" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <h:selectOneMenu id="bSTyp" value="#{businessAmendMBean.subtype}" label="Business Sub Type"  styleClass="form-control">
+                                                    <f:selectItem itemValue="#{businessAmendMBean.subtype}" itemLabel="#{businessAmendMBean.subtype}" />
+                                                    <f:selectItems value="#{businessAmendMBean.businessSubTypes}"/>
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                        <!-- Logo Image -->
+                                        <div class="form-group">
+                                            <h:outputLabel for="logoPic" value="Upload Logo*" styleClass="control-label col-sm-3" />
+                                            <div class="col-sm-5">
+                                                <h:inputFile id="logoPic" value="#{businessAmendMBean.logoFile}" styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                        
+
+                                    </div>
+                                </div>
+                                <h4>Registered Address</h4>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel value="Line 1*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="line1" value="#{businessAmendMBean.businessAddress.line1}" label="Line 1"  styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel value="Line 2*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="line2" value="#{businessAmendMBean.businessAddress.line2}" label="Line 2*"  styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel value="Line 3" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="line3" value="#{businessAmendMBean.businessAddress.line3}" label="Line 3"  styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel value="Phone 1*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="Phone1" value="#{businessAmendMBean.businessAddress.phone1}" label="Phone 1*"  styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel value="Phone 2*"  styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="Phone2" value="#{businessAmendMBean.businessAddress.phone2}" label="Phone 2"  styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel value="Phone 3"  styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="Phone3" value="#{businessAmendMBean.businessAddress.phone3}" label="Phone 3"  styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel value="Post Code*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="postcode" value="#{businessAmendMBean.businessAddress.postcode}" label="Post Code*"  styleClass="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel value="City*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="cty" value="#{businessAmendMBean.businessAddress.city}" label="City*"  styleClass="form-control"  />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel value="State*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:inputText id="stt" value="#{businessAmendMBean.businessAddress.state}" label="State*" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel value="Country*" styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <h:outputText id="ctry" value="#{businessAmendMBean.businessAddress.country.name}" styleClass="form-control"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <h:outputLabel styleClass="control-label col-sm-3"/>
+                                            <div class="col-sm-5">
+                                                <p class="text-right">
+                                                    <h:commandButton value="Continue" action="#{businessAmendMBean.amendBusiness}" styleClass="btn btn-primary" />
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
