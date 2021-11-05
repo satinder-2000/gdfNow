@@ -1,9 +1,0 @@
-﻿TEMPLATE_TYPE,MESSAGE_TITLE,TEXT
-USER_REGISTER,userRegistration,Registration User
-USER_REGISTER,successfullyReg,You have successfully registered yourself on GDFNow.org
-USER_REGISTER,setPassword,Kindly set you Account Password by following the link below
-USER_REGISTER,createAccess,Create Access
-ACCESS_CONFIRM,accessConfirmed,Access Confirmed
-ACCESS_CONFIRM,thankYou,Congratulations on setting your access details. Your registration is now complete!! 
-ACCESS_CONFIRM,welcome,Welcome to GdfNow.org
-ACCESS_CONFIRM,home,Home
