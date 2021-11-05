@@ -18,6 +18,7 @@ import org.gdf.model.User;
 import java.io.File;
 import java.io.StringWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,6 +39,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
+import org.gdf.model.EmailMessage;
 
 /**
  *
@@ -49,11 +51,20 @@ public class EmailerBean {
 
     static final Logger LOGGER = Logger.getLogger(EmailerBean.class.getCanonicalName());
 
-    @Resource(name = "mail/gdfNowOrg")
+    @Resource(name = "mail/gdf")
     Session session;
-
+    
+    @Resource(name = "protocol")
+    String protocol;
+    
     @Resource(name = "WebURI")
     String webURI;
+    
+    @Resource(name = "accessConfirmURI")
+    String accessConfirmURI;
+    
+    @Resource(name= "welcomeURI")
+    String welcomeURI;
     
     @Resource(name ="webURIView")
     String webURIView;
@@ -80,6 +91,7 @@ public class EmailerBean {
     ReferenceDataBeanLocal referenceDataBeanLocal;
 
     Map<EmailTemplateType, String> templatesMap;
+    HashMap<String, List<EmailMessage>> emailMessages;
 
     @PostConstruct
     public void init() {
@@ -87,6 +99,7 @@ public class EmailerBean {
         LOGGER.log(Level.INFO, "Mail Session Established {0}", session.toString());
         templatesMap = new HashMap<>();
         templatesMap = referenceDataBeanLocal.getEmailTemplatesMap();
+        emailMessages= referenceDataBeanLocal.getEmailMessages();
 
     }
 
@@ -116,29 +129,30 @@ public class EmailerBean {
     }
 
     public void sendUserRegConfirmEmail(User user) {
+        List<EmailMessage> regMessages=emailMessages.get(EmailTemplateType.USER_REGISTER.name());
+        StringBuilder sb=new StringBuilder(user.getEmail()+",\n");
+            Map<String, String> map=new HashMap();
+            for (EmailMessage msg:regMessages){
+                map.put(msg.getMessageTitle(), msg.getText());
+            }
+            //IN the email we need values in the following order
+            //registrationUser, successfullyReg, setPassword, createAccess
+            sb.append(map.get("registrationUser")).append("\n");
+            sb.append(map.get("successfullyReg")).append("\n");
+            sb.append(map.get("setPassword")).append("\n");
+            sb.append(protocol).append(webURI).append(accessConfirmURI).append(user.getEmail());
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(user.getEmail()));
-            message.setSubject("Please confirm Email and set Password");
-
-            String htmlText = templatesMap.get(EmailTemplateType.USER_REGISTER);
-            VelocityEngine ve = new VelocityEngine();
-            StringWriter sw = new StringWriter();
-            VelocityContext vc = new VelocityContext();
-            vc.put("userName", user.getFirstname().concat(" ").concat(user.getLastname()));
-            vc.put("userEmail", user.getEmail());
-            vc.put("genericURI", genericURI);
-            ve.evaluate(vc, sw, EmailTemplateType.USER_REGISTER.toString(), htmlText);
-
-            message.setContent(sw.getBuffer().toString(), "text/html");
-
+            message.setSubject(map.get("subject"));
+            message.setContent(sb.toString(), "text/plain; charset=utf-8");
             Transport.send(message);
             LOGGER.info("Sent message successfully....");
         } catch (MessagingException mex) {
             LOGGER.severe(mex.getMessage());
         }
-
+        
     }
 
     public void sendDeederRegConfirmEmail(Deeder deeder) {
@@ -168,22 +182,22 @@ public class EmailerBean {
     }
 
     public void sendAccessConfirmEmail(String email) {
+        List<EmailMessage> accessMessages=emailMessages.get(EmailTemplateType.ACCESS_CONFIRM.name());
+        Map<String, String> map=new HashMap();
+        for (EmailMessage msg:accessMessages){
+            map.put(msg.getMessageTitle(), msg.getText());
+        }
+        StringBuilder sb=new StringBuilder();
+        sb.append(email).append("\n");
+        sb.append(map.get("thankYou")).append("\n");
+        sb.append(map.get("welcome")).append("\n");
+        sb.append(protocol).append(webURI).append(welcomeURI);
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
-            message.setSubject("Access is confirmed");
-
-            String htmlText = templatesMap.get(EmailTemplateType.ACCESS_CONFIRM);
-            VelocityEngine ve = new VelocityEngine();
-            StringWriter sw = new StringWriter();
-            VelocityContext vc = new VelocityContext();
-            vc.put("webURI", webURI);
-            vc.put("userEmail", email);
-            ve.evaluate(vc, sw, EmailTemplateType.ACCESS_CONFIRM.toString(), htmlText);
-
-            message.setContent(sw.getBuffer().toString(), "text/html");
-
+            message.setSubject(map.get("subject"));
+            message.setContent(sb.toString(), "text/plain; charset=utf-8");
             Transport.send(message);
             LOGGER.info("Sent message successfully....");
         } catch (MessagingException mex) {

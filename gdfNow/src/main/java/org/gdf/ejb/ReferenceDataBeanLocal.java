@@ -5,6 +5,7 @@
  */
 package org.gdf.ejb;
 
+import java.util.HashMap;
 import org.gdf.event.NgoCategoryEvent;
 import org.gdf.model.BusinessCategory;
 import org.gdf.model.Country;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import javax.ejb.Local;
 import javax.enterprise.event.Observes;
+import org.gdf.model.EmailMessage;
 
 /**
  *
@@ -64,6 +66,8 @@ public interface ReferenceDataBeanLocal {
     public void addDeedCategory(DeedCategory dc);
 
     public List<NgoCategory> getUnapprovedNgoCategories();
+    
+    public HashMap<String,List<EmailMessage>> getEmailMessages();
 
     
     

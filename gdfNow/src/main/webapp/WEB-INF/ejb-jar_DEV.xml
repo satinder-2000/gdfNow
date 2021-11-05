@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+        version="3.2"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/ejb-jar_3_2.xsd">
+    
+    <enterprise-beans>
+        <session>
+            <display-name>EmailerBean</display-name>
+            <ejb-name>EmailerBean</ejb-name>
+            <ejb-class>org.gdf.ejb.EmailerBean</ejb-class>
+            <env-entry>
+                <env-entry-name>sender</env-entry-name>
+                <env-entry-type>java.lang.String</env-entry-type>
+                <env-entry-value>admin@gdfNow.org</env-entry-value>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>protocol</env-entry-name>
+                <env-entry-type>java.lang.String</env-entry-type>
+                <env-entry-value>http://</env-entry-value>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>WebURI</env-entry-name>
+                <env-entry-type>java.lang.String</env-entry-type>
+                <env-entry-value>localhost/</env-entry-value>
+            </env-entry>
+           
+            
+            <env-entry>
+                <env-entry-name>accessConfirmURI</env-entry-name>
+                <env-entry-type>java.lang.String</env-entry-type>
+                <env-entry-value>AccessConfirm.xhtml?id=</env-entry-value>
+            </env-entry>
+            
+             <env-entry>
+                <env-entry-name>welcomeURI</env-entry-name>
+                <env-entry-type>java.lang.String</env-entry-type>
+                <env-entry-value>home/UserWelcome.xhtml</env-entry-value>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>surveyURI</env-entry-name>
+                <env-entry-type>java.lang.String</env-entry-type>
+                <env-entry-value>survey/SurveyDetails.xhtml?surveyId=</env-entry-value>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>forumURI</env-entry-name>
+                <env-entry-type>java.lang.String</env-entry-type>
+                <env-entry-value>forum/ForumDetails.xhtml?forumId=</env-entry-value>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>passwordResetURI</env-entry-name>
+                <env-entry-type>java.lang.String</env-entry-type>
+                <env-entry-value>home/AccessReset.xhtml</env-entry-value>
+            </env-entry>
+        </session>
+        
+        
+        <!-- session>
+            <ejb-name>ActivityBean</ejb-name>
+            <ejb-class>org.gdf.ejb.ActivityBean</ejb-class>
+            <env-entry>
+                <env-entry-name>maxActivities</env-entry-name>
+                <env-entry-type>java.lang.Integer</env-entry-type>
+                <env-entry-value>25</env-entry-value>
+            </env-entry>
+        </session>
+        
+         <session>
+            <ejb-name>SearchEngineBean</ejb-name>
+            <ejb-class>org.gdf.ejb.SearchEngineBean</ejb-class>
+            <env-entry>
+                <env-entry-name>indexDir</env-entry-name>
+                <env-entry-type>java.lang.String</env-entry-type>
+                <env-entry-value>/opt/lucene/</env-entry-value>
+            </env-entry>
+            <env-entry>
+                <env-entry-name>maxResults</env-entry-name>
+                <env-entry-type>java.lang.Integer</env-entry-type>
+                <env-entry-value>20</env-entry-value>
+            </env-entry>
+        </session -->
+    </enterprise-beans>
+
+</ejb-jar>

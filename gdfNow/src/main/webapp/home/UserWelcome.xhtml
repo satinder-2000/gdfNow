@@ -1,0 +1,23 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/templates/GDFTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="content">
+        <div class="col-sm-8">
+            <h2>#{msg.userRegistration}</h2>
+            <div class="row">
+                <h6>#{msg.registrationCompleteLogIn}</h6>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-sm-6"></div>
+                
+                <div class="col-sm-6">
+                    <h:outputLink value="/Login.xhtml" styleClass="btn btn-primary">#{msg.login}</h:outputLink>
+                    
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

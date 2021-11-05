@@ -28,6 +28,7 @@ import javax.enterprise.event.Observes;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import org.gdf.model.EmailMessage;
 
 /**
  *
@@ -286,6 +287,21 @@ public class ReferenceDataBean implements ReferenceDataBeanLocal {
         Set<String> dcTypes = deedCategoryMap.keySet();
         deedCategoryTypes = new ArrayList(dcTypes);
 
+    }
+
+    @Override
+    public HashMap<String, List<EmailMessage>> getEmailMessages() {
+        TypedQuery<EmailMessage> tQ = em.createQuery("select em from EmailMessage em", EmailMessage.class);
+        List<EmailMessage> resultSet = tQ.getResultList();
+        HashMap<String, List<EmailMessage>> map = new HashMap();
+        for (EmailMessage em : resultSet) {
+            if (map.containsKey(em.getTemplate())) {
+                map.get(em.getTemplate()).add(em);
+            } else {
+                map.put(em.getTemplate(), new ArrayList());
+            }
+        }
+        return map;
     }
 
 }
