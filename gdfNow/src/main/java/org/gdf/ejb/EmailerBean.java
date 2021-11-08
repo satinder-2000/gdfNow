@@ -83,15 +83,12 @@ public class EmailerBean {
     @Inject
     ReferenceDataBeanLocal referenceDataBeanLocal;
 
-    Map<EmailTemplateType, String> templatesMap;
     HashMap<String, List<EmailMessage>> emailMessages;
 
     @PostConstruct
     public void init() {
         LOGGER.log(Level.INFO, "Web URI set to {0}", webURI);
         LOGGER.log(Level.INFO, "Mail Session Established {0}", session.toString());
-        templatesMap = new HashMap<>();
-        templatesMap = referenceDataBeanLocal.getEmailTemplatesMap();
         emailMessages= referenceDataBeanLocal.getEmailMessages();
 
     }
@@ -160,7 +157,6 @@ public class EmailerBean {
         sb.append(email).append("\n");
         sb.append(map.get("thankYou")).append("\n");
         sb.append(map.get("welcome")).append("\n");
-        //sb.append(protocol).append(webURI).append(welcomeURI);
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
@@ -389,15 +385,17 @@ public class EmailerBean {
         for (EmailMessage msg:regMessages){
                 map.put(msg.getMessageTitle(), msg.getText());
         }
-        sb.append(map.get("subject")).append("\n");
-        sb.append(map.get("congratsMsg")).append("\n");
+        String subject=String.format(map.get("subject"), bOffer.getBusiness().getName());
+        sb.append(subject).append("\n");
+        String congratsMsg=String.format(map.get("congratsMsg"), deeder.getEmail(),bOffer.getBusiness().getName());
+        sb.append(congratsMsg).append("\n");
         sb.append(map.get("viewOfferLinkMsg")).append("\n");
         sb.append(protocol).append(webURI).append("/view/ViewBusinessOfferDetails.xhtml?offerId=").append(bOffer.getId());
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(deeder.getEmail()));
-            message.setSubject(map.get("subject"));
+            message.setSubject(subject);
             message.setContent(sb.toString(), "text/plain; charset=utf-8");
             Transport.send(message);
             LOGGER.info("Sent message successfully....");

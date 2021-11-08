@@ -54,7 +54,8 @@ public class ReferenceDataBean implements ReferenceDataBeanLocal {
     Map<String, String> ngoCategoriesMap;
     Map<String, String> governmentOrgsMap;
     Map<String, List<String>> governmentMinistriesCtryCdMap;
-    Map<EmailTemplateType,String> emailTemplateMap;
+    //Map<EmailTemplateType,String> emailTemplateMap;
+    
 
     private List<String> deedCategoryTypes;
 
@@ -127,12 +128,13 @@ public class ReferenceDataBean implements ReferenceDataBeanLocal {
             governmentMinistries = new ArrayList(governmentMinistriesSet);*/
             
             //Email Templates
-            TypedQuery<EmailTemplate> eTQ=em.createQuery("select et from EmailTemplate et", EmailTemplate.class);
+            /*TypedQuery<EmailTemplate> eTQ=em.createQuery("select et from EmailTemplate et", EmailTemplate.class);
             List<EmailTemplate> result=eTQ.getResultList();
             emailTemplateMap=new HashMap<>();
             for (EmailTemplate eT : result) {
                 emailTemplateMap.put(eT.getEmailTemplateType(), eT.getFile());
-            }
+            }*/
+            
             LOGGER.log(Level.INFO, "Loading Reference Data Completed");
         } catch (Exception ex) {
             LOGGER.severe(ex.getMessage());
@@ -216,15 +218,15 @@ public class ReferenceDataBean implements ReferenceDataBeanLocal {
         return deptTq.getResultList();
     }
 
-    @Override
+    /*@Override
     public String getEmailTemplate(EmailTemplateType type) {
         return emailTemplateMap.get(type.toString());
-    }
+    }*/
 
-    @Override
+    /*@Override
     public Map<EmailTemplateType,String> getEmailTemplatesMap() {
         return emailTemplateMap;
-    }
+    }*/
 
     private void reloadNgoCategories() {
         //NGO Categories            
@@ -303,5 +305,4 @@ public class ReferenceDataBean implements ReferenceDataBeanLocal {
         }
         return map;
     }
-
 }

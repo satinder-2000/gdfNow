@@ -73,6 +73,11 @@ public class ViewDeederDeedDetailsMBean implements Serializable {
         //Initialise a new Comment as well.
         deedComment=new DeedComment();
         LOGGER.info("ViewDeederDeedDetailsMBean initialised");
+        HttpServletRequest request=(HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        deedIdStr=request.getParameter("deedId");
+        System.out.println("deedIdStr is "+deedIdStr);
+        LOGGER.log(Level.INFO, "Loading Deed Details for ID :{0}", deedIdStr);
+        deedId=Integer.parseInt(deedIdStr);
         try {
             loadDeedDetails();
         } catch (IOException ex) {
@@ -83,10 +88,6 @@ public class ViewDeederDeedDetailsMBean implements Serializable {
 
     private void loadDeedDetails() throws IOException {
         LOGGER.info("Inside loadDeedDetails of ViewDeederDeedDetailsMBean");
-        HttpServletRequest request=(HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        deedIdStr=request.getParameter("deedId");
-        LOGGER.log(Level.INFO, "Loading Deed Details for ID :{0}", deedIdStr);
-        deedId=Integer.parseInt(deedIdStr);
         deed=deedBeanLocal.getDeedDetails(deedId);
         //Comments and Likes on Deed
         deedComments=deed.getDeedComments();
@@ -107,10 +108,8 @@ public class ViewDeederDeedDetailsMBean implements Serializable {
         String toReturn=null;
         if (deed.getDeeder()!=null){
             assignDeederToDeed();
-            toReturn = "/view/ViewDeederDeedDetails.xhtml?faces-redirect=true";
+            
         }
-        FacesContext.getCurrentInstance().getExternalContext().redirect(toReturn);
-        
     }
     
     public void addLike(){

@@ -59,15 +59,17 @@ public interface ReferenceDataBeanLocal {
     
     public GovernmentOrg getGovernmentOrg(String countryCode, String ministry, String department);
     
-    public String getEmailTemplate(EmailTemplateType type);
+    //public String getEmailTemplate(EmailTemplateType type);
     
-    public Map<EmailTemplateType,String> getEmailTemplatesMap();
+    //public Map<EmailTemplateType,String> getEmailTemplatesMap();
 
     public void addDeedCategory(DeedCategory dc);
 
     public List<NgoCategory> getUnapprovedNgoCategories();
     
     public HashMap<String,List<EmailMessage>> getEmailMessages();
+    
+    //public List<EmailMessage> getEmailMessages(String template);
 
     
     
