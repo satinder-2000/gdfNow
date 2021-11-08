@@ -414,15 +414,17 @@ public class EmailerBean {
         for (EmailMessage msg:regMessages){
                 map.put(msg.getMessageTitle(), msg.getText());
         }
-        sb.append(map.get("subject")).append("\n");
-        sb.append(map.get("congratsMsg")).append("\n");
+        String subject=String.format(map.get("subject"), gOffer.getGovernment().getOfficeName());
+        sb.append(subject).append("\n");
+        String congratsMsg=String.format(map.get("congratsMsg"), deeder.getEmail(), gOffer.getGovernment().getOfficeName());
+        sb.append(congratsMsg).append("\n");
         sb.append(map.get("viewOfferLinkMsg")).append("\n");
         sb.append(protocol).append(webURI).append("/view/ViewGovernmentOfferDetails.xhtml?offerId=").append(gOffer.getId());
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(deeder.getEmail()));
-            message.setSubject(map.get("subject"));
+            message.setSubject(subject);
             message.setContent(sb.toString(), "text/plain; charset=utf-8");
             Transport.send(message);
             LOGGER.info("Sent message successfully....");
@@ -440,15 +442,17 @@ public class EmailerBean {
         for (EmailMessage msg : regMessages) {
             map.put(msg.getMessageTitle(), msg.getText());
         }
-        sb.append(map.get("subject")).append("\n");
-        sb.append(map.get("congratsMsg")).append("\n");
+        String subject=String.format(map.get("subject"), nOffer.getNgo().getName());
+        sb.append(subject).append("\n");
+        String congratsMsg=String.format(map.get("congratsMsg"), deeder.getEmail(), nOffer.getNgo().getName());
+        sb.append(congratsMsg).append("\n");
         sb.append(map.get("viewOfferLinkMsg")).append("\n");
         sb.append(protocol).append(webURI).append("/view/ViewNgoOfferDetails.xhtml?offerId=").append(nOffer.getId());
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(deeder.getEmail()));
-            message.setSubject(map.get("subject"));
+            message.setSubject(subject);
             message.setContent(sb.toString(), "text/plain; charset=utf-8");
             Transport.send(message);
             LOGGER.info("Sent message successfully....");
