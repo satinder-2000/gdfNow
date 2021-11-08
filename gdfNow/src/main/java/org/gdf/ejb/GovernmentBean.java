@@ -62,19 +62,19 @@ public class GovernmentBean implements GovernmentBeanLocal {
         em.persist(government);
         em.flush();
         OnHold onHold=new OnHold();
-        onHold.setEmail(government.getEmail1());
+        onHold.setEmail(government.getEmail());
         onHold.setAccessType(AccessType.GOVERNMENT);
         onHold.setEntityId(government.getId());
         onHold.setProfileFile(government.getLogoFile());
-        onHold.setName(government.getName());
+        onHold.setName(government.getOfficeName());
         onHold.setCountryCode(government.getGovernmentAddress().getCountry().getCode());
         onHold.setImage(government.getImage());
         em.persist(onHold);
         em.flush();
         LOGGER.log(Level.INFO, "Government  persisted successfuuly with ID:{0} and Address ID: {1}", new Object[]{government.getId(), government.getGovernmentAddress().getId()});
         emailerBean.sendGovernmentRegConfirmEmail(government);
-        String message="Government Department Registered: ".concat(government.getName());
-        activityRecorderBeanLocal.add(ActivityType.GOVERNMENT,government.getId(), message,government.getName());
+        String message="Government Department Registered: ".concat(government.getOfficeName());
+        activityRecorderBeanLocal.add(ActivityType.GOVERNMENT,government.getId(), message,government.getOfficeName());
         
         return government;
     }
@@ -82,7 +82,7 @@ public class GovernmentBean implements GovernmentBeanLocal {
     @Override
     public void amendGovernment(Government government) {
         government.setUpdatedOn(LocalDateTime.now());
-        Access access=accessBeanLocal.getAccess(government.getEmail1());
+        Access access=accessBeanLocal.getAccess(government.getEmail());
         if (!access.getProfileFile().equals(government.getLogoFile())){//implying profile file has been changed. Replication change applied in MBean in the FE. updateProfileFile()
            access.setProfileFile(government.getLogoFile());
            access.setImage(government.getImage());
@@ -100,8 +100,8 @@ public class GovernmentBean implements GovernmentBeanLocal {
         em.merge(deed);
         em.flush();
         LOGGER.log(Level.INFO, "New Government Offer created with id:{0}", governmentOffer.getId());
-        String message=governmentOffer.getOfferType().concat(" made by ").concat(governmentOffer.getGovernment().getName()).concat(" on Deed ").concat(governmentOffer.getDeed().getTitle());
-        activityRecorderBeanLocal.add(ActivityType.GOVERNMENT_OFFER,governmentOffer.getId(),message,governmentOffer.getGovernment().getName());
+        String message=governmentOffer.getOfferType().concat(" made by ").concat(governmentOffer.getGovernment().getOfficeName()).concat(" on Deed ").concat(governmentOffer.getDeed().getTitle());
+        activityRecorderBeanLocal.add(ActivityType.GOVERNMENT_OFFER,governmentOffer.getId(),message,governmentOffer.getGovernment().getOfficeName());
         emailerBean.notifyDeederOfGovernmentOffer(governmentOffer);
         emailerBean.notifyGovernmentOfOffer(governmentOffer);
         
@@ -160,10 +160,10 @@ public class GovernmentBean implements GovernmentBeanLocal {
     }
 
     @Override
-    public boolean governmentExists(String email1) {
+    public boolean governmentExists(String email) {
         boolean exists=false;
-        TypedQuery<Government> tq=em.createQuery("select g from Government g where g.email1=?1", Government.class);
-        tq.setParameter(1, email1);
+        TypedQuery<Government> tq=em.createQuery("select g from Government g where g.email=?1", Government.class);
+        tq.setParameter(1, email);
         try{
             if (tq.getSingleResult()!=null) exists=true;
         }catch(NoResultException ex){

@@ -1,9 +1,84 @@
 TEMPLATE,MESSAGE_TITLE,TEXT
-USER_REGISTER,userRegistration,Registration User
+USER_REGISTER,registrationUser,Registration User
 USER_REGISTER,successfullyReg,You have successfully registered yourself on GDFNow.org
 USER_REGISTER,setPassword,Kindly set you Account Password by following the link below
 USER_REGISTER,createAccess,Create Access
+USER_REGISTER,subject,User Registration
 ACCESS_CONFIRM,accessConfirmed,Access Confirmed
 ACCESS_CONFIRM,thankYou,Congratulations on setting your access details. Your registration is now complete!! 
 ACCESS_CONFIRM,welcome,Welcome to GdfNow.org
 ACCESS_CONFIRM,home,Home
+ACCESS_CONFIRM,subject,Access Confirm
+DEEDER_REGISTER,subject,Deeder Registration
+DEEDER_REGISTER,registrationDeeder,Registration Deeder
+DEEDER_REGISTER,successfullyReg,You have successfully registered yourself on GDFNow.org
+DEEDER_REGISTER,setPassword,Kindly set you Account Password by following the link below
+DEEDER_REGISTER,createAccess,Create Access
+USER_DEEDER_REGISTER,dearUserDeeder,"Dear %1$s ,"
+USER_DEEDER_REGISTER,nominatedMsg,You have been Nominated by our User %1$s
+USER_DEEDER_REGISTER,checkProfile,You may wish to check your profile here (You DOB might need correction) :
+USER_DEEDER_REGISTER,profileOKMsg,"If the profile looks OK to you (or you wish to make changes), please set your access password on the following link:"
+USER_DEEDER_REGISTER,createAccess,Create Access
+NOMINATION_CONFIRM,subject,Nomination Confirm of %1$s  %2$s
+NOMINATION_CONFIRM,ThanksMsg,Thank you for making a valuable contribution to make a 'real' change in the world.
+NOMINATION_CONFIRM,informOnDeederConfirm,"Once the Deeder accepts the nomination, we will inform you."
+NOMINATION_CONFIRM,suggestDeedOfDeeder,"In the mean time, if you wish you may suggest the Deeds that Deeder has been carrying out by visiting your account."
+NOMINATION_CONFIRM,gdfNowHome,GdfNow Home
+BUSINESS_REGISTER,subject,Registration Business
+BUSINESS_REGISTER,dearBusiness,"Dear %1$s,"
+BUSINESS_REGISTER,successfullyReg,"Your Business, %1$s, has been successfully registered on GDFNow.org"
+BUSINESS_REGISTER,setPasswordLinkMsg,Kindly set you Account Password by following the link below
+BUSINESS_REGISTER,createAccess,Create Access
+BUSINESS_AMEND,subject,Change Business Details
+BUSINESS_AMEND,changesApplied,Thank You. The changes have now been applied on account %1$s
+GOVERNMENT_REGISTER,subject,Registration Government Agency/Department
+GOVERNMENT_REGISTER,dearGovernment,"Dear %1$s ,"
+GOVERNMENT_REGISTER,successfullyReg,"Your Agency/Department %1$s, has been successfully registered on GDFNow.org"
+GOVERNMENT_REGISTER,setPassword,Kindly set you Account Password by following the link below
+GOVERNMENT_REGISTER,createAccess,Create Access
+GOVERNMENT_AMEND,subject,Change Government Agency/Department Details
+GOVERNMENT_AMEND,changesApplied,Thank You. The changes have now been applied on account %1$s
+NGO_REGISTER,subject,Registration NGO
+NGO_REGISTER,dearNgo,"Dear %1$s,"
+NGO_REGISTER,successfullyReg,"Your NGO/Charity %1$s, has been successfully registered on GDFNow.org"
+NGO_REGISTER,setPassword,Kindly set you Account Password by following the link below
+NGO_REGISTER,createAccess,Create Access
+NGO_AMEND,subject,Change NGO/Charity Details
+NGO_AMEND,changesApplied,Thank You. The changes have now been applied on account %1$s
+BUSINESS_OFFER,subject,Offer from Business
+BUSINESS_OFFER,dearBusiness,"Dear %1$s,"
+BUSINESS_OFFER,ThanksMsg,Thank you for making an offer. It is Live now on GDFNow.org
+BUSINESS_OFFER,visitOfferLinkMsg,"In order to view the Offer details, please visit the following link:"
+GOVERNMENT_OFFER,subject,Offer from Government Agency/Department
+GOVERNMENT_OFFER,dearBusiness,"Dear %1$s,"
+GOVERNMENT_OFFER,ThanksMsg,Thank you for making an offer. It is Live now on GDFNow.org
+GOVERNMENT_OFFER,visitOfferLinkMsg,"In order to view the Offer details, please visit the following link:"
+NGO_OFFER,subject,Offer from NGO
+NGO_OFFER,dearNgo,"Dear %1$s,"
+NGO_OFFER,ThanksMsg,Thank you for making an offer. It is Live now on GDFNow.org
+NGO_OFFER,visitOfferLinkMsg,"In order to view the Offer details, please visit the following link:"
+CREATE_DEED,subject,Deed Registration
+CREATE_DEED,dearDeeder,"Dear %1$s,"
+CREATE_DEED,successMsg,You have successfully registered your Deed on GDFNow.org
+CREATE_DEED,viewDeedLinkMsg,You may wish to view the Deed details by clicking the following link:
+CREATE_DEED_NGO,subject,Deed Registration
+CREATE_DEED_NGO,dearNgo,"Dear %1$s,"
+CREATE_DEED_NGO,successMsg,You have successfully registered your Deed on GDFNow.org
+CREATE_DEED_NGO,viewDeedLinkMsg,You may wish to view the Deed details by clicking the following link:
+DEEDER_NOTIFY_GOVERNMENT_OFFER,subject,Offer from %1$s
+DEEDER_NOTIFY_GOVERNMENT_OFFER,congratsMsg,"Contratulations %1$s, You have just won a new offer from %2$s"
+DEEDER_NOTIFY_GOVERNMENT_OFFER,viewOfferLinkMsg,"In order to view the Offer details, please visit the following link:"
+DEEDER_NOTIFY_BUSINESS_OFFER,subject,Offer from %1$s
+DEEDER_NOTIFY_BUSINESS_OFFER,congratsMsg,"Contratulations %1$s, You have just won a new offer from %2$s"
+DEEDER_NOTIFY_BUSINESS_OFFER,viewOfferLinkMsg,"In order to view the Offer details, please visit the following link:"
+PASSWORD_RESET,subject,Password Reset
+PASSWORD_RESET,pwResetMsg,If you have make a password reset on GDFNow.org
+PASSWORD_RESET,pwResetLinkMsg,Please reset your access password by clicking the following link:
+NOMINATED_DEED,subject,Deed Nomination
+NOMINATED_DEED,dearDeeder,"Dear %1$s,"
+NOMINATED_DEED,deederMsg,"Thought we let you know that the User %1$s, who had earlier nominated you as a Deeder has successfully nominated your Deed on GDFNow.org"
+NOMINATED_DEED,viewDeedLinkMsg,You may wish to view the Deed details by clicking the following link:
+NOMINATED_DEED_USER_COPY,subject,Deed Nominated
+NOMINATED_DEED_USER_COPY,dearUser,"Dear %1$s,"
+NOMINATED_DEED_USER_COPY,successMsg,You have successfully nominated the Deed of your nominated Deeder %1$s. We have also made %2$s aware of this.
+NOMINATED_DEED_USER_COPY,viewDeedLinkMsg,You may wish to view the Deed details by clicking the following link:

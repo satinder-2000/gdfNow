@@ -55,7 +55,7 @@ public class UserDeederBean implements UserDeederBeanLocal {
         int deederId=deeder.getId();
         LOGGER.log(Level.INFO, "Deeder persisited with Deeder ID: {0}",deederId);
         user.getDeeders().add(deeder);
-        em.merge(user);
+        user = em.merge(user);
         em.persist(deeder);
         em.flush();
         LOGGER.log(Level.INFO, "User Deeder persisited with Deeder ID: {0} User being: {1}", new Object[]{deeder.getId(), user.getId()});

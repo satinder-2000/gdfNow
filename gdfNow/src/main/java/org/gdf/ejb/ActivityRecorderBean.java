@@ -15,8 +15,7 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.Singleton;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -33,7 +32,7 @@ import javax.persistence.TypedQuery;
  * MaxActivities (as per init parameter), the Cache is repopulated from the
  * Database as a refresh.
  */
-@Singleton
+@Stateless
 public class ActivityRecorderBean implements ActivityRecorderBeanLocal {
     
     static final Logger LOGGER=Logger.getLogger(ActivityRecorderBean.class.getCanonicalName());
@@ -43,47 +42,8 @@ public class ActivityRecorderBean implements ActivityRecorderBeanLocal {
     
     @Resource(name = "maxActivities")
     int maxActivities;
-    
-    @Resource(name = "maxActivitiesDb")
-    int maxActivitiesDb;
-
     List<Activity> activityStack;
     
-
-    @PostConstruct
-    public void init() {
-        activityStack = new ArrayList<>();
-        loadRecentActivities();
-        LOGGER.info("ActivityRecorder initialised");
-    }
-
-    private void loadRecentActivities() {
-
-        //ExternalContext exC = FacesContext.getCurrentInstance().getExternalContext();
-        //String maxActivitiesDbStr = exC.getInitParameter("MaxActivitiesDb");
-        //Integer maxActivitiesDb = Integer.parseInt(maxActivitiesDbStr);
-        //String maxActivitiesStr = exC.getInitParameter("MaxActivities");
-        //maxActivities = Integer.parseInt(maxActivitiesStr);
-        List<Activity> tempL = loadFromDB(maxActivitiesDb);
-        activityStack.addAll(tempL);
-        LOGGER.log(Level.INFO, "Activities loaded from the Database: {0}", activityStack.size());
-
-    }
-
-    private List<Activity> loadFromDB(int number) {
-        TypedQuery<Activity> tQA = em.createQuery("select a from Activity a order by a.id desc", Activity.class);
-        //tQA.setParameter(1, number);
-        tQA.setMaxResults(number);
-        List<Activity> rs = tQA.getResultList();
-        return rs;
-
-    }
-
-    public String get(int i) {
-        return activityStack.get(i).getMessage();
-
-    }
-
     @Override
     public void add(ActivityType actType, int entityId, String message, String entityName) {
         Activity activity = new Activity();
@@ -95,23 +55,14 @@ public class ActivityRecorderBean implements ActivityRecorderBeanLocal {
         em.persist(activity);
         em.flush();
         LOGGER.log(Level.INFO, "Activity persisted ID:{0}", activity.getId());
-        if (activityStack.size() > maxActivities) {
-            LOGGER.log(Level.INFO, "activityStack.size() is {0}. Will be reset", activityStack.size());
-            activityStack = new ArrayList<>();
-            List<Activity> tempL = loadFromDB(maxActivities - 1);//Keep space for the activity in method parameter.
-            activityStack.addAll(tempL);
-        }
-        activityStack.add(0, activity);
     }
 
 
     @Override
     public List<Activity> getActivityStack() {
-        return activityStack;
+        TypedQuery<Activity> tQA = em.createQuery("select a from Activity a order by a.id desc", Activity.class);
+        tQA.setMaxResults(maxActivities);
+        List<Activity> rs = tQA.getResultList();
+        return rs;
     }
-
-    public void setActivityStack(List<Activity> activityStack) {
-        this.activityStack = activityStack;
-    }
-
 }

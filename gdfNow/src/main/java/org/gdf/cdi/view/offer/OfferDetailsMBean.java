@@ -111,7 +111,7 @@ public class OfferDetailsMBean implements Serializable {
             case "GOVERNMENT":{
                 governmentOffer=governmentBeanLocal.getGovernmentOffer(offerId);
                 Government government=  governmentOffer.getGovernment();
-                String governmentPath=documentServer.concat(governmentDocPath).concat(government.getEmail1());
+                String governmentPath=documentServer.concat(governmentDocPath).concat(government.getEmail());
                 String logoFilePath=governmentPath+"/"+government.getLogoFile();
                 government.setLogoURL(logoFilePath);
                 //set Pofile Image of the Deeder now

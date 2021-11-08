@@ -15,8 +15,6 @@ import org.gdf.model.GovernmentOffer;
 import org.gdf.model.Ngo;
 import org.gdf.model.NgoOffer;
 import org.gdf.model.User;
-import java.io.File;
-import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,19 +25,14 @@ import javax.annotation.Resource;
 import javax.ejb.Singleton;
 import javax.ejb.LocalBean;
 import javax.inject.Inject;
-import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.VelocityEngine;
 import org.gdf.model.EmailMessage;
+import java.util.Formatter;
 
 /**
  *
@@ -84,8 +77,8 @@ public class EmailerBean {
     @Resource(name = "emailTemplate")
     String emailTemplate;
     
-    @Resource(name="PasswordReset")
-    String passwordReset;
+    @Resource(name="PasswordResetURI")
+    String passwordResetURI;
 
     @Inject
     ReferenceDataBeanLocal referenceDataBeanLocal;
@@ -100,31 +93,6 @@ public class EmailerBean {
         templatesMap = new HashMap<>();
         templatesMap = referenceDataBeanLocal.getEmailTemplatesMap();
         emailMessages= referenceDataBeanLocal.getEmailMessages();
-
-    }
-
-    public void testEmail() {
-        try {
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(sender));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress("satinder_2000@outlook.com", "Satinder Singh"));
-            message.setSubject("Please confirm Email and set Password");
-
-            String htmlText = templatesMap.get(EmailTemplateType.USER_REGISTER);
-            VelocityEngine ve = new VelocityEngine();
-            StringWriter sw = new StringWriter();
-            VelocityContext vc = new VelocityContext();
-            vc.put("heading", "Registeration Confirmed");
-            vc.put("message", "You have been Registered");
-            ve.evaluate(vc, sw, EmailTemplateType.USER_REGISTER.toString(), htmlText);
-
-            message.setContent(sw.getBuffer().toString(), "text/html");
-
-            Transport.send(message);
-            LOGGER.info("Sent message successfully....");
-        } catch (Exception mex) {
-            LOGGER.severe(mex.getMessage());
-        }
 
     }
 
@@ -156,29 +124,30 @@ public class EmailerBean {
     }
 
     public void sendDeederRegConfirmEmail(Deeder deeder) {
+        
+        List<EmailMessage> regMessages=emailMessages.get(EmailTemplateType.DEEDER_REGISTER.name());
+        StringBuilder sb=new StringBuilder(deeder.getEmail()+",\n");
+            Map<String, String> map=new HashMap();
+            for (EmailMessage msg:regMessages){
+                map.put(msg.getMessageTitle(), msg.getText());
+            }
+            //IN the email we need values in the following order
+            //registrationDeeder, successfullyReg, setPassword, createAccess
+            sb.append(map.get("registrationDeeder")).append("\n");
+            sb.append(map.get("successfullyReg")).append("\n");
+            sb.append(map.get("setPassword")).append("\n");
+            sb.append(protocol).append(webURI).append(accessConfirmURI).append(deeder.getEmail());
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(deeder.getEmail()));
-            message.setSubject("Please confirm Email and set Password");
-
-            String htmlText = templatesMap.get(EmailTemplateType.DEEDER_REGISTER);
-            VelocityEngine ve = new VelocityEngine();
-            StringWriter sw = new StringWriter();
-            VelocityContext vc = new VelocityContext();
-            vc.put("deederName", deeder.getFirstname().concat(" ").concat(deeder.getLastname()));
-            vc.put("deederEmail", deeder.getEmail());
-            vc.put("genericURI", genericURI);
-            ve.evaluate(vc, sw, EmailTemplateType.DEEDER_REGISTER.toString(), htmlText);
-
-            message.setContent(sw.getBuffer().toString(), "text/html");
-
+            message.setSubject(map.get("subject"));
+            message.setContent(sb.toString(), "text/plain; charset=utf-8");
             Transport.send(message);
             LOGGER.info("Sent message successfully....");
         } catch (MessagingException mex) {
             LOGGER.severe(mex.getMessage());
         }
-
     }
 
     public void sendAccessConfirmEmail(String email) {
@@ -191,7 +160,7 @@ public class EmailerBean {
         sb.append(email).append("\n");
         sb.append(map.get("thankYou")).append("\n");
         sb.append(map.get("welcome")).append("\n");
-        sb.append(protocol).append(webURI).append(welcomeURI);
+        //sb.append(protocol).append(webURI).append(welcomeURI);
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
@@ -206,50 +175,52 @@ public class EmailerBean {
     }
 
     public void sendBusinessRegConfirmEmail(Business business) {
+        List<EmailMessage> accessMessages=emailMessages.get(EmailTemplateType.BUSINESS_REGISTER.name());
+        Map<String, String> map=new HashMap();
+        for (EmailMessage msg:accessMessages){
+            map.put(msg.getMessageTitle(), msg.getText());
+        }
+        StringBuilder sb=new StringBuilder();
+        sb.append(map.get("subject")).append("\n");
+        String str1=String.format(map.get("dearBusiness"),business.getEmail());
+        System.out.println(str1);
+        sb.append(str1).append("\n");
+        String str2=String.format(map.get("successfullyReg"),business.getName());
+        System.out.println(str2);
+        sb.append(str2).append("\n");
+        sb.append(map.get("setPasswordLinkMsg")).append("\n");
+        sb.append(protocol).append(webURI).append(accessConfirmURI).append(business.getEmail());
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(business.getEmail()));
-            message.setSubject("Please confirm Email and set Password");
-
-            String htmlText = templatesMap.get(EmailTemplateType.BUSINESS_REGISTER);
-            VelocityEngine ve = new VelocityEngine();
-            StringWriter sw = new StringWriter();
-            VelocityContext vc = new VelocityContext();
-            vc.put("businessEmail", business.getEmail());
-            vc.put("businessName", business.getName());
-            vc.put("genericURI", genericURI);
-            ve.evaluate(vc, sw, EmailTemplateType.BUSINESS_REGISTER.toString(), htmlText);
-
-            message.setContent(sw.getBuffer().toString(), "text/html");
-
+            message.setSubject(map.get("subject"));
+            message.setContent(sb.toString(), "text/plain; charset=utf-8");
             Transport.send(message);
             LOGGER.info("Sent message successfully....");
         } catch (MessagingException mex) {
             LOGGER.severe(mex.getMessage());
         }
-
     }
 
     public void sendGovernmentRegConfirmEmail(Government government) {
+        List<EmailMessage> accessMessages=emailMessages.get(EmailTemplateType.GOVERNMENT_REGISTER.name());
+        Map<String, String> map=new HashMap();
+        for (EmailMessage msg:accessMessages){
+            map.put(msg.getMessageTitle(), msg.getText());
+        }
+        StringBuilder sb=new StringBuilder();
+        sb.append(map.get("subject")).append("\n");
+        sb.append(String.format(map.get("dearGovernment"),government.getEmail())).append("\n");
+        sb.append(String.format(map.get("successfullyReg"),government.getOfficeName())).append("\n");
+        sb.append(map.get("setPasswordLinkMsg")).append("\n");
+        sb.append(protocol).append(webURI).append(accessConfirmURI).append(government.getEmail());
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(government.getEmail1()));
-            message.addRecipient(Message.RecipientType.CC, new InternetAddress(government.getEmail2()));
-            message.setSubject("Please confirm Email and set Password");
-
-            String htmlText = templatesMap.get(EmailTemplateType.GOVERNMENT_REGISTER);
-            VelocityEngine ve = new VelocityEngine();
-            StringWriter sw = new StringWriter();
-            VelocityContext vc = new VelocityContext();
-            vc.put("governmentEmail", government.getEmail1());
-            vc.put("governmentName", government.getName());
-            vc.put("genericURI", genericURI);
-            ve.evaluate(vc, sw, EmailTemplateType.GOVERNMENT_REGISTER.toString(), htmlText);
-
-            message.setContent(sw.getBuffer().toString(), "text/html");
-
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(government.getEmail()));
+            message.setSubject(map.get("subject"));
+            message.setContent(sb.toString(), "text/plain; charset=utf-8");
             Transport.send(message);
             LOGGER.info("Sent message successfully....");
         } catch (MessagingException mex) {
@@ -259,23 +230,23 @@ public class EmailerBean {
     }
 
     public void sendNgoRegConfirmEmail(Ngo ngo) {
+        List<EmailMessage> accessMessages=emailMessages.get(EmailTemplateType.NGO_REGISTER.name());
+        Map<String, String> map=new HashMap();
+        for (EmailMessage msg:accessMessages){
+            map.put(msg.getMessageTitle(), msg.getText());
+        }
+        StringBuilder sb=new StringBuilder();
+        sb.append(map.get("subject")).append("\n");
+        sb.append(String.format(map.get("dearNgo"),ngo.getEmail())).append("\n");
+        sb.append(String.format(map.get("successfullyReg"),ngo.getName())).append("\n");
+        sb.append(map.get("setPasswordLinkMsg")).append("\n");
+        sb.append(protocol).append(webURI).append(accessConfirmURI).append(ngo.getEmail());
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(ngo.getEmail()));
-            message.setSubject("Please confirm Email and set Password");
-
-            String htmlText = templatesMap.get(EmailTemplateType.NGO_REGISTER);
-            VelocityEngine ve = new VelocityEngine();
-            StringWriter sw = new StringWriter();
-            VelocityContext vc = new VelocityContext();
-            vc.put("ngoEmail", ngo.getEmail());
-            vc.put("ngoName", ngo.getName());
-            vc.put("genericURI", genericURI);
-            ve.evaluate(vc, sw, EmailTemplateType.NGO_REGISTER.toString(), htmlText);
-
-            message.setContent(sw.getBuffer().toString(), "text/html");
-
+            message.setSubject(map.get("subject"));
+            message.setContent(sb.toString(), "text/plain; charset=utf-8");
             Transport.send(message);
             LOGGER.info("Sent message successfully....");
         } catch (MessagingException mex) {
@@ -284,24 +255,26 @@ public class EmailerBean {
     }
 
     public void sendUserDeederRegConfirmEmail(User user, Deeder deeder) {
+        List<EmailMessage> accessMessages=emailMessages.get(EmailTemplateType.USER_DEEDER_REGISTER.name());
+        Map<String, String> map=new HashMap();
+        for (EmailMessage msg:accessMessages){
+            map.put(msg.getMessageTitle(), msg.getText());
+        }
+        StringBuilder sb=new StringBuilder();
+        sb.append(map.get("subject")).append("\n");
+        sb.append(String.format(map.get("dearUserDeeder"),deeder.getEmail())).append("\n");
+        String username=user.getFirstname()+" "+user.getLastname();
+        sb.append(String.format(map.get("nominatedMsg"),username)).append("\n");
+        sb.append(map.get("checkProfile")).append("\n");
+        sb.append(protocol).append(webURI).append("/view/ViewDeederDetails.xhtml?deederId=").append(deeder.getId()).append("\n");
+        sb.append(map.get("profileOKMsg")).append("\n");
+        sb.append(protocol).append(webURI).append(accessConfirmURI).append(deeder.getEmail());
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(deeder.getEmail()));
-            message.setSubject(user.getFirstname() + " " + user.getLastname() + " has recommended you");
-
-            String htmlText = templatesMap.get(EmailTemplateType.USER_DEEDER_REGISTER);
-            VelocityEngine ve = new VelocityEngine();
-            StringWriter sw = new StringWriter();
-            VelocityContext vc = new VelocityContext();
-            vc.put("webURIView", webURIView);
-            vc.put("userName", user.getFirstname().concat(" ").concat(user.getLastname()));
-            vc.put("deederId", deeder.getId());
-            vc.put("userDeederURI", userDeederURI);
-            ve.evaluate(vc, sw, EmailTemplateType.USER_DEEDER_REGISTER.toString(), htmlText);
-
-            message.setContent(sw.getBuffer().toString(), "text/html");
-
+            message.setSubject(map.get("subject"));
+            message.setContent(sb.toString(), "text/plain; charset=utf-8");
             Transport.send(message);
             LOGGER.info("Sent message successfully....");
         } catch (MessagingException mex) {
@@ -311,47 +284,43 @@ public class EmailerBean {
     }
 
     public void sendBusinessAmendedEmail(Business business) {
+        List<EmailMessage> accessMessages=emailMessages.get(EmailTemplateType.BUSINESS_AMEND.name());
+        Map<String, String> map=new HashMap();
+        for (EmailMessage msg:accessMessages){
+            map.put(msg.getMessageTitle(), msg.getText());
+        }
+        StringBuilder sb=new StringBuilder();
+        sb.append(map.get("subject")).append("\n");
+        sb.append(String.format(map.get("changesApplied"),business.getName())).append("\n");
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(business.getEmail()));
-            message.setSubject("Change made to account");
-
-            String htmlText = templatesMap.get(EmailTemplateType.BUSINESS_AMEND);
-            VelocityEngine ve = new VelocityEngine();
-            StringWriter sw = new StringWriter();
-            VelocityContext vc = new VelocityContext();
-            vc.put("heading", "Change applied successfully.");
-            vc.put("message", "The changes you applied to your account have now been applied.");
-            ve.evaluate(vc, sw, EmailTemplateType.BUSINESS_AMEND.toString(), htmlText);
-
-            message.setContent(sw.getBuffer().toString(), "text/html");
-
+            message.setSubject(map.get("subject"));
+            message.setContent(sb.toString(), "text/plain; charset=utf-8");
             Transport.send(message);
             LOGGER.info("Sent message successfully....");
         } catch (MessagingException mex) {
             LOGGER.severe(mex.getMessage());
         }
+
     }
 
     public void sendGovernmentAmendedEmail(Government government) {
+        List<EmailMessage> accessMessages=emailMessages.get(EmailTemplateType.GOVERNMENT_AMEND.name());
+        Map<String, String> map=new HashMap();
+        for (EmailMessage msg:accessMessages){
+            map.put(msg.getMessageTitle(), msg.getText());
+        }
+        StringBuilder sb=new StringBuilder();
+        sb.append(map.get("subject")).append("\n");
+        sb.append(String.format(map.get("changesApplied"),government.getOfficeName())).append("\n");
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress(government.getEmail1()));
-            message.addRecipient(Message.RecipientType.CC, new InternetAddress(government.getEmail2()));
-            message.setSubject("Change made to account");
-
-            String htmlText = templatesMap.get(EmailTemplateType.GOVERNMENT_AMEND);
-            VelocityEngine ve = new VelocityEngine();
-            StringWriter sw = new StringWriter();
-            VelocityContext vc = new VelocityContext();
-            vc.put("heading", "Change applied successfully.");
-            vc.put("message", "The changes you applied to your account have now been applied.");
-            ve.evaluate(vc, sw, EmailTemplateType.GOVERNMENT_AMEND.toString(), htmlText);
-
-            message.setContent(sw.getBuffer().toString(), "text/html");
-
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(government.getEmail()));
+            message.setSubject(map.get("subject"));
+            message.setContent(sb.toString(), "text/plain; charset=utf-8");
             Transport.send(message);
             LOGGER.info("Sent message successfully....");
         } catch (MessagingException mex) {
@@ -361,22 +330,20 @@ public class EmailerBean {
 
     public void sendNgoAmendedEmail(Ngo ngo) {
 
+        List<EmailMessage> accessMessages=emailMessages.get(EmailTemplateType.NGO_AMEND.name());
+        Map<String, String> map=new HashMap();
+        for (EmailMessage msg:accessMessages){
+            map.put(msg.getMessageTitle(), msg.getText());
+        }
+        StringBuilder sb=new StringBuilder();
+        sb.append(map.get("subject")).append("\n");
+        sb.append(String.format(map.get("changesApplied"),ngo.getName())).append("\n");
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(ngo.getEmail()));
-            message.setSubject("Change made to account");
-
-            String htmlText = templatesMap.get(EmailTemplateType.NGO_AMEND);
-            VelocityEngine ve = new VelocityEngine();
-            StringWriter sw = new StringWriter();
-            VelocityContext vc = new VelocityContext();
-            vc.put("heading", "Change applied successfully.");
-            vc.put("message", "The changes you applied to your account have now been applied.");
-            ve.evaluate(vc, sw, EmailTemplateType.NGO_AMEND.toString(), htmlText);
-
-            message.setContent(sw.getBuffer().toString(), "text/html");
-
+            message.setSubject(map.get("subject"));
+            message.setContent(sb.toString(), "text/plain; charset=utf-8");
             Transport.send(message);
             LOGGER.info("Sent message successfully....");
         } catch (MessagingException mex) {
@@ -386,23 +353,26 @@ public class EmailerBean {
     }
 
     public void sendDeederNominationConfirmEmail(User user, Deeder deeder) {
+                
+        List<EmailMessage> regMessages=emailMessages.get(EmailTemplateType.NOMINATION_CONFIRM.name());
+        
+        StringBuilder sb=new StringBuilder(user.getEmail()+",\n");
+        Map<String, String> map=new HashMap();
+        for (EmailMessage msg:regMessages){
+                map.put(msg.getMessageTitle(), msg.getText());
+        }
+        //IN the email we need values in the following order
+        //registrationDeeder, successfullyReg, setPassword, createAccess
+        sb.append(String.format(map.get("subject"),deeder.getFirstname(), deeder.getLastname())).append("\n");
+        sb.append(map.get("ThanksMsg")).append("\n");
+        sb.append(map.get("suggestDeedOfDeeder")).append("\n");
+            
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(user.getEmail()));
-            message.setSubject("Nomination of " + deeder.getFirstname() + " " + deeder.getLastname());
-
-            String htmlText = templatesMap.get(EmailTemplateType.NOMINATION_CONFIRM);
-            VelocityEngine ve = new VelocityEngine();
-            StringWriter sw = new StringWriter();
-            VelocityContext vc = new VelocityContext();
-            vc.put("userName", user.getFirstname().concat(" ").concat(user.getLastname()));
-            vc.put("deederName", deeder.getFirstname().concat(" ").concat(deeder.getLastname()));
-            vc.put("webURI", webURI);
-            ve.evaluate(vc, sw, EmailTemplateType.NOMINATION_CONFIRM.toString(), htmlText);
-
-            message.setContent(sw.getBuffer().toString(), "text/html");
-
+            message.setSubject(String.format(map.get("subject"),deeder.getFirstname(), deeder.getLastname()));
+            message.setContent(sb.toString(), "text/plain; charset=utf-8");
             Transport.send(message);
             LOGGER.info("Sent message successfully....");
         } catch (MessagingException mex) {
@@ -412,24 +382,23 @@ public class EmailerBean {
 
     public void notifyDeederOfBusinessOffer(BusinessOffer bOffer) {
         Deeder deeder=bOffer.getDeed().getDeeder();
+        List<EmailMessage> regMessages=emailMessages.get(EmailTemplateType.DEEDER_NOTIFY_BUSINESS_OFFER.name());
+        
+        StringBuilder sb=new StringBuilder(deeder.getEmail()+",\n");
+        Map<String, String> map=new HashMap();
+        for (EmailMessage msg:regMessages){
+                map.put(msg.getMessageTitle(), msg.getText());
+        }
+        sb.append(map.get("subject")).append("\n");
+        sb.append(map.get("congratsMsg")).append("\n");
+        sb.append(map.get("viewOfferLinkMsg")).append("\n");
+        sb.append(protocol).append(webURI).append("/view/ViewBusinessOfferDetails.xhtml?offerId=").append(bOffer.getId());
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(deeder.getEmail()));
-            message.setSubject("New Offer from Business: " + bOffer.getBusiness().getName());
-
-            String htmlText = templatesMap.get(EmailTemplateType.DEEDER_NOTIFY_BUSINESS_OFFER);
-            VelocityEngine ve = new VelocityEngine();
-            StringWriter sw = new StringWriter();
-            VelocityContext vc = new VelocityContext();
-            vc.put("deederName", deeder.getFirstname().concat(" ").concat(deeder.getLastname()));
-            vc.put("businessName", bOffer.getBusiness().getName());
-            vc.put("offerId", bOffer.getId());
-            vc.put("WebURIfaces", WebURIfaces);
-            ve.evaluate(vc, sw, EmailTemplateType.DEEDER_NOTIFY_BUSINESS_OFFER.toString(), htmlText);
-
-            message.setContent(sw.getBuffer().toString(), "text/html");
-
+            message.setSubject(map.get("subject"));
+            message.setContent(sb.toString(), "text/plain; charset=utf-8");
             Transport.send(message);
             LOGGER.info("Sent message successfully....");
         } catch (MessagingException mex) {
@@ -440,24 +409,23 @@ public class EmailerBean {
 
     public void notifyDeederOfGovernmentOffer(GovernmentOffer gOffer) {
         Deeder deeder=gOffer.getDeed().getDeeder();
+        List<EmailMessage> regMessages=emailMessages.get(EmailTemplateType.DEEDER_NOTIFY_GOVERNMENT_OFFER.name());
+        
+        StringBuilder sb=new StringBuilder(deeder.getEmail()+",\n");
+        Map<String, String> map=new HashMap();
+        for (EmailMessage msg:regMessages){
+                map.put(msg.getMessageTitle(), msg.getText());
+        }
+        sb.append(map.get("subject")).append("\n");
+        sb.append(map.get("congratsMsg")).append("\n");
+        sb.append(map.get("viewOfferLinkMsg")).append("\n");
+        sb.append(protocol).append(webURI).append("/view/ViewGovernmentOfferDetails.xhtml?offerId=").append(gOffer.getId());
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(deeder.getEmail()));
-            message.setSubject("New Offer from : " + gOffer.getGovernment().getName());
-
-            String htmlText = templatesMap.get(EmailTemplateType.DEEDER_NOTIFY_GOVERNMENT_OFFER);
-            VelocityEngine ve = new VelocityEngine();
-            StringWriter sw = new StringWriter();
-            VelocityContext vc = new VelocityContext();
-            vc.put("deederName", deeder.getFirstname().concat(" ").concat(deeder.getLastname()));
-            vc.put("governmentName", gOffer.getGovernment().getName());
-            vc.put("offerId", gOffer.getId());
-            vc.put("WebURIfaces", WebURIfaces);
-            ve.evaluate(vc, sw, EmailTemplateType.DEEDER_NOTIFY_GOVERNMENT_OFFER.toString(), htmlText);
-
-            message.setContent(sw.getBuffer().toString(), "text/html");
-
+            message.setSubject(map.get("subject"));
+            message.setContent(sb.toString(), "text/plain; charset=utf-8");
             Transport.send(message);
             LOGGER.info("Sent message successfully....");
         } catch (MessagingException mex) {
@@ -466,25 +434,24 @@ public class EmailerBean {
     }
 
     public void notifyDeederOfNgoOffer(NgoOffer nOffer) {
-         Deeder deeder=nOffer.getDeed().getDeeder();
-         try {
+        Deeder deeder = nOffer.getDeed().getDeeder();
+        List<EmailMessage> regMessages = emailMessages.get(EmailTemplateType.DEEDER_NOTIFY_NGO_OFFER.name());
+
+        StringBuilder sb = new StringBuilder(deeder.getEmail() + ",\n");
+        Map<String, String> map = new HashMap();
+        for (EmailMessage msg : regMessages) {
+            map.put(msg.getMessageTitle(), msg.getText());
+        }
+        sb.append(map.get("subject")).append("\n");
+        sb.append(map.get("congratsMsg")).append("\n");
+        sb.append(map.get("viewOfferLinkMsg")).append("\n");
+        sb.append(protocol).append(webURI).append("/view/ViewNgoOfferDetails.xhtml?offerId=").append(nOffer.getId());
+        try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(deeder.getEmail()));
-            message.setSubject("New Offer from NGO: " + nOffer.getNgo().getName());
-
-            String htmlText = templatesMap.get(EmailTemplateType.DEEDER_NOTIFY_NGO_OFFER);
-            VelocityEngine ve = new VelocityEngine();
-            StringWriter sw = new StringWriter();
-            VelocityContext vc = new VelocityContext();
-            vc.put("deederName", deeder.getFirstname().concat(" ").concat(deeder.getLastname()));
-            vc.put("ngoName", nOffer.getNgo().getName());
-            vc.put("offerId", nOffer.getId());
-            vc.put("WebURIfaces", WebURIfaces);
-            ve.evaluate(vc, sw, EmailTemplateType.DEEDER_NOTIFY_NGO_OFFER.toString(), htmlText);
-
-            message.setContent(sw.getBuffer().toString(), "text/html");
-
+            message.setSubject(map.get("subject"));
+            message.setContent(sb.toString(), "text/plain; charset=utf-8");
             Transport.send(message);
             LOGGER.info("Sent message successfully....");
         } catch (MessagingException mex) {
@@ -495,24 +462,25 @@ public class EmailerBean {
     
 
     public void notifyBusinessOfOffer(BusinessOffer businessOffer) {
+        
+        List<EmailMessage> regMessages = emailMessages.get(EmailTemplateType.BUSINESS_OFFER.name());
+
+        StringBuilder sb = new StringBuilder(businessOffer.getBusiness().getEmail() + ",\n");
+        Map<String, String> map = new HashMap();
+        for (EmailMessage msg : regMessages) {
+            map.put(msg.getMessageTitle(), msg.getText());
+        }
+        sb.append(map.get("subject")).append("\n");
+        sb.append(String.format(map.get("dearBusiness"), businessOffer.getBusiness().getName())).append("\n");
+        sb.append(map.get("thanksMsg")).append("\n");
+        sb.append(map.get("visitOfferLinkMsg")).append("\n");
+        sb.append(protocol).append(webURI).append("/view/ViewBusinessOfferDetails.xhtml?offerId=").append(businessOffer.getId());
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(businessOffer.getBusiness().getEmail()));
-            message.setSubject("Offer is now Live!!");
-
-            String htmlText = templatesMap.get(EmailTemplateType.BUSINESS_OFFER);
-            VelocityEngine ve = new VelocityEngine();
-            StringWriter sw = new StringWriter();
-            VelocityContext vc = new VelocityContext();
-            vc.put("businessName", businessOffer.getBusiness().getName());
-            vc.put("businessEmail", businessOffer.getBusiness().getEmail());
-            vc.put("offerId", businessOffer.getId());
-            vc.put("WebURIfaces", WebURIfaces);
-            ve.evaluate(vc, sw, EmailTemplateType.BUSINESS_OFFER.toString(), htmlText);
-
-            message.setContent(sw.getBuffer().toString(), "text/html");
-
+            message.setSubject(map.get("subject"));
+            message.setContent(sb.toString(), "text/plain; charset=utf-8");
             Transport.send(message);
             LOGGER.info("Sent message successfully....");
         } catch (MessagingException mex) {
@@ -521,25 +489,24 @@ public class EmailerBean {
     }
     
     public void notifyGovernmentOfOffer(GovernmentOffer governmentOffer) {
+        List<EmailMessage> regMessages = emailMessages.get(EmailTemplateType.GOVERNMENT_OFFER.name());
+
+        StringBuilder sb = new StringBuilder(governmentOffer.getGovernment().getEmail() + ",\n");
+        Map<String, String> map = new HashMap();
+        for (EmailMessage msg : regMessages) {
+            map.put(msg.getMessageTitle(), msg.getText());
+        }
+        sb.append(map.get("subject")).append("\n");
+        sb.append(String.format(map.get("dearGovernment"), governmentOffer.getGovernment().getOfficeName())).append("\n");
+        sb.append(map.get("thanksMsg")).append("\n");
+        sb.append(map.get("visitOfferLinkMsg")).append("\n");
+        sb.append(protocol).append(webURI).append("/view/ViewGovernmentOfferDetails.xhtml?offerId=").append(governmentOffer.getId());
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(governmentOffer.getGovernment().getEmail1()));
-            message.addRecipient(Message.RecipientType.CC, new InternetAddress(governmentOffer.getGovernment().getEmail2()));
-            message.setSubject("Offer is now Live!!");
-
-            String htmlText = templatesMap.get(EmailTemplateType.GOVERNMENT_OFFER);
-            VelocityEngine ve = new VelocityEngine();
-            StringWriter sw = new StringWriter();
-            VelocityContext vc = new VelocityContext();
-            vc.put("governmentName", governmentOffer.getGovernment().getName());
-            vc.put("governmentEmail1", governmentOffer.getGovernment().getEmail1());
-            vc.put("offerId", governmentOffer.getId());
-            vc.put("WebURIfaces", WebURIfaces);
-            ve.evaluate(vc, sw, EmailTemplateType.GOVERNMENT_OFFER.toString(), htmlText);
-
-            message.setContent(sw.getBuffer().toString(), "text/html");
-
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(governmentOffer.getGovernment().getEmail()));
+            message.setSubject(map.get("subject"));
+            message.setContent(sb.toString(), "text/plain; charset=utf-8");
             Transport.send(message);
             LOGGER.info("Sent message successfully....");
         } catch (MessagingException mex) {
@@ -548,24 +515,24 @@ public class EmailerBean {
     }
     
     public void notifyNgoOfOffer(NgoOffer ngoOffer) {
+        List<EmailMessage> regMessages = emailMessages.get(EmailTemplateType.NGO_OFFER.name());
+
+        StringBuilder sb = new StringBuilder(ngoOffer.getNgo().getEmail() + ",\n");
+        Map<String, String> map = new HashMap();
+        for (EmailMessage msg : regMessages) {
+            map.put(msg.getMessageTitle(), msg.getText());
+        }
+        sb.append(map.get("subject")).append("\n");
+        sb.append(String.format(map.get("dearNgo"), ngoOffer.getNgo().getName())).append("\n");
+        sb.append(map.get("thanksMsg")).append("\n");
+        sb.append(map.get("visitOfferLinkMsg")).append("\n");
+        sb.append(protocol).append(webURI).append("/view/ViewNgoOfferDetails.xhtml?offerId=").append(ngoOffer.getId());
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(ngoOffer.getNgo().getEmail()));
-            message.setSubject("Offer is now Live!!");
-
-            String htmlText = templatesMap.get(EmailTemplateType.NGO_OFFER);
-            VelocityEngine ve = new VelocityEngine();
-            StringWriter sw = new StringWriter();
-            VelocityContext vc = new VelocityContext();
-            vc.put("ngoName", ngoOffer.getNgo().getName());
-            vc.put("ngoEmail", ngoOffer.getNgo().getEmail());
-            vc.put("offerId", ngoOffer.getId());
-            vc.put("WebURIfaces", WebURIfaces);
-            ve.evaluate(vc, sw, EmailTemplateType.GOVERNMENT_OFFER.toString(), htmlText);
-
-            message.setContent(sw.getBuffer().toString(), "text/html");
-
+            message.setSubject(map.get("subject"));
+            message.setContent(sb.toString(), "text/plain; charset=utf-8");
             Transport.send(message);
             LOGGER.info("Sent message successfully....");
         } catch (MessagingException mex) {
@@ -574,23 +541,25 @@ public class EmailerBean {
     }
     
     public void sendDeedCreated(Deeder deeder, Deed deed){
+        List<EmailMessage> regMessages = emailMessages.get(EmailTemplateType.CREATE_DEED.name());
+
+        StringBuilder sb = new StringBuilder(deeder.getEmail() + ",\n");
+        Map<String, String> map = new HashMap();
+        for (EmailMessage msg : regMessages) {
+            map.put(msg.getMessageTitle(), msg.getText());
+        }
+        sb.append(map.get("subject")).append("\n");
+        String deederName=deeder.getFirstname()+" "+deeder.getLastname();
+        sb.append(String.format(map.get("dearDeeder"), deederName)).append("\n");
+        sb.append(map.get("successMsg")).append("\n");
+        sb.append(map.get("viewDeedLinkMsg")).append("\n");
+        sb.append(protocol).append(webURI).append("/view/ViewDeederDeedDetails.xhtml?deedId=").append(deed.getId());
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(deeder.getEmail()));
-            message.setSubject("Deed Registered");
-
-            String htmlText = templatesMap.get(EmailTemplateType.CREATE_DEED);
-            VelocityEngine ve = new VelocityEngine();
-            StringWriter sw = new StringWriter();
-            VelocityContext vc = new VelocityContext();
-            vc.put("deederName", deeder.getFirstname().concat(" ").concat(deeder.getLastname()));
-            vc.put("WebURIfaces", WebURIfaces);
-            vc.put("deedId", deed.getId());
-            ve.evaluate(vc, sw, EmailTemplateType.CREATE_DEED.toString(), htmlText);
-
-            message.setContent(sw.getBuffer().toString(), "text/html");
-
+            message.setSubject(map.get("subject"));
+            message.setContent(sb.toString(), "text/plain; charset=utf-8");
             Transport.send(message);
             LOGGER.info("Sent message successfully....");
         } catch (MessagingException mex) {
@@ -600,23 +569,24 @@ public class EmailerBean {
     }
     
     public void sendDeedCreated(Ngo ngo, Deed deed){
+        List<EmailMessage> regMessages = emailMessages.get(EmailTemplateType.CREATE_DEED_NGO.name());
+
+        StringBuilder sb = new StringBuilder(ngo.getEmail() + ",\n");
+        Map<String, String> map = new HashMap();
+        for (EmailMessage msg : regMessages) {
+            map.put(msg.getMessageTitle(), msg.getText());
+        }
+        sb.append(map.get("subject")).append("\n");
+        sb.append(String.format(map.get("dearNgo"), ngo.getName())).append("\n");
+        sb.append(map.get("successMsg")).append("\n");
+        sb.append(map.get("viewDeedLinkMsg")).append("\n");
+        sb.append(protocol).append(webURI).append("/view/ViewDeederDeedDetails.xhtml?deedId=").append(deed.getId());
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(ngo.getEmail()));
-            message.setSubject("Deed Registered");
-
-            String htmlText = templatesMap.get(EmailTemplateType.CREATE_DEED_NGO);
-            VelocityEngine ve = new VelocityEngine();
-            StringWriter sw = new StringWriter();
-            VelocityContext vc = new VelocityContext();
-            vc.put("ngoName", ngo.getName());
-            vc.put("WebURIfaces", WebURIfaces);
-            vc.put("deedId", deed.getId());
-            ve.evaluate(vc, sw, EmailTemplateType.CREATE_DEED_NGO.toString(), htmlText);
-
-            message.setContent(sw.getBuffer().toString(), "text/html");
-
+            message.setSubject(map.get("subject"));
+            message.setContent(sb.toString(), "text/plain; charset=utf-8");
             Transport.send(message);
             LOGGER.info("Sent message successfully....");
         } catch (MessagingException mex) {
@@ -626,21 +596,23 @@ public class EmailerBean {
     }
 
     public void setPasswordResetEmail(String email) {
+        List<EmailMessage> regMessages = emailMessages.get(EmailTemplateType.PASSWORD_RESET.name());
+
+        StringBuilder sb = new StringBuilder();
+        Map<String, String> map = new HashMap();
+        for (EmailMessage msg : regMessages) {
+            map.put(msg.getMessageTitle(), msg.getText());
+        }
+        sb.append(map.get("subject")).append("\n");
+        sb.append(map.get("pwResetMsg")).append("\n");
+        sb.append(map.get("pwResetLinkMsg")).append("\n");
+        sb.append(protocol).append(webURI).append(passwordResetURI);
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
-            message.setSubject("Password Reset");
-
-            String htmlText = templatesMap.get(EmailTemplateType.PASSWORD_RESET);
-            VelocityEngine ve = new VelocityEngine();
-            StringWriter sw = new StringWriter();
-            VelocityContext vc = new VelocityContext();
-            vc.put("PasswordReset", passwordReset);
-            ve.evaluate(vc, sw, EmailTemplateType.PASSWORD_RESET.toString(), htmlText);
-
-            message.setContent(sw.getBuffer().toString(), "text/html");
-
+            message.setSubject(map.get("subject"));
+            message.setContent(sb.toString(), "text/plain; charset=utf-8");
             Transport.send(message);
             LOGGER.info("Sent message successfully....");
         } catch (MessagingException mex) {

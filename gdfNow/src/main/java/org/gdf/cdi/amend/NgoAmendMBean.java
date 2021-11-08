@@ -175,15 +175,6 @@ public class NgoAmendMBean implements Serializable {
             FacesContext.getCurrentInstance().addMessage("phone2", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Phone 2", "Phone 2 is invalid"));
         }
 
-        String phone3 = ngoAddress.getPhone3().trim();//not mandatory
-        if (phone3 != null && !phone3.isEmpty()) {
-            Matcher ph3M = pPhone.matcher(phone3);
-            boolean matchesPh3 = ph3M.find();
-            if (!matchesPh3) {
-                FacesContext.getCurrentInstance().addMessage("phone3", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Phone 3", "Phone 3 is invalid"));
-            }
-        }
-
         //Validate PostCode now..
         switch (country) {
             case GDFConstants.IN_NAME: {

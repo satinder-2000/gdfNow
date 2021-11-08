@@ -43,7 +43,7 @@ public interface GovernmentBeanLocal {
     
     public void addGovernmentOfferComment(GovernmentOffer governmentOffer);
     
-    boolean governmentExists(String email1);
+    boolean governmentExists(String email);
     
     public List<GovernmentOfferLike> getGovernmentOfferLikes(int offerId);
     

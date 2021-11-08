@@ -29,7 +29,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
@@ -149,20 +148,20 @@ public class GovernmentMBean implements Serializable {
     }
 
     private void validateDetails() {
-        String name = government.getName().trim();
+        String name = government.getOfficeName().trim();
         if (name.isEmpty() || name.length() < 2) {
             FacesContext.getCurrentInstance().addMessage("governmentName", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Department Name required.", "Department Name is required"));
         } else if (name.length() > 150) {
             FacesContext.getCurrentInstance().addMessage("governmentName", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Name exceeds limit", "Name exceeds limit"));
         }
         //Validate Email now
-        String email1 = government.getEmail1().trim();//Email 1 is Mandatory
-        if (email1.isEmpty()) {
-            FacesContext.getCurrentInstance().addMessage("email1", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email 1 required", "Email 1 is mandatory"));
+        String email= government.getEmail().trim();//Email 1 is Mandatory
+        if (email.isEmpty()) {
+            FacesContext.getCurrentInstance().addMessage("email", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email required", "Email is mandatory"));
         } else {
-            boolean exists = governmentBeanLocal.governmentExists(email1);
+            boolean exists = governmentBeanLocal.governmentExists(email);
             //Also check if this email exists in Access table. Fixing Production issue on 05/04/2019 where same email can be used to register as a USER and as a BUSINESS.
-            Access access = accessBeanLocal.getAccess(email1);
+            Access access = accessBeanLocal.getAccess(email);
             boolean accessExists = false;
             if (access != null) {
                 accessExists = true;
@@ -174,27 +173,16 @@ public class GovernmentMBean implements Serializable {
             } else {
                 String emailRegEx = GDFConstants.EMAIL_REGEX;
                 Pattern pEmail = Pattern.compile(emailRegEx);
-                Matcher mP = pEmail.matcher(email1);
+                Matcher mP = pEmail.matcher(email);
                 boolean matches = mP.find();
                 if (!matches) {
-                    FacesContext.getCurrentInstance().addMessage("email1", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email 1 invalid", "Email 1 is not valid"));
+                    FacesContext.getCurrentInstance().addMessage("email", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email invalid", "Email is not valid"));
                 } else {
                     saveLogoImage();
                 }
             }
         }
-        String email2 = government.getEmail2().trim();//Email 2 is Mandatory
-        if (email2.isEmpty()) {
-            FacesContext.getCurrentInstance().addMessage("email2", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email 2 required", "Email 2 is mandatory"));
-        } else {
-            String emailRegEx = GDFConstants.EMAIL_REGEX;
-            Pattern pEmail = Pattern.compile(emailRegEx);
-            Matcher mP = pEmail.matcher(email2);
-            boolean matches = mP.find();
-            if (!matches) {
-                FacesContext.getCurrentInstance().addMessage("email2", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email 2 invalid", "Email 2 is not valid"));
-            }
-        }
+        
         //Website now
         String website = government.getWebsite();
         if (website.trim().isEmpty()) {
@@ -215,7 +203,7 @@ public class GovernmentMBean implements Serializable {
             FacesContext.getCurrentInstance().addMessage("contact", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Contact exceeds 100 chars.", "Contact exceeds 100 chars."));
         }
 
-        String description = government.getDescription().trim();
+        String description = government.getOfficeFunction().trim();
         if (description.isEmpty() || description.length() < 2) {
             FacesContext.getCurrentInstance().addMessage("desc", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Valid Description required", "Valid Description required"));
         } else if (description.length() > 250) {
@@ -257,14 +245,6 @@ public class GovernmentMBean implements Serializable {
             boolean matchesPh2 = ph2M.find();
             if (!matchesPh2) {
                 FacesContext.getCurrentInstance().addMessage("phone2", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Phone 2", "Invalid Phone 2"));
-            }
-        }
-        String phone3 = governmentAddress.getPhone3().trim();//not mandatory
-        if (!phone3.isEmpty()) {
-            Matcher ph3M = pPhone.matcher(phone3);
-            boolean matchesPh3 = ph3M.find();
-            if (!matchesPh3) {
-                FacesContext.getCurrentInstance().addMessage("phone3", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Phone 3", "Phone 3 is invalid"));
             }
         }
         //Before validating Country specific PostCodes, ensure Country itself is valid

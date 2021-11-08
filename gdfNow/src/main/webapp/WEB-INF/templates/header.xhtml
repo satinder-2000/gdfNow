@@ -17,19 +17,18 @@
 
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
+                <h:form>
                 <ul class="nav navbar-nav">
                     <c:choose>
                         <c:when test="#{session.getAttribute('Access')!=null}">
                             <li class="active">
                                 <h:commandLink value="#{session.getAttribute('Access').email}" action="#{homeMBean.redirectToHome}"/>
                             </li>
-                            <li>
+                           
+                            <li  class="active">
                                 <h:commandLink value="Log Out" action="#{logoutMBean.logOut}"/>
                             </li>
-                            <li class="active">
-                                <span><h:outputText value="#{session.getAttribute('Access').email}" /></span>
-                            </li>
-
+                                
                         </c:when>
                         <c:otherwise>
                             <li class="active"><a href="#{request.contextPath}/register.xhtml?faces-redirect=true">Register</a></li>
@@ -46,6 +45,7 @@
                         <h:outputLink value="#{request.contextPath}/info/About.xhtml?faces-redirect=true" style="color: snow">About Us</h:outputLink>
                     </li>
                 </ul>
+                </h:form>
                 <form class="navbar-form navbar-right" action="">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search"/>

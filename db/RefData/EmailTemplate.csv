@@ -1,0 +1,1024 @@
+"ID";"TEMPLATE_TYPE";"FILE"
+1;"USER_REGISTER";"<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css""/>
+        <link rel=""stylesheet"" href=""https://use.fontawesome.com/releases/v5.6.1/css/all.css"" integrity=""sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"" crossorigin=""anonymous""> 
+        <link rel=""stylesheet"" href=""email.css""/>
+    </head>
+    <body>
+        <div class=""container"">
+            <div class=""outer-panel text-center rounded"">
+                <div class=""panel panel-default text-center col-sm-8"">
+                    
+                    <div class=""panel-body"">
+                        <div class=""row"">
+                            
+                            
+                            <div class=""col-sm-10"">
+                                <p class=""text-center>""
+                                   <a href="""" class=""navbar-brand""><b>GDFNow.org</b></a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class=""row"">
+
+                            <div class=""col-sm-10"">
+                                <h3 class=""mt-3"">Registration- User</h3>
+                                <h3><small>Dear $userName,</small></h3>
+                                <h3><small>You have successfully registered yourself on GDFNow.org</small></h3>
+                                <br/><br/>
+                                <h3><small>Please set your access password by clicking the following link:</small></h3>
+                                <br/><br/>
+                                <a href=""$genericURI$userEmail"" class=""btn btn-primary"" role=""button"">Create Access</a>
+                                <br/><br/><br/><br/>
+
+
+                            </div>
+                        </div> 
+                </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>
+"
+2;"ACCESS_CONFIRM";"<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css""/>
+        <link rel=""stylesheet"" href=""https://use.fontawesome.com/releases/v5.6.1/css/all.css"" integrity=""sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"" crossorigin=""anonymous""> 
+        <link rel=""stylesheet"" href=""email.css""/>
+    </head>
+    <body>
+        <div class=""container"">
+            <div class=""outer-panel text-center rounded"">
+                <div class=""panel panel-default text-center col-sm-8"">
+                    
+                    <div class=""panel-body"">
+                        <div class=""row"">
+                            
+                            
+                            <div class=""col-sm-10"">
+                                <p class=""text-center>""
+                                   <a href="""" class=""navbar-brand""><b>GDFNow.org</b></a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class=""row"">
+
+                            <div class=""col-sm-10"">
+                                <h3 class=""mt-3"">Access Confirmed</h3>
+                                <h3><small>Dear $userEmail,</small></h3>
+                                <h3><small>Thank you for confirming the access. Your registration is now complete.</small></h3>
+                                <h4>Welcome to GDFNow.org</h4>
+                                
+                                <br/><br/>
+                                <a href=""$webURI"" target=""_blank"" class=""btn btn-primary"" role=""button"">GdfNow Home</a>
+                                <br/><br/>
+
+
+                            </div>
+                        </div> 
+                </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>
+"
+3;"DEEDER_REGISTER";"<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css""/>
+        <link rel=""stylesheet"" href=""https://use.fontawesome.com/releases/v5.6.1/css/all.css"" integrity=""sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"" crossorigin=""anonymous""> 
+        <link rel=""stylesheet"" href=""email.css""/>
+    </head>
+    <body>
+        <div class=""container"">
+            <div class=""outer-panel text-center rounded"">
+                <div class=""panel panel-default text-center col-sm-8"">
+                    
+                    <div class=""panel-body"">
+                        <div class=""row"">
+                            
+                            
+                            <div class=""col-sm-10"">
+                                <p class=""text-center>""
+                                   <a href="""" class=""navbar-brand""><b>GDFNow.org</b></a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class=""row"">
+
+                            <div class=""col-sm-10"">
+                                <h3 class=""mt-3"">Registration- Deeder</h3>
+                                <h3><small>Dear $deederName,</small></h3>
+                                <h3><small>You have successfully registered yourself on GDFNow.org as a Deeder.</small></h3>
+                                <br/><br/>
+                                <h3><small>Please set your access password by clicking the following button:</small></h3>
+                                <br/><br/>
+                                <a href=""$genericURI$deederEmail"" class=""btn btn-primary"" role=""button"">Create Access</a>
+                                <br/><br/><br/><br/>
+
+
+                            </div>
+                        </div> 
+                </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>
+"
+4;"USER_DEEDER_REGISTER";"<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css""/>
+        <link rel=""stylesheet"" href=""https://use.fontawesome.com/releases/v5.6.1/css/all.css"" integrity=""sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"" crossorigin=""anonymous""> 
+        <link rel=""stylesheet"" href=""email.css""/>
+    </head>
+    <body>
+        <div class=""container"">
+            <div class=""outer-panel text-center rounded"">
+                
+                <div class=""panel panel-default text-center  col-sm-8"">
+                    
+                    <div class=""panel-body"">
+                        <div class=""row"">
+                            
+                            <div class=""col-sm-10"">
+                                <p class=""text-center>""
+                                   <a href="""" class=""navbar-brand""><b>GDFNow.org</b></a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class=""row"">
+
+                            <div class=""col-sm-10"">
+                                <h3 class=""mt-3"">You have been Nominated</h3>
+                                <h3><small>A GDFNow User $userName has recommended you as a Deeder.</small></h3>
+                                <h3><small>You may wish to check your profile here (You DOB might need correction) :</small></h3>
+                                <a href=""$webURIView/ViewDeederDetails.xhtml?deederId=$deederId"" class=""btn btn-default"" role=""button"">View Profile</a>
+                                <br/><br/>
+                                <h3><small>If the profile looks OK to you, please set your access password on the following button:</small></h3>
+                                <br/><br/>
+                                <a href=""$userDeederURI$deederId"" class=""btn btn-primary"" role=""button"">Create Access</a>
+                                <br/><br/><br/><br/>
+
+
+                            </div>
+                        </div> 
+                </div>
+                </div>
+                
+            </div>
+            
+        </div>
+    </body>
+</html>"
+5;"NOMINATION_CONFIRM";"<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css""/>
+        <link rel=""stylesheet"" href=""https://use.fontawesome.com/releases/v5.6.1/css/all.css"" integrity=""sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"" crossorigin=""anonymous""> 
+        <link rel=""stylesheet"" href=""email.css""/>
+    </head>
+    <body>
+        <div class=""container"">
+            <div class=""outer-panel text-center rounded"">
+                <div class=""panel panel-default text-center col-sm-8"">
+                    
+                    <div class=""panel-body"">
+                        <div class=""row"">
+                            
+                            
+                            <div class=""col-sm-10"">
+                                <p class=""text-center>""
+                                   <a href="""" class=""navbar-brand""><b>GDFNow.org</b></a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class=""row"">
+
+                            <div class=""col-sm-10"">
+                                <h3 class=""mt-3"">Nomination- Deeder</h3>
+                                <h3><small>Dear $userName,</small></h3>
+                                <h3><small>Thought we let you know that your Nomination of Deeder</small></h3>
+                                <h3><small>$deederName</small></h3>
+                                <h3><small>has been successful.</small></h3>
+                                <h3><small>Thank you for making a valuable contribution to make a 'real' change in the world.</small></h3>
+                                <h3><small>Once the Deeder accepts the nomination, we will inform you.</small></h3>
+                                <h3><small>In the mean time, if you wish you may suggest the Deeds that Deeder has been carrying out by visiting your account.</small></h3>
+                                <br/><br/>
+                                <a href=""$webURI"" target=""_blank"" class=""btn btn-primary"" role=""button"">GdfNow Home</a>
+                                <br/><br/>
+
+
+                            </div>
+                        </div> 
+                </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>
+"
+6;"USER_AMEND";"<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css""/>
+        <link rel=""stylesheet"" href=""https://use.fontawesome.com/releases/v5.6.1/css/all.css"" integrity=""sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"" crossorigin=""anonymous""> 
+        <link rel=""stylesheet"" href=""email.css""/>
+    </head>
+    <body>
+        <div class=""container"">
+            <div class=""outer-panel text-center rounded"">
+                <div class=""panel panel-default text-center col-sm-8"">
+                    
+                    <div class=""panel-body"">
+                        <div class=""row"">
+                            
+                            
+                            <div class=""col-sm-10"">
+                                <p class=""text-center>""
+                                   <a href="""" class=""navbar-brand""><b>GDFNow.org</b></a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class=""row"">
+
+                            <div class=""col-sm-10"">
+                                <h3 class=""mt-3"">Amend Details- User</h3>
+                                <h3><small>Dear $userFirstName,</small></h3>
+                                <h3><small>Thank You. The changes have now been applied on $date.</small></h3>
+                                <br/><br/>
+                            </div>
+                        </div> 
+                </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>
+"
+7;"DEEDER_AMEND";"<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css""/>
+        <link rel=""stylesheet"" href=""https://use.fontawesome.com/releases/v5.6.1/css/all.css"" integrity=""sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"" crossorigin=""anonymous""> 
+        <link rel=""stylesheet"" href=""email.css""/>
+    </head>
+    <body>
+        <div class=""container"">
+            <div class=""outer-panel text-center rounded"">
+                <div class=""panel panel-default text-center col-sm-8"">
+                    
+                    <div class=""panel-body"">
+                        <div class=""row"">
+                            
+                            
+                            <div class=""col-sm-10"">
+                                <p class=""text-center>""
+                                   <a href="""" class=""navbar-brand""><b>GDFNow.org</b></a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class=""row"">
+
+                            <div class=""col-sm-10"">
+                                <h3 class=""mt-3"">Amend Details- Deeder</h3>
+                                <h3><small>Dear $deederFirstName,</small></h3>
+                                <h3><small>Thank You. The changes have now been applied on $date.</small></h3>
+                                <br/><br/>
+                            </div>
+                        </div> 
+                </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>
+"
+8;"BUSINESS_REGISTER";"<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css""/>
+        <link rel=""stylesheet"" href=""https://use.fontawesome.com/releases/v5.6.1/css/all.css"" integrity=""sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"" crossorigin=""anonymous""> 
+        <link rel=""stylesheet"" href=""email.css""/>
+    </head>
+    <body>
+        <div class=""container"">
+            <div class=""outer-panel text-center rounded"">
+                <div class=""panel panel-default text-center col-sm-8"">
+                    
+                    <div class=""panel-body"">
+                        <div class=""row"">
+                            
+                            
+                            <div class=""col-sm-10"">
+                                <p class=""text-center>""
+                                   <a href="""" class=""navbar-brand""><b>GDFNow.org</b></a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class=""row"">
+
+                            <div class=""col-sm-10"">
+                                <h3 class=""mt-3"">Business Registration</h3>
+                                <h3><small>Dear $businessEmail,</small></h3>
+                                <h3><small>Your Business, $businessName, has been successfully registered on GDFNow.org</small></h3>
+                                <br/><br/>
+                                <h3><small>Please set your access password by clicking the following button:</small></h3>
+                                <br/><br/>
+                                <a href=""$genericURI$businessEmail"" class=""btn btn-primary"" role=""button"" target=""_blank"">Create Access</a>
+                                <br/><br/><br/><br/>
+
+
+                            </div>
+                        </div> 
+                </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>
+"
+9;"BUSINESS_AMEND";"<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css""/>
+        <link rel=""stylesheet"" href=""https://use.fontawesome.com/releases/v5.6.1/css/all.css"" integrity=""sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"" crossorigin=""anonymous""> 
+        <link rel=""stylesheet"" href=""email.css""/>
+    </head>
+    <body>
+        <div class=""container"">
+            <div class=""outer-panel text-center rounded"">
+                <div class=""panel panel-default text-center col-sm-8"">
+                    
+                    <div class=""panel-body"">
+                        <div class=""row"">
+                            
+                            
+                            <div class=""col-sm-10"">
+                                <p class=""text-center>""
+                                   <a href="""" class=""navbar-brand""><b>GDFNow.org</b></a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class=""row"">
+
+                            <div class=""col-sm-10"">
+                                <h3 class=""mt-3"">Amend Details- Business</h3>
+                                <h3><small>Dear $businessEmail,</small></h3>
+                                <h3><small>Thank You. The changes have now been applied on account $businessName on $date.</small></h3>
+                                <br/><br/>
+                            </div>
+                        </div> 
+                </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>
+"
+10;"GOVERNMENT_REGISTER";"<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css""/>
+        <link rel=""stylesheet"" href=""https://use.fontawesome.com/releases/v5.6.1/css/all.css"" integrity=""sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"" crossorigin=""anonymous""> 
+        <link rel=""stylesheet"" href=""email.css""/>
+    </head>
+    <body>
+        <div class=""container"">
+            <div class=""outer-panel text-center rounded"">
+                <div class=""panel panel-default text-center col-sm-8"">
+                    
+                    <div class=""panel-body"">
+                        <div class=""row"">
+                            
+                            
+                            <div class=""col-sm-10"">
+                                <p class=""text-center>""
+                                   <a href="""" class=""navbar-brand""><b>GDFNow.org</b></a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class=""row"">
+
+                            <div class=""col-sm-10"">
+                                <h3 class=""mt-3"">Government Agency/Department Registration</h3>
+                                <h3><small>Dear $governmentEmail,</small></h3>
+                                <h3><small>Your Agency/Department, $governmentName has been successfully registered on GDFNow.org</small></h3>
+                                <br/><br/>
+                                <h3><small>Please set your access password by clicking the following button:</small></h3>
+                                <br/><br/>
+                                <a href=""$genericURI$governmentEmail"" class=""btn btn-primary"" role=""button"" target=""_blank"">Create Access</a>
+                                <br/><br/><br/><br/>
+
+
+                            </div>
+                        </div> 
+                </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>
+"
+11;"GOVERNMENT_AMEND";"<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css""/>
+        <link rel=""stylesheet"" href=""https://use.fontawesome.com/releases/v5.6.1/css/all.css"" integrity=""sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"" crossorigin=""anonymous""> 
+        <link rel=""stylesheet"" href=""email.css""/>
+    </head>
+    <body>
+        <div class=""container"">
+            <div class=""outer-panel text-center rounded"">
+                <div class=""panel panel-default text-center col-sm-8"">
+                    
+                    <div class=""panel-body"">
+                        <div class=""row"">
+                            
+                            
+                            <div class=""col-sm-10"">
+                                <p class=""text-center>""
+                                   <a href="""" class=""navbar-brand""><b>GDFNow.org</b></a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class=""row"">
+
+                            <div class=""col-sm-10"">
+                                <h3 class=""mt-3"">Amend Details- Government Department/Agency</h3>
+                                <h3><small>Dear $governmentContact,</small></h3>
+                                <h3><small>Thank You. The changes have now been applied on account $governmentName on $date.</small></h3>
+                                <br/><br/>
+                            </div>
+                        </div> 
+                </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>
+"
+12;"NGO_REGISTER";"<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css""/>
+        <link rel=""stylesheet"" href=""https://use.fontawesome.com/releases/v5.6.1/css/all.css"" integrity=""sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"" crossorigin=""anonymous""> 
+        <link rel=""stylesheet"" href=""email.css""/>
+    </head>
+    <body>
+        <div class=""container"">
+            <div class=""outer-panel text-center rounded"">
+                <div class=""panel panel-default text-center col-sm-8"">
+                    
+                    <div class=""panel-body"">
+                        <div class=""row"">
+                            
+                            
+                            <div class=""col-sm-10"">
+                                <p class=""text-center>""
+                                   <a href="""" class=""navbar-brand""><b>GDFNow.org</b></a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class=""row"">
+
+                            <div class=""col-sm-10"">
+                                <h3 class=""mt-3"">NGO Registration</h3>
+                                <h3><small>Dear $ngoEmail,</small></h3>
+                                <h3><small>Your NGO $ngoName has been successfully registered on GDFNow.org</small></h3>
+                                <br/><br/>
+                                <h3><small>Please set your access password by clicking the following button:</small></h3>
+                                <br/><br/>
+                                <a href=""$genericURI$ngoEmail"" class=""btn btn-primary"" role=""button"" target=""_blank"">Create Access</a>
+                                <br/><br/><br/><br/>
+
+
+                            </div>
+                        </div> 
+                </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>
+"
+13;"NGO_AMEND";"<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css""/>
+        <link rel=""stylesheet"" href=""https://use.fontawesome.com/releases/v5.6.1/css/all.css"" integrity=""sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"" crossorigin=""anonymous""> 
+        <link rel=""stylesheet"" href=""email.css""/>
+    </head>
+    <body>
+        <div class=""container"">
+            <div class=""outer-panel text-center rounded"">
+                <div class=""panel panel-default text-center col-sm-8"">
+                    
+                    <div class=""panel-body"">
+                        <div class=""row"">
+                            
+                            
+                            <div class=""col-sm-10"">
+                                <p class=""text-center>""
+                                   <a href="""" class=""navbar-brand""><b>GDFNow.org</b></a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class=""row"">
+
+                            <div class=""col-sm-10"">
+                                <h3 class=""mt-3"">Amend Details- NGO</h3>
+                                <h3><small>Dear $ngoEmail,</small></h3>
+                                <h3><small>Thank You. The changes have now been applied on account $ngoName on $date.</small></h3>
+                                <br/><br/>
+                            </div>
+                        </div> 
+                </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>
+"
+14;"BUSINESS_OFFER";"<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css""/>
+        <link rel=""stylesheet"" href=""https://use.fontawesome.com/releases/v5.6.1/css/all.css"" integrity=""sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"" crossorigin=""anonymous""> 
+        <link rel=""stylesheet"" href=""email.css""/>
+    </head>
+    <body>
+        <div class=""container"">
+            <div class=""outer-panel text-center rounded"">
+                <div class=""panel panel-default text-center col-sm-8"">
+                    
+                    <div class=""panel-body"">
+                        <div class=""row"">
+                            
+                            
+                            <div class=""col-sm-10"">
+                                <p class=""text-center>""
+                                   <a href="""" class=""navbar-brand""><b>GDFNow.org</b></a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class=""row"">
+
+                            <div class=""col-sm-10"">
+                                <h3 class=""mt-3"">Offer from $businessName</h3>
+                                <h3><small>Dear $businessEmail,</small></h3>
+                                <h3><small>Thank you for making an offer. It is Live now on GDFNow.org</small></h3>
+                                <br/><br/>
+                                <h3><small>In order to view the Offer details, please visit the following link:</small></h3>
+                                <br/><br/>
+                                <a href=""$WebURIfaces/view/ViewBusinessOfferDetails.xhtml?offerId=$offerId"" class=""btn btn-primary"" role=""button"" target=""_blank"">View Offer</a>
+                                <br/><br/><br/><br/>
+
+
+                            </div>
+                        </div> 
+                </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>"
+15;"GOVERNMENT_OFFER";"<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css""/>
+        <link rel=""stylesheet"" href=""https://use.fontawesome.com/releases/v5.6.1/css/all.css"" integrity=""sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"" crossorigin=""anonymous""> 
+        <link rel=""stylesheet"" href=""email.css""/>
+    </head>
+    <body>
+        <div class=""container"">
+            <div class=""outer-panel text-center rounded"">
+                <div class=""panel panel-default text-center col-sm-8"">
+                    
+                    <div class=""panel-body"">
+                        <div class=""row"">
+                            
+                            
+                            <div class=""col-sm-10"">
+                                <p class=""text-center>""
+                                   <a href="""" class=""navbar-brand""><b>GDFNow.org</b></a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class=""row"">
+
+                            <div class=""col-sm-10"">
+                                <h3 class=""mt-3"">Offer from $governmentName</h3>
+                                <h3><small>Dear $governmentEmail1,</small></h3>
+                                <h3><small>Thank you for making an offer. It is Live now on GDFNow.org</small></h3>
+                                <br/><br/>
+                                <h3><small>In order to view the Offer details, please visit the following link:</small></h3>
+                                <br/><br/>
+                                <a href=""$WebURIfaces/view/ViewGovernmentOfferDetails.xhtml?offerId=$offerId"" class=""btn btn-primary"" role=""button"" target=""_blank"">View Offer</a>
+                                <br/><br/><br/><br/>
+
+
+                            </div>
+                        </div> 
+                </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>"
+16;"NGO_OFFER";"<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css""/>
+        <link rel=""stylesheet"" href=""https://use.fontawesome.com/releases/v5.6.1/css/all.css"" integrity=""sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"" crossorigin=""anonymous""> 
+        <link rel=""stylesheet"" href=""email.css""/>
+    </head>
+    <body>
+        <div class=""container"">
+            <div class=""outer-panel text-center rounded"">
+                <div class=""panel panel-default text-center col-sm-8"">
+                    
+                    <div class=""panel-body"">
+                        <div class=""row"">
+                            
+                            
+                            <div class=""col-sm-10"">
+                                <p class=""text-center>""
+                                   <a href="""" class=""navbar-brand""><b>GDFNow.org</b></a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class=""row"">
+
+                            <div class=""col-sm-10"">
+                                <h3 class=""mt-3"">Offer from $ngoName</h3>
+                                <h3><small>Dear $ngoEmail,</small></h3>
+                                <h3><small>Thank you for making an offer. It is Live now on GDFNow.org</small></h3>
+                                <br/><br/>
+                                <h3><small>In order to view the Offer details, please visit the following link:</small></h3>
+                                <br/><br/>
+                                <a href=""$WebURIfaces/view/ViewNgoOfferDetails.xhtml?offerId=$offerId"" class=""btn btn-primary"" role=""button"" target=""_blank"">View Offer</a>
+                                <br/><br/><br/><br/>
+
+
+                            </div>
+                        </div> 
+                </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>"
+17;"CREATE_DEED";"<html>     <head>         <meta charset=""UTF-8"">         <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">         <link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css""/>         <link rel=""stylesheet"" href=""https://use.fontawesome.com/releases/v5.6.1/css/all.css"" integrity=""sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"" crossorigin=""anonymous"">      </head>     <body>         <div class=""container"">             <div class=""outer-panel text-center rounded"">                 <div class=""panel panel-default text-center col-sm-8"">                                          <div class=""panel-body"">                         <div class=""row"">                                                                                       <div class=""col-sm-10"">                                 <p class=""text-center>""                                    <a href="""" class=""navbar-brand""><b>GDFNow.org</b></a>                                 </p>                             </div>                         </div>                          <div class=""row"">                              <div class=""col-sm-10"">                                 <h3 class=""mt-3"">Deed Registered</h3>                                 <h3><small>Dear $deederName,</small></h3>                                 <h3><small>You have successfully registered your Deed on GDFNow.org</small></h3>                                 <br/><br/>                                 <h3><small>You may wish to view the Deed details by clicking the following link:</small></h3>                                 <br/><br/>                                 <a href=""$WebURIfaces/view/ViewDeederDeedDetails.xhtml?deedId=$deedId"" class=""btn btn-primary"" role=""button"">View Deed</a>                                 <br/><br/><br/><br/>                               </div>                         </div>                  </div>                 </div>             </div>                      </div>     </body> </html> "
+18;"DEEDER_NOTIFY_GOVERNMENT_OFFER";"<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css""/>
+        <link rel=""stylesheet"" href=""https://use.fontawesome.com/releases/v5.6.1/css/all.css"" integrity=""sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"" crossorigin=""anonymous""> 
+        <link rel=""stylesheet"" href=""email.css""/>
+    </head>
+    <body>
+        <div class=""container"">
+            <div class=""outer-panel text-center rounded"">
+                <div class=""panel panel-default text-center col-sm-8"">
+                    
+                    <div class=""panel-body"">
+                        <div class=""row"">
+                            
+                            
+                            <div class=""col-sm-10"">
+                                <p class=""text-center>""
+                                   <a href="""" class=""navbar-brand""><b>GDFNow.org</b></a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class=""row"">
+
+                            <div class=""col-sm-10"">
+                                <h3 class=""mt-3"">Offer from $governmentName</h3>
+                                <h3><small>Contratulations $deederName,</small></h3>
+                                <h3><small>You have just won a new offer from $governmentName</small></h3>
+                                <br/><br/>
+                                <h3><small>In order to view the Offer details, please visit the following link:</small></h3>
+                                <br/><br/>
+                                <a href=""$WebURIfaces/view/ViewGovernmentOfferDetails.xhtml?offerId=$offerId"" class=""btn btn-primary"" role=""button"" target=""_blank"">View Offer</a>
+                                <br/><br/><br/><br/>
+
+
+                            </div>
+                        </div> 
+                </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>
+"
+19;"DEEDER_NOTIFY_BUSINESS_OFFER";"<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css""/>
+        <link rel=""stylesheet"" href=""https://use.fontawesome.com/releases/v5.6.1/css/all.css"" integrity=""sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"" crossorigin=""anonymous""> 
+        <link rel=""stylesheet"" href=""email.css""/>
+    </head>
+    <body>
+        <div class=""container"">
+            <div class=""outer-panel text-center rounded"">
+                <div class=""panel panel-default text-center col-sm-8"">
+                    
+                    <div class=""panel-body"">
+                        <div class=""row"">
+                            
+                            
+                            <div class=""col-sm-10"">
+                                <p class=""text-center>""
+                                   <a href="""" class=""navbar-brand""><b>GDFNow.org</b></a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class=""row"">
+
+                            <div class=""col-sm-10"">
+                                <h3 class=""mt-3"">Offer from $businessName</h3>
+                                <h3><small>Contratulations $deederName,</small></h3>
+                                <h3><small>You have just won a new offer from $businessName</small></h3>
+                                <br/><br/>
+                                <h3><small>In order to view the Offer details, please visit the following link:</small></h3>
+                                <br/><br/>
+                                <a href=""$WebURIfaces/view/ViewBusinessOfferDetails.xhtml?offerId=$offerId"" class=""btn btn-primary"" role=""button"" target=""_blank"">View Offer</a>
+                                <br/><br/><br/><br/>
+
+
+                            </div>
+                        </div> 
+                </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>
+"
+20;"DEEDER_NOTIFY_NGO_OFFER";"<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css""/>
+        <link rel=""stylesheet"" href=""https://use.fontawesome.com/releases/v5.6.1/css/all.css"" integrity=""sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"" crossorigin=""anonymous""> 
+        <link rel=""stylesheet"" href=""email.css""/>
+    </head>
+    <body>
+        <div class=""container"">
+            <div class=""outer-panel text-center rounded"">
+                <div class=""panel panel-default text-center col-sm-8"">
+                    
+                    <div class=""panel-body"">
+                        <div class=""row"">
+                            
+                            
+                            <div class=""col-sm-10"">
+                                <p class=""text-center>""
+                                   <a href="""" class=""navbar-brand""><b>GDFNow.org</b></a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class=""row"">
+
+                            <div class=""col-sm-10"">
+                                <h3 class=""mt-3"">Offer from $ngoName</h3>
+                                <h3><small>Contratulations $deederName,</small></h3>
+                                <h3><small>You have just won a new offer from $ngoName</small></h3>
+                                <br/><br/>
+                                <h3><small>In order to view the Offer details, please visit the following link:</small></h3>
+                                <br/><br/>
+                                <a href=""$WebURIfaces/view/ViewNgoOfferDetails.xhtml?offerId=$offerId"" class=""btn btn-primary"" role=""button"" target=""_blank"">View Offer</a>
+                                <br/><br/><br/><br/>
+
+
+                            </div>
+                        </div> 
+                </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>
+"
+21;"PASSWORD_RESET";"<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css""/>
+        <link rel=""stylesheet"" href=""https://use.fontawesome.com/releases/v5.6.1/css/all.css"" integrity=""sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"" crossorigin=""anonymous""> 
+        <link rel=""stylesheet"" href=""email.css""/>
+    </head>
+    <body>
+        <div class=""container"">
+            <div class=""outer-panel text-center rounded"">
+                <div class=""panel panel-default text-center col-sm-8"">
+                    
+                    <div class=""panel-body"">
+                        <div class=""row"">
+                            
+                            
+                            <div class=""col-sm-10"">
+                                <p class=""text-center>""
+                                   <a href="""" class=""navbar-brand""><b>GDFNow.org</b></a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class=""row"">
+
+                            <div class=""col-sm-10"">
+                                <h3 class=""mt-3"">Password Reset</h3>
+                                <p>If you have make a password reset on GDFNow.org</h3>
+                                <br/><br/>
+                                <h3><small>Please reset your access password by clicking the following link:</small></h3>
+                                <br/><br/>
+                                <a href=""$PasswordReset"" class=""btn btn-primary"" role=""button"">Reset Password</a>
+                                <br/><br/><br/><br/>
+
+
+                            </div>
+                        </div> 
+                </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>
+"
+22;"NOMINATED_DEED";"<html>
+    <head>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css""/>
+        <link rel=""stylesheet"" href=""https://use.fontawesome.com/releases/v5.6.1/css/all.css"" integrity=""sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"" crossorigin=""anonymous""> 
+    </head>
+    <body>
+        <div class=""container"">
+            <div class=""outer-panel text-center rounded"">
+                <div class=""panel panel-default text-center col-sm-8"">
+                    
+                    <div class=""panel-body"">
+                        <div class=""row"">
+                            
+                            
+                            <div class=""col-sm-10"">
+                                <p class=""text-center>""
+                                   <a href="""" class=""navbar-brand""><b>GDFNow.org</b></a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class=""row"">
+
+                            <div class=""col-sm-10"">
+                                <h3 class=""mt-3"">Deed Registered</h3>
+                                <h3><small>Dear $deederName,</small></h3>
+                                <h3><small>Thought we let you know that the User $userName, who had earlier nominated you as a Deeder has successfully registered your Deed on GDFNow.org</small></h3>
+                                <br/><br/>
+                                <h3><small>You may wish to view the Deed details by clicking the following link:</small></h3>
+                                <br/><br/>
+                                <a href=""$WebURIfaces/view/ViewDeederDeedDetails.xhtml?deedId=$deedId"" class=""btn btn-primary"" role=""button"">View Deed</a>
+                                <br/><br/><br/><br/>
+
+
+                            </div>
+                        </div> 
+                </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>
+"
+23;"NOMINATED_DEED_USER_COPY";"<html>
+    <head>
+        <meta charset=""UTF-8"">
+        <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+        <link rel=""stylesheet"" href=""https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css""/>
+        <link rel=""stylesheet"" href=""https://use.fontawesome.com/releases/v5.6.1/css/all.css"" integrity=""sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"" crossorigin=""anonymous""> 
+    </head>
+    <body>
+        <div class=""container"">
+            <div class=""outer-panel text-center rounded"">
+                <div class=""panel panel-default text-center col-sm-8"">
+                    
+                    <div class=""panel-body"">
+                        <div class=""row"">
+                            
+                            
+                            <div class=""col-sm-10"">
+                                <p class=""text-center>""
+                                   <a href="""" class=""navbar-brand""><b>GDFNow.org</b></a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class=""row"">
+
+                            <div class=""col-sm-10"">
+                                <h3 class=""mt-3"">Deed Nominated</h3>
+                                <h3><small>Dear $userName,</small></h3>
+                                <h3><small>You have successfully nominated the Deed of your nominated Deeder $deederName. We have also made $deederName aware of this.</small></h3>
+                                <br/><br/>
+                                <h3><small>You may wish to view the Deed details by clicking the following link:</small></h3>
+                                <br/><br/>
+                                <a href=""$WebURIfaces/view/ViewDeederDeedDetails.xhtml?deedId=$deedId"" class=""btn btn-primary"" role=""button"">View Deed</a>
+                                <br/><br/><br/><br/>
+
+
+                            </div>
+                        </div> 
+                </div>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>
+"

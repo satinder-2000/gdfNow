@@ -243,15 +243,6 @@ public class NgoMBean implements Serializable {
             FacesContext.getCurrentInstance().addMessage("phone2", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Phone 2", "Phone 2 is invalid"));
         }
         
-        String phone3=ngoAddress.getPhone3().trim();//not mandatory
-        if (phone3!=null && !phone3.isEmpty()){
-            Matcher ph3M=pPhone.matcher(phone3);
-            boolean matchesPh3= ph3M.find();
-            if (!matchesPh3){
-               FacesContext.getCurrentInstance().addMessage("phone3",new FacesMessage(FacesMessage.SEVERITY_ERROR,"Invalid Phone 3","Phone 3 is invalid")); 
-            }
-        }
-        
         //Before validating Country specific PostCodes, ensure Country itself is valid
         if (country.equals("Please Select")) {//That's the value that appears on top of the list
             FacesContext.getCurrentInstance().addMessage("country", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Country", "Invalid Country Name."));

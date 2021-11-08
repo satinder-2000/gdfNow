@@ -226,14 +226,7 @@ public class BusinessAmendMBean implements Serializable {
                 FacesContext.getCurrentInstance().addMessage("Phone2", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Phone 2", "Phone 2 is invalid"));
             }
         }
-        String phone3 = businessAddress.getPhone3();//not mandatory
-        if (phone3 != null && !phone3.trim().isEmpty()) {
-            Matcher ph3M = pPhone.matcher(phone3);
-            boolean matchesPh3 = ph3M.find();
-            if (!matchesPh3) {
-                FacesContext.getCurrentInstance().addMessage("Phone3", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Phone 3", "Phone 3 is invalid"));
-            }
-        }
+        
         //Validate PostCode now..
         switch (businessAddress.getCountry().getCode()) {
             case GDFConstants.IN_CODE: {

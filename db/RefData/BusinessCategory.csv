@@ -1,0 +1,171 @@
+TYPE;SUBTYPE;CONFIRMED
+"Agriculture & Forestry/Wildlife";"Extermination/Pest Control";1
+"Agriculture & Forestry/Wildlife";"Farming(Animal Production)";1
+"Agriculture & Forestry/Wildlife";"Farming(Crop Production)";1
+"Agriculture & Forestry/Wildlife";"Fishing/Hunting";1
+"Agriculture & Forestry/Wildlife";"Landscape Services";1
+"Agriculture & Forestry/Wildlife";"Lawn care Services";1
+"Agriculture & Forestry/Wildlife";"Other (Agriculture & Forestry/Wildlife)";1
+"Business & Information";"Consultant";1
+"Business & Information";"Employment Office";1
+"Business & Information";"Fundraisers";1
+"Business & Information";"Going out of Business Sales";1
+"Business & Information";"Marketing/Advertising";1
+"Business & Information";"Non Profit Organization";1
+"Business & Information";"Notary Public";1
+"Business & Information";"Online Business";1
+"Business & Information";"Other (Business & Information)";1
+"Business & Information";"Publishing Services";1
+"Business & Information";"Record Business";1
+"Business & Information";"Retail Sales";1
+"Business & Information";"Technology Services";1
+"Business & Information";"Telemarketing";1
+"Business & Information";"Travel Agency";1
+"Business & Information";"Video Production";1
+"Construction/Utilities/Contracting";"AC & Heating";1
+"Construction/Utilities/Contracting";"Architect";1
+"Construction/Utilities/Contracting";"Building Construction";1
+"Construction/Utilities/Contracting";"Building Inspection";1
+"Construction/Utilities/Contracting";"Concrete Manufacturing";1
+"Construction/Utilities/Contracting";"Contractor";1
+"Construction/Utilities/Contracting";"Engineering/Drafting";1
+"Construction/Utilities/Contracting";"Equipment Rental";1
+"Construction/Utilities/Contracting";"Other (Construction/Utilities/Contracting)";1
+"Construction/Utilities/Contracting";"Plumbing";1
+"Construction/Utilities/Contracting";"Remodeling";1
+"Construction/Utilities/Contracting";"Repair/Maintenance";1
+"Education";"Child Care Services";1
+"Education";"College/Universities";1
+"Education";"Cosmetology School";1
+"Education";"Elementary & Secondary Education";1
+"Education";"GED Certification";1
+"Education";"Other (Education)";1
+"Education";"Private School";1
+"Education";"Real Estate School";1
+"Education";"Technical School";1
+"Education";"Trade School";1
+"Education";"Tutoring Services";1
+"Education";"Vocational School";1
+"Finance & Insurance";"Accountant";1
+"Finance & Insurance";"Auditing";1
+"Finance & Insurance";"Bank/Credit Union";1
+"Finance & Insurance";"Bookkeeping";1
+"Finance & Insurance";"Cash Advances";1
+"Finance & Insurance";"Collection Agency";1
+"Finance & Insurance";"Insurance";1
+"Finance & Insurance";"Investor";1
+"Finance & Insurance";"Other (Finance & Insurance)";1
+"Finance & Insurance";"Pawn Brokers";1
+"Finance & Insurance";"Tax Preparation";1
+"Food & Hospitality";"Alcohol/Tobacco Sales";1
+"Food & Hospitality";"Alcoholic Beverage Manufacturing";1
+"Food & Hospitality";"Bakery";1
+"Food & Hospitality";"Caterer";1
+"Food & Hospitality";"Food/Beverage Manufacturing";1
+"Food & Hospitality";"Grocery/Convenience Store(Gas Station)";1
+"Food & Hospitality";"Grocery/Convenience Store(No Gas Station)";1
+"Food & Hospitality";"Hotels/Motels(Casino)";1
+"Food & Hospitality";"Hotels/Motels(No Casino)";1
+"Food & Hospitality";"Mobile Food Services";1
+"Food & Hospitality";"Other (Food & Hospitality)";1
+"Food & Hospitality";"Restaurant/Bar";1
+"Food & Hospitality";"Specialty Food(Fruit/Vegetables)";1
+"Food & Hospitality";"Specialty Food(Meat)";1
+"Food & Hospitality";"Specialty Food(Seafood)";1
+"Food & Hospitality";"Tobacco Product Manufacturing";1
+"Food & Hospitality";"Truck Stop";1
+"Food & Hospitality";"Vending Machine";1
+"Gaming";"Auctioneer";1
+"Gaming";"Boxing/Wrestling";1
+"Gaming";"Casino/Video Gaming";1
+"Gaming";"Other (Gaming)";1
+"Gaming";"Racetrack";1
+"Gaming";"Sports Agent";1
+"Health Services";"Acupuncturist";1
+"Health Services";"Athletic Trainer";1
+"Health Services";"Child/Youth Services";1
+"Health Services";"Chiropractic Office";1
+"Health Services";"Dentistry";1
+"Health Services";"Electrolysis";1
+"Health Services";"Embalmer";1
+"Health Services";"Emergency Medical Services";1
+"Health Services";"Emergency Medical Transportation";1
+"Health Services";"Hearing Aid Dealers";1
+"Health Services";"Home Health Services";1
+"Health Services";"Hospital";1
+"Health Services";"Massage Therapy";1
+"Health Services";"Medical Office";1
+"Health Services";"Mental Health Services";1
+"Health Services";"Non Emergency Medical Transportation";1
+"Health Services";"Optometry";1
+"Health Services";"Other (Health Services)";1
+"Health Services";"Pharmacy";1
+"Health Services";"Physical Therapy";1
+"Health Services";"Physicians Office";1
+"Health Services";"Radiology";1
+"Health Services";"Residential Care Facility";1
+"Health Services";"Speech/Occupational Therapy";1
+"Health Services";"Substance Abuse Services";1
+"Health Services";"Veterinary Medicine";1
+"Health Services";"Vocational Rehabilitation";1
+"Health Services";"Wholesale Drug Distribution";1
+"Motor Vehicle";"Automotive Part Sales";1
+"Motor Vehicle";"Car Wash/Detailing";1
+"Motor Vehicle";"Motor Vehicle Rental";1
+"Motor Vehicle";"Motor Vehicle Repair";1
+"Motor Vehicle";"New Motor Vehicle Sales";1
+"Motor Vehicle";"Other (Motor Vehicle)";1
+"Motor Vehicle";"Recreational Vehicle Sales";1
+"Motor Vehicle";"Used Motor Vehicle Sales";1
+"Natural Resources/Environmental";"Conservation Organizations";1
+"Natural Resources/Environmental";"Environmental Health";1
+"Natural Resources/Environmental";"Land Surveying";1
+"Natural Resources/Environmental";"Oil & Gas Distribution";1
+"Natural Resources/Environmental";"Oil & Gas Extraction/Production";1
+"Natural Resources/Environmental";"Other (Natural Resources/Environmental)";1
+"Natural Resources/Environmental";"Pipeline";1
+"Natural Resources/Environmental";"Water Well Drilling";1
+"Other";"Other(Business Type Not Listed)";1
+"Personal Services";"Animal Boarding";1
+"Personal Services";"Barber Shop";1
+"Personal Services";"Beauty Salon";1
+"Personal Services";"Cemetery";1
+"Personal Services";"Diet Center";1
+"Personal Services";"Dry cleaning/Laundry";1
+"Personal Services";"Entertainment/Party Rentals";1
+"Personal Services";"Event Planning";1
+"Personal Services";"Fitness Center";1
+"Personal Services";"Florist";1
+"Personal Services";"Funeral Director";1
+"Personal Services";"Janitorial/Cleaning Services";1
+"Personal Services";"Massage/Day Spa";1
+"Personal Services";"Nail Salon";1
+"Personal Services";"Other (Personal Services)";1
+"Personal Services";"Personal Assistant";1
+"Personal Services";"Photography";1
+"Personal Services";"Tanning Salon";1
+"Real Estate & Housing";"Home Inspection";1
+"Real Estate & Housing";"Interior Design";1
+"Real Estate & Housing";"Manufactured Housing";1
+"Real Estate & Housing";"Mortgage Company";1
+"Real Estate & Housing";"Other (Real Estate & Housing)";1
+"Real Estate & Housing";"Property Management";1
+"Real Estate & Housing";"Real Estate Broker/Agent";1
+"Real Estate & Housing";"Warehouse/Storage";1
+"Safety/Security & Legal";"Attorney";1
+"Safety/Security & Legal";"Bail Bonds";1
+"Safety/Security & Legal";"Court Reporter";1
+"Safety/Security & Legal";"Drug Screening";1
+"Safety/Security & Legal";"Locksmith";1
+"Safety/Security & Legal";"Other (Safety/Security & Legal)";1
+"Safety/Security & Legal";"Private Investigator";1
+"Safety/Security & Legal";"Security Guard";1
+"Safety/Security & Legal";"Security System Services";1
+"Transportation";"Air Transportation";1
+"Transportation";"Boat Services";1
+"Transportation";"Limousine Services";1
+"Transportation";"Other (Transportation)";1
+"Transportation";"Taxi Services";1
+"Transportation";"Towing";1
+"Transportation";"Truck Transportation(Fuel)";1
+"Transportation";"Truck Transportation(Non Fuel)";1

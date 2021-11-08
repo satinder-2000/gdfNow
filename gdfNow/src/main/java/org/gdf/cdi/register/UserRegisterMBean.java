@@ -5,7 +5,6 @@
  */
 package org.gdf.cdi.register;
 
-
 import org.gdf.ejb.AccessBeanLocal;
 import org.gdf.ejb.ReferenceDataBeanLocal;
 import org.gdf.ejb.UserBeanLocal;
@@ -29,6 +28,7 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -43,7 +43,7 @@ import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-
+import org.gdf.util.ImageUtil;
 
 /**
  *
@@ -53,14 +53,14 @@ import javax.servlet.http.Part;
 @FlowScoped("UserRegister")
 public class UserRegisterMBean implements Serializable {
 
-    final static Logger LOGGER=Logger.getLogger(UserRegisterMBean.class.getName());
-    
+    final static Logger LOGGER = Logger.getLogger(UserRegisterMBean.class.getName());
+
     @Inject
     private UserBeanLocal userBeanLocal;
 
     @Inject
     private ReferenceDataBeanLocal referenceDataBeanLocal;
-    
+
     @Inject
     private AccessBeanLocal accessBeanLocal;
 
@@ -69,9 +69,9 @@ public class UserRegisterMBean implements Serializable {
     private UserAddress address;
 
     private boolean acceptedTC;
-    
+
     private Part profileFile;
-    
+
     @PostConstruct
     public void init() {
         user = new User();
@@ -81,7 +81,7 @@ public class UserRegisterMBean implements Serializable {
         user.setAddress(address);
         LOGGER.info("User and Address initialised");
     }
-    
+
     public String personalSave() {
         String toReturn = validatePersonalDetails();
         if (toReturn != null) {
@@ -105,21 +105,20 @@ public class UserRegisterMBean implements Serializable {
     private String validatePersonalDetails() {
         String toReturn = null;
         //Validate Name first
-        String fname=user.getFirstname().trim();
-        if (fname.isEmpty() || fname.length()<2){
-           FacesContext.getCurrentInstance().addMessage("firstname",new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid First Name", "Invalid First Name")); 
-        }else if (fname.length()>45){
-           FacesContext.getCurrentInstance().addMessage("firstname",new FacesMessage(FacesMessage.SEVERITY_ERROR, "First Name too long (max 45 chars)", "First Name too long (max 45 chars)"));  
+        String fname = user.getFirstname().trim();
+        if (fname.isEmpty() || fname.length() < 2) {
+            FacesContext.getCurrentInstance().addMessage("firstname", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid First Name", "Invalid First Name"));
+        } else if (fname.length() > 45) {
+            FacesContext.getCurrentInstance().addMessage("firstname", new FacesMessage(FacesMessage.SEVERITY_ERROR, "First Name too long (max 45 chars)", "First Name too long (max 45 chars)"));
         }
-        
-        
+
         String email = user.getEmail();
         LOGGER.log(Level.INFO, "Will check for: {0}", email);
         boolean exists = userBeanLocal.userExists(email);
-        boolean accessExists=false;
-        Access access= accessBeanLocal.getAccess(email);
-        if (access!=null){//implies the email has been taken by some other Entity
-           accessExists=true; 
+        boolean accessExists = false;
+        Access access = accessBeanLocal.getAccess(email);
+        if (access != null) {//implies the email has been taken by some other Entity
+            accessExists = true;
         }
         if (exists || accessExists) {
             FacesContext.getCurrentInstance().addMessage("email",
@@ -152,7 +151,7 @@ public class UserRegisterMBean implements Serializable {
                 if (years < 13) {
                     FacesContext.getCurrentInstance().addMessage("dob",
                             new FacesMessage(FacesMessage.SEVERITY_ERROR, "Min permitted age is 13 years", "You must be alteast 13 year old to register"));
-                }else{
+                } else {
                     user.setDob(dob);
                 }
             } catch (DateTimeParseException ex1) {
@@ -183,13 +182,13 @@ public class UserRegisterMBean implements Serializable {
                 }
             }
         }
-        
+
         //T&C must be accepted
         if (!this.acceptedTC) {
             FacesContext.getCurrentInstance().addMessage("confChBx",
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "T&C not accetped.", "T&C not accetped"));
         }
-        
+
         List<FacesMessage> msgs = FacesContext.getCurrentInstance().getMessageList();
         if (msgs != null && msgs.size() > 0) {
             toReturn = null;
@@ -235,24 +234,23 @@ public class UserRegisterMBean implements Serializable {
         }
 
         //Now do the form validation
-        String line1=address.getLine1().trim();
-        if (line1.isEmpty() || line1.length()<2) {
+        String line1 = address.getLine1().trim();
+        if (line1.isEmpty() || line1.length() < 2) {
             FacesContext.getCurrentInstance().addMessage("line1", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Line 1", "Invalid Line 1"));
-        }else if (line1.length()>45){
+        } else if (line1.length() > 45) {
             FacesContext.getCurrentInstance().addMessage("line1", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Line 1 exceeds limit (45 chars)", "Line 1 exceeds limit (45 chars)"));
         }
-        String line2=address.getLine2().trim();
-        if (line2.isEmpty() || line2.length()<2) {
+        String line2 = address.getLine2().trim();
+        if (line2.isEmpty() || line2.length() < 2) {
             FacesContext.getCurrentInstance().addMessage("line2", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Line 2", "Invalid Line 2"));
-        }else if (line2.length()>45){
+        } else if (line2.length() > 45) {
             FacesContext.getCurrentInstance().addMessage("line2", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Line 2 exceeds limit (45 chars)", "Line 2 exceeds limit (45 chars)"));
         }
-        
-        
+
         if (address.getCountry().getCode().isEmpty()) {
             FacesContext.getCurrentInstance().addMessage("country",
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Country", "Invalid Country."));
-        }else{
+        } else {
             //Validate PostCode now..
             switch (countryCode) {
                 case GDFConstants.IN_CODE: {
@@ -282,23 +280,20 @@ public class UserRegisterMBean implements Serializable {
                 break;
             }
         }
-        
-        
-        String city=address.getCity().trim();
+
+        String city = address.getCity().trim();
         if (city.isEmpty() || city.length() < 2) {
-            FacesContext.getCurrentInstance().addMessage("city",new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid City", "Invalid City."));
-        }else if (city.length()>45){
+            FacesContext.getCurrentInstance().addMessage("city", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid City", "Invalid City."));
+        } else if (city.length() > 45) {
             FacesContext.getCurrentInstance().addMessage("city", new FacesMessage(FacesMessage.SEVERITY_ERROR, "City exceeds limit (45 chars)", "City exceeds limit (45 chars)"));
         }
-        
-        String state=address.getState().trim();
+
+        String state = address.getState().trim();
         if (state.isEmpty() || state.length() < 2) {
-            FacesContext.getCurrentInstance().addMessage("state",new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid State", "Invalid State."));
-        }else if (state.length()>45){
+            FacesContext.getCurrentInstance().addMessage("state", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid State", "Invalid State."));
+        } else if (state.length() > 45) {
             FacesContext.getCurrentInstance().addMessage("state", new FacesMessage(FacesMessage.SEVERITY_ERROR, "State exceeds limit (45 chars)", "State exceeds limit (45 chars)"));
         }
-
-        
 
         List<FacesMessage> msgs = FacesContext.getCurrentInstance().getMessageList();
         if (msgs != null && msgs.size() > 0) {
@@ -308,52 +303,65 @@ public class UserRegisterMBean implements Serializable {
         }
         return toReturn;
     }
-    
-    
+
     private void saveProfileImage() {
-        try {
-            InputStream input = profileFile.getInputStream();
-            
-            int fileSize = (int) profileFile.getSize();
-            if (fileSize > (1000 * 1024)) {
-                FacesContext.getCurrentInstance().addMessage("profileFile",
-                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Profile Img exceeds 1MB", "Profile Img exceeds 1MB"));
-
-            } else {//process with the processing of the image.
-                //Step 1 Resize the image
-                BufferedImage logoBufferedImage = ImageResizeUtil.resizeImage(input, 150);
-                String fullFileName = profileFile.getSubmittedFileName();
-                String fileType=fullFileName.substring(fullFileName.indexOf('.'));
-                byte[] jpgData=null;
-                if (fileType.equals("png")){//convert to jpg first. Jelastic' OpenJDK doen not handle png images well and throw exception.
-                    byte[] pngData=new byte[input.available()];
-                    jpgData=ConvertPngToJpg.convertToJpg(pngData);
-                }else{
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    ImageIO.write(logoBufferedImage, "jpg", baos);
-                    baos.flush();
-                    jpgData = baos.toByteArray();
-                    baos.close();
-                }
-                user.setProfileFile(fullFileName);
+        BufferedImage logoBufferedImage = null;
+        if (profileFile == null) {//User did not Upload the Profile file. Make Avatar with the Initials
+            try {
+                char[] chars = new char[2];
+                String sizeStr = FacesContext.getCurrentInstance().getExternalContext().getInitParameter("iconSize");
+                String imgFormat = FacesContext.getCurrentInstance().getExternalContext().getInitParameter("imgFormat");
+                int size = Integer.parseInt(sizeStr);
+                chars[0] = user.getFirstname().charAt(0);
+                chars[1] = user.getLastname().charAt(0);
+                String text = new String(chars);
+                logoBufferedImage = ImageUtil.drawIcon(size, text);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                ImageIO.write(logoBufferedImage, imgFormat, baos);
+                baos.flush();
+                byte[] jpgData = baos.toByteArray();
+                baos.close();
+                user.setProfileFile(text + "." + imgFormat);
                 user.setImage(jpgData);
-                //We would need to display the Image in the ConfirmPage, which is next in the Flow.
-                //There is no solution for that - only a workaround.
-                //We put this image in the session for now and once the Deeder data has been persisted in the Database the image from the session will be removed.
-                HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-                HttpSession session = request.getSession(true);
-                String imgType=fullFileName.substring(fullFileName.indexOf('.')+1);
-                ImageVO imageVO=new ImageVO(imgType,jpgData);
-                session.setAttribute(GDFConstants.TEMP_IMAGE, imageVO);//This Image will be removed from Session once the data has been persisted.
+            } catch (IOException ex) {
+                Logger.getLogger(UserRegisterMBean.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (IOException ex) {
-            LOGGER.severe(ex.getMessage());
-            throw new RuntimeException(ex.getMessage());
-        }
 
+        } else {
+            try {
+                InputStream input = profileFile.getInputStream();
+
+                int fileSize = (int) profileFile.getSize();
+                if (fileSize > (1000 * 1024)) {
+                    FacesContext.getCurrentInstance().addMessage("dob",
+                            new FacesMessage(FacesMessage.SEVERITY_ERROR, "Profile Image size exceeds 1MB.", "YProfile Image size exceeds 1MB."));
+
+                } else {//process with the processing of the image.
+                    //Step 1 Resize the image
+                    logoBufferedImage = ImageUtil.resizeImage(input, 150);
+                    String fullFileName = profileFile.getSubmittedFileName();
+                    String fileType = fullFileName.substring(fullFileName.indexOf('.'));
+                    byte[] jpgData = null;
+                    if (fileType.equals("png")) {//convert to jpg first. Jelastic' OpenJDK doen not handle png images well and throw exception.
+                        byte[] pngData = new byte[input.available()];
+                        jpgData = ConvertPngToJpg.convertToJpg(pngData);
+                    } else {
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        ImageIO.write(logoBufferedImage, "jpg", baos);
+                        baos.flush();
+                        jpgData = baos.toByteArray();
+                        baos.close();
+                    }
+                    user.setProfileFile(fullFileName);
+                    user.setImage(jpgData);
+
+                }
+            } catch (IOException ex) {
+                LOGGER.severe(ex.getMessage());
+                throw new RuntimeException(ex.getMessage());
+            }
+        }
     }
-        
-    
 
     public void submitDetails() {
         user.setCreatedOn(LocalDateTime.now());
@@ -365,12 +373,12 @@ public class UserRegisterMBean implements Serializable {
         user = userBeanLocal.createUser(user);
         LOGGER.log(Level.INFO, "User persisted with ID: {0} and Address ID: {1}", new Object[]{user.getId(), user.getAddress().getId()});
         //User has been sussessfully persisted in the Database. Now the Image (byte[]) can be removed from the session as well. 
-        HttpServletRequest request= (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        HttpSession session=request.getSession();
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = request.getSession();
         session.removeAttribute(GDFConstants.TEMP_IMAGE);
         LOGGER.info("Temporary Image of User removed from the session.");
     }
-    
+
     public String getReturnValue() {
         submitDetails();
         return "/flowreturns/UserRegister-return?faces-redirect=true";
@@ -411,21 +419,20 @@ public class UserRegisterMBean implements Serializable {
     private String validatePersonalDetailsAmended() {
         String toReturn = null;
         //Validate Name first
-        String fname=user.getFirstname().trim();
-        if (fname.isEmpty() || fname.length()<2){
-           FacesContext.getCurrentInstance().addMessage("firstname",new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid First Name", "Invalid First Name")); 
-        }else if (fname.length()>45){
-           FacesContext.getCurrentInstance().addMessage("firstname",new FacesMessage(FacesMessage.SEVERITY_ERROR, "First Name too long (max 45 chars)", "First Name too long (max 45 chars)"));  
+        String fname = user.getFirstname().trim();
+        if (fname.isEmpty() || fname.length() < 2) {
+            FacesContext.getCurrentInstance().addMessage("firstname", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid First Name", "Invalid First Name"));
+        } else if (fname.length() > 45) {
+            FacesContext.getCurrentInstance().addMessage("firstname", new FacesMessage(FacesMessage.SEVERITY_ERROR, "First Name too long (max 45 chars)", "First Name too long (max 45 chars)"));
         }
-        
-        
+
         String email = user.getEmail();
         LOGGER.log(Level.INFO, "Will check for: {0}", email);
         boolean exists = userBeanLocal.userExists(email);
-        boolean accessExists=false;
-        Access access= accessBeanLocal.getAccess(email);
-        if (access!=null){//implies the email has been taken by some other Entity
-           accessExists=true; 
+        boolean accessExists = false;
+        Access access = accessBeanLocal.getAccess(email);
+        if (access != null) {//implies the email has been taken by some other Entity
+            accessExists = true;
         }
         if (exists || accessExists) {
             FacesContext.getCurrentInstance().addMessage("email",
@@ -435,9 +442,9 @@ public class UserRegisterMBean implements Serializable {
             Matcher m = p.matcher(email);
             if (!m.find()) {
                 FacesContext.getCurrentInstance().addMessage("email", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email invalid.", "Invalid Email."));
-            } 
+            }
         }
-        
+
         //Email is valid. Let's take this opportunity to store the Profile Image on Document Server
         if (profileFile != null) {//If a new file has been uploaded.
             String fileName = profileFile.getSubmittedFileName();
@@ -445,8 +452,6 @@ public class UserRegisterMBean implements Serializable {
                 saveProfileImage();
             }
         }
-                
-            
 
         //DOB Check
         String dobStr = user.getDobStr();
@@ -463,7 +468,7 @@ public class UserRegisterMBean implements Serializable {
                 if (years < 13) {
                     FacesContext.getCurrentInstance().addMessage("dob",
                             new FacesMessage(FacesMessage.SEVERITY_ERROR, "Min permitted age is 13 years", "You must be alteast 13 year old to register"));
-                }else{
+                } else {
                     user.setDob(dob);
                 }
             } catch (DateTimeParseException ex1) {
@@ -494,7 +499,7 @@ public class UserRegisterMBean implements Serializable {
                 }
             }
         }
-        
+
         List<FacesMessage> msgs = FacesContext.getCurrentInstance().getMessageList();
         if (msgs != null && msgs.size() > 0) {
             toReturn = null;
@@ -502,9 +507,7 @@ public class UserRegisterMBean implements Serializable {
             toReturn = "";
         }
         return toReturn;
-        
+
     }
 
-    
-    
 }

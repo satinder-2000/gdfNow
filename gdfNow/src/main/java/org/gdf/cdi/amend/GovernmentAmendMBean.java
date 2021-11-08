@@ -90,7 +90,7 @@ public class GovernmentAmendMBean implements Serializable{
         //country=governmentAddress.getCountry().getName();//Email and Country not allowed to change
         clientCountryCode=governmentAddress.getCountry().getCode();
         country=governmentAddress.getCountry().getName();
-        LOGGER.log(Level.INFO, "Government loaded :{0}", government.getEmail1());
+        LOGGER.log(Level.INFO, "Government loaded :{0}", government.getEmail());
         ministry=government.getGovernmentOrg().getMinistry();
         department=government.getGovernmentOrg().getDepartment();
         ministries=new ArrayList<>();
@@ -130,25 +130,13 @@ public class GovernmentAmendMBean implements Serializable{
     
     
     private void validateDetailsAndAddress(){
-        String name=government.getName().trim();
+        String name=government.getOfficeName().trim();
         if (name.isEmpty()){
             FacesContext.getCurrentInstance().addMessage("governmentName",new FacesMessage(FacesMessage.SEVERITY_ERROR,"Department Name required.","Department Name is required"));
         }else if (name.length()<4 || name.length()>250){
             FacesContext.getCurrentInstance().addMessage("governmentName",new FacesMessage(FacesMessage.SEVERITY_ERROR,"Invalid Name","Invalid Department Name"));
         }
-        //Validate Email now
-        String email2=government.getEmail2().trim();//Email 2 is Mandatory
-         if (email2.isEmpty()){
-            FacesContext.getCurrentInstance().addMessage("email2",new FacesMessage(FacesMessage.SEVERITY_ERROR,"Email 2 required","Email 2 is mandatory"));
-        }else{
-            String emailRegEx = GDFConstants.EMAIL_REGEX;
-            Pattern pEmail = Pattern.compile(emailRegEx);
-            Matcher mP = pEmail.matcher(email2);
-            boolean matches = mP.find();
-            if (!matches) {
-                FacesContext.getCurrentInstance().addMessage("email2", new FacesMessage(FacesMessage.SEVERITY_ERROR,"Email 2 invalid","Email 2 is not valid"));
-            }
-        }
+        
         //Website now
         String website=government.getWebsite();
         if (website.trim().isEmpty()){
@@ -169,7 +157,7 @@ public class GovernmentAmendMBean implements Serializable{
             FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Contact required.","Contact Name is required."));
         }
         
-        String description=government.getDescription().trim();
+        String description=government.getOfficeFunction().trim();
         if (description.isEmpty()){
             FacesContext.getCurrentInstance().addMessage("desc",new FacesMessage(FacesMessage.SEVERITY_ERROR,"Description required","Description is required."));
         }else if (description.length()<10){
@@ -209,14 +197,7 @@ public class GovernmentAmendMBean implements Serializable{
                FacesContext.getCurrentInstance().addMessage("phone2",new FacesMessage(FacesMessage.SEVERITY_ERROR,"Invalid Phone 2","Phone 2 is invalid")); 
             }
         }
-        String phone3=governmentAddress.getPhone3().trim();//not mandatory
-        if (!phone3.isEmpty()){
-            Matcher ph3M=pPhone.matcher(phone3);
-            boolean matchesPh3= ph3M.find();
-            if (!matchesPh3){
-               FacesContext.getCurrentInstance().addMessage("phone3",new FacesMessage(FacesMessage.SEVERITY_ERROR,"Invalid Phone 3","Phone 3 is invalid")); 
-            }
-        }
+        
         switch (clientCountryCode) {
                 case GDFConstants.IN_CODE: {
                     Pattern pCdIn = Pattern.compile(GDFConstants.IN_POSTCODE_REGEX);

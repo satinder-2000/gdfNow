@@ -167,7 +167,7 @@ public class AdminMBean implements Serializable {
             if(g.getId()==governmentId){
                 g.setConfirmed(true);
                 adminBeanLocal.approveGovernment(g);
-                LOGGER.log(Level.INFO, "Government approved : {0}", g.getName().concat(" on ").concat(LocalDateTime.now().toString()));
+                LOGGER.log(Level.INFO, "Government approved : {0}", g.getOfficeName().concat(" on ").concat(LocalDateTime.now().toString()));
             }
             
         }

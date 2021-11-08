@@ -55,17 +55,17 @@
         </session>
         
         
-        <!-- session>
-            <ejb-name>ActivityBean</ejb-name>
-            <ejb-class>org.gdf.ejb.ActivityBean</ejb-class>
+        <session>
+            <ejb-name>ActivityRecorderBean</ejb-name>
+            <ejb-class>org.gdf.ejb.ActivityRecorderBean</ejb-class>
             <env-entry>
                 <env-entry-name>maxActivities</env-entry-name>
                 <env-entry-type>java.lang.Integer</env-entry-type>
-                <env-entry-value>25</env-entry-value>
+                <env-entry-value>15</env-entry-value>
             </env-entry>
         </session>
         
-         <session>
+         <!-- session>
             <ejb-name>SearchEngineBean</ejb-name>
             <ejb-class>org.gdf.ejb.SearchEngineBean</ejb-class>
             <env-entry>

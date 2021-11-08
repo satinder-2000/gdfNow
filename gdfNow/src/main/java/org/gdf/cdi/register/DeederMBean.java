@@ -27,6 +27,7 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -41,6 +42,8 @@ import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import static org.gdf.cdi.register.UserRegisterMBean.LOGGER;
+import org.gdf.util.ImageUtil;
 
 /**
  *
@@ -223,43 +226,61 @@ public class DeederMBean implements Serializable {
     }
 
     private void saveProfileImage() {
-        try {
-            InputStream input = profileFile.getInputStream();
-            int fileSize = (int) profileFile.getSize();
-            if (fileSize > (1000 * 1024)) {
-                FacesContext.getCurrentInstance().addMessage("profileFile",
-                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Profile Img exceeds 1MB", "Profile Img exceeds 1MB"));
-
-            } else {//process with the processing of the image.
-                //Step 1 Resize the image
-                BufferedImage logoBufferedImage = ImageResizeUtil.resizeImage(input, 150);
-                String fullFileName = profileFile.getSubmittedFileName();
-                String fileType=fullFileName.substring(fullFileName.indexOf('.'));
-                byte[] jpgData=null;
-                if (fileType.equals("png")){//convert to jpg first. Jelastic' OpenJDK doen not handle png images well and throw exception.
-                    byte[] pngData=new byte[input.available()];
-                    jpgData=ConvertPngToJpg.convertToJpg(pngData);
-                }else{
-                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                    ImageIO.write(logoBufferedImage, "jpg", baos);
-                    baos.flush();
-                    jpgData = baos.toByteArray();
-                    baos.close();
-                }
-                deeder.setProfileFile(fullFileName);
+        BufferedImage logoBufferedImage = null;
+        if (profileFile == null) {//User did not Upload the Profile file. Make Avatar with the Initials
+            try {
+                char[] chars = new char[2];
+                String sizeStr = FacesContext.getCurrentInstance().getExternalContext().getInitParameter("iconSize");
+                String imgFormat = FacesContext.getCurrentInstance().getExternalContext().getInitParameter("imgFormat");
+                int size = Integer.parseInt(sizeStr);
+                chars[0] = deeder.getFirstname().charAt(0);
+                chars[1] = deeder.getLastname().charAt(0);
+                String text = new String(chars);
+                logoBufferedImage = ImageUtil.drawIcon(size, text);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                ImageIO.write(logoBufferedImage, imgFormat, baos);
+                baos.flush();
+                byte[] jpgData = baos.toByteArray();
+                baos.close();
+                deeder.setProfileFile(text + "." + imgFormat);
                 deeder.setImage(jpgData);
-                //We would need to display the Image in the ConfirmPage, which is next in the Flow.
-                //There is no solution for that - only a workaround.
-                //We put this image in the session for now and once the Deeder data has been persisted in the Database the image from the session will be removed.
-                HttpServletRequest request= (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-                HttpSession session=request.getSession(true);
-                String imgType=fullFileName.substring(fullFileName.indexOf('.')+1);
-                ImageVO imageVO=new ImageVO(imgType,jpgData);
-                session.setAttribute(GDFConstants.TEMP_IMAGE, imageVO);//This Image will be removed from Session once the data has been persisted.
+            } catch (IOException ex) {
+                Logger.getLogger(UserRegisterMBean.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (IOException ex) {
-            LOGGER.severe(ex.getMessage());
-            throw new RuntimeException(ex.getMessage());
+
+        } else {
+            try {
+                InputStream input = profileFile.getInputStream();
+
+                int fileSize = (int) profileFile.getSize();
+                if (fileSize > (1000 * 1024)) {
+                    FacesContext.getCurrentInstance().addMessage("dob",
+                            new FacesMessage(FacesMessage.SEVERITY_ERROR, "Profile Image size exceeds 1MB.", "YProfile Image size exceeds 1MB."));
+
+                } else {//process with the processing of the image.
+                    //Step 1 Resize the image
+                    logoBufferedImage = ImageUtil.resizeImage(input, 150);
+                    String fullFileName = profileFile.getSubmittedFileName();
+                    String fileType = fullFileName.substring(fullFileName.indexOf('.'));
+                    byte[] jpgData = null;
+                    if (fileType.equals("png")) {//convert to jpg first. Jelastic' OpenJDK doen not handle png images well and throw exception.
+                        byte[] pngData = new byte[input.available()];
+                        jpgData = ConvertPngToJpg.convertToJpg(pngData);
+                    } else {
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        ImageIO.write(logoBufferedImage, "jpg", baos);
+                        baos.flush();
+                        jpgData = baos.toByteArray();
+                        baos.close();
+                    }
+                    deeder.setProfileFile(fullFileName);
+                    deeder.setImage(jpgData);
+
+                }
+            } catch (IOException ex) {
+                LOGGER.severe(ex.getMessage());
+                throw new RuntimeException(ex.getMessage());
+            }
         }
     }
 

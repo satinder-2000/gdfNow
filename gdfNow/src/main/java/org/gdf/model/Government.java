@@ -1,4 +1,4 @@
-package org.gdf.model;
+    package org.gdf.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -24,13 +24,13 @@ public class Government {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String name;
+    @Column(name = "OFFICE_NAME")
+    private String officeName;
 
-    private String email1;
+    private String email;
 
-    private String email2;
-
-    private String description;
+    @Column(name = "OFFICE_FUNCTION")
+    private String officeFunction;
 
     private String website;
 
@@ -77,36 +77,28 @@ public class Government {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getOfficeName() {
+        return officeName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setOfficeName(String officeName) {
+        this.officeName = officeName;
     }
 
-    public String getEmail1() {
-        return email1;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmail1(String email1) {
-        this.email1 = email1;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getEmail2() {
-        return email2;
+    public String getOfficeFunction() {
+        return officeFunction;
     }
 
-    public void setEmail2(String email2) {
-        this.email2 = email2;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setOfficeFunction(String officeFunction) {
+        this.officeFunction = officeFunction;
     }
 
     public String getWebsite() {

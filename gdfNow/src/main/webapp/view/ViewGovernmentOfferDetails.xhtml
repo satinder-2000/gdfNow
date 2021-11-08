@@ -37,7 +37,7 @@
                     <div class="well">
                         <p>By:</p>
                         <p> <h:graphicImage value="/TempImageServlet" height="120" width="90"/></p>
-                        <p>#{viewGovernmentOfferDetailsMBean.governmentOffer.government.name}</p>
+                        <p>#{viewGovernmentOfferDetailsMBean.governmentOffer.government.officeName}</p>
                     </div>
                 </div>
                 <div class="col-sm-7">
@@ -47,7 +47,7 @@
                             <br/>
                             <h:outputText value="#{viewGovernmentOfferDetailsMBean.governmentOffer.government.governmentOrg.department}" />
                         </p>
-                        <p  class="text-left"><h:outputLabel value="About:"/> <h:outputText value="#{viewGovernmentOfferDetailsMBean.governmentOffer.government.description}"/><br/>
+                        <p  class="text-left"><h:outputLabel value="About:"/> <h:outputText value="#{viewGovernmentOfferDetailsMBean.governmentOffer.government.officeFunction}"/><br/>
                             <h:outputLabel value="Address:"/><h:outputText value="#{viewGovernmentOfferDetailsMBean.governmentOffer.government.governmentAddress.city}"/><br/>
                             <h:outputText value="#{viewGovernmentOfferDetailsMBean.governmentOffer.government.governmentAddress.state}, #{viewGovernmentOfferDetailsMBean.governmentOffer.government.governmentAddress.country.name}"/><br/>
 

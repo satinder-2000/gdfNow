@@ -43,8 +43,6 @@ public class BusinessAddress implements Serializable {
 	
 	private String phone2;
 	
-	private String phone3;
-	
 	@ManyToOne(optional=false, fetch=FetchType.EAGER)
 	@JoinColumn(
 	name="COUNTRY_CODE", nullable=false, updatable=true)
@@ -125,14 +123,6 @@ public class BusinessAddress implements Serializable {
 
 	public void setPhone2(String phone2) {
 		this.phone2 = phone2;
-	}
-
-	public String getPhone3() {
-		return phone3;
-	}
-
-	public void setPhone3(String phone3) {
-		this.phone3 = phone3;
 	}
 
 	public Country getCountry() {
