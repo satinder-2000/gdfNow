@@ -58,7 +58,7 @@ public class ChangePasswordMBean implements Serializable {
             Pattern pCdIn=Pattern.compile(GDFConstants.PW_REGEX);
             Matcher mPCdIn=pCdIn.matcher(password);
             if (!mPCdIn.find()){
-                FacesContext.getCurrentInstance().addMessage("pwd1",new FacesMessage(FacesMessage.SEVERITY_ERROR,"Invalid Password","Invalid Password."));  
+                FacesContext.getCurrentInstance().addMessage("pwd1",new FacesMessage(FacesMessage.SEVERITY_ERROR,"Password must be between 8 and 14 digits long and include at least one numeric digit.","Password must be between 8 and 14 digits long and include at least one numeric digit."));  
             }else{//compare the password now
                 if(!password.equals(passwordConfirm)){
                     FacesContext.getCurrentInstance().addMessage("pwd2",

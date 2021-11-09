@@ -297,6 +297,7 @@ public class ReferenceDataBean implements ReferenceDataBeanLocal {
         List<EmailMessage> resultSet = tQ.getResultList();
         HashMap<String, List<EmailMessage>> map = new HashMap();
         for (EmailMessage em : resultSet) {
+            System.out.println(em.toString());
             if (map.containsKey(em.getTemplate())) {
                 map.get(em.getTemplate()).add(em);
             } else {

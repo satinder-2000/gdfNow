@@ -91,6 +91,11 @@ public class EmailMessage implements Serializable {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "EmailMessage{" + "template=" + template + ", messageTitle=" + messageTitle + ", text=" + text + '}';
+    }
     
     
     
