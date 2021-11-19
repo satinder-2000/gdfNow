@@ -3,7 +3,7 @@
     <!-- Define Persistence Unit -->
     <persistence-unit name="gdfPU" transaction-type="JTA">
         <jta-data-source>jdbc/gdf</jta-data-source>
-        <non-jta-data-source>jdbc/gdfLocal</non-jta-data-source>
+        <!-- non-jta-data-source>jdbc/gdfLocal</non-jta-data-source -->
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
         <properties/>
     </persistence-unit>
