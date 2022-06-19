@@ -9,7 +9,7 @@ import org.gdf.ejb.AccessBeanLocal;
 import org.gdf.ejb.DeederBeanLocal;
 import org.gdf.ejb.GovernmentBeanLocal;
 import org.gdf.model.Access;
-import org.gdf.model.AccessType;
+import org.gdf.model.EntityType;
 import org.gdf.model.Deeder;
 import org.gdf.model.Government;
 import org.gdf.model.GovernmentOffer;
@@ -159,7 +159,7 @@ public class ViewGovernmentOfferDetailsMBean implements Serializable {
             access=accessL.get(randIndex);
             LOGGER.warning("TEMPORARY CODE - ENDS");*/
         governmentOfferComment.setPostedBy(access.getEmail());
-        governmentOfferComment.setAccessType(access.getAccessType());
+        governmentOfferComment.setAccessType(access.getEntityType());
         governmentOffer.getGovernmentOfferComments().add(governmentOfferComment);
         LOGGER.log(Level.INFO, "Comment added :{0}", governmentOfferComment.getText());
         governmentBeanLocal.addGovernmentOfferComment(governmentOffer);
@@ -190,7 +190,7 @@ public class ViewGovernmentOfferDetailsMBean implements Serializable {
             int randIndex=rand.nextInt(size);
             access=accessL.get(randIndex);
             LOGGER.warning("TEMPORARY CODE - ENDS");*/
-        goLike.setAccessType(access.getAccessType());
+        goLike.setAccessType(access.getEntityType());
         goLike.setAccessId(access.getEntityId());
         goLike.setLikeByName(access.getName());
         goLike.setTime(LocalDateTime.now());
@@ -242,7 +242,7 @@ public class ViewGovernmentOfferDetailsMBean implements Serializable {
             access=accessL.get(randIndex);
             LOGGER.warning("TEMPORARY CODE - ENDS");*/
         dl.setAccessId(access.getEntityId());
-        dl.setAccessType(access.getAccessType());
+        dl.setAccessType(access.getEntityType());
         dl.setLikeByName(access.getName());
         dl.setTime(LocalDateTime.now());
         dl=deederBeanLocal.addDeederLike(dl);

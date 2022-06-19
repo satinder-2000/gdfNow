@@ -9,7 +9,7 @@ package org.gdf.model;
  *
  * @author satindersingh
  */
-public enum AccessType {
+public enum EntityType {
     
     USER,
     DEEDER,

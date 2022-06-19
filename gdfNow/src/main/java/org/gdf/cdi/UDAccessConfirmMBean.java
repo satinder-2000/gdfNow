@@ -9,7 +9,7 @@ import org.gdf.ejb.AccessBeanLocal;
 import org.gdf.ejb.DeederBeanLocal;
 import org.gdf.ejb.UserDeederBeanLocal;
 import org.gdf.model.Access;
-import org.gdf.model.AccessType;
+import org.gdf.model.EntityType;
 import org.gdf.model.Deeder;
 import org.gdf.model.OnHold;
 import org.gdf.util.GDFConstants;
@@ -88,7 +88,7 @@ public class UDAccessConfirmMBean implements Serializable {
         LOGGER.log(Level.INFO, "Access Confirm request received from {0}", idStr);
         int id=Integer.parseInt(idStr);
         //This email should be on hold..
-        onHold  = accessBeanLocal.getOnHold(id,AccessType.DEEDER.toString());
+        onHold  = accessBeanLocal.getOnHold(id,EntityType.DEEDER.toString());
         if (onHold==null) {//preventive code. In case of unlikely event, should the Access link gets compromised.
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Id value", "Invalid Id value"));
@@ -141,7 +141,7 @@ public class UDAccessConfirmMBean implements Serializable {
             //Proceed to create Access.
             access.setProfileFile(deeder.getProfileFile());//Name set in the previous method call - saveProfileImage
             access.setImage(deeder.getImage());//Image byte[] has been set in deeder in the previous method call - saveProfileImage
-            access.setAccessType(AccessType.DEEDER);
+            access.setEntityType(EntityType.DEEDER);
             
             Access accessDb=accessBeanLocal.createAccess(access);//changed on 06/11/2018 from method createUserDeederAccess. Under the cover, there is the same functionality.
             LOGGER.log(Level.INFO, "UserDeeder Access record created successfully on {0}", accessDb.getCreatedOn());

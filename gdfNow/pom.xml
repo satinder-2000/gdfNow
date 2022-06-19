@@ -59,7 +59,7 @@
     </dependencies>
 
     <build>
-        <finalName>ROOT</finalName>
+        <finalName>gdfNow</finalName>
         
         <plugins>
             <plugin>

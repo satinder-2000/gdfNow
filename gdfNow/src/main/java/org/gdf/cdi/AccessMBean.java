@@ -8,7 +8,7 @@ package org.gdf.cdi;
 
 import org.gdf.ejb.AccessBeanLocal;
 import org.gdf.model.Access;
-import org.gdf.model.AccessType;
+import org.gdf.model.EntityType;
 import org.gdf.model.OnHold;
 import org.gdf.util.GDFConstants;
 import java.io.Serializable;
@@ -110,7 +110,7 @@ public class AccessMBean implements Serializable{
             toReturn =null;
         }else{
             Access accessDb=accessBeanLocal.createAccess(this.getAccess());
-            AccessType at=accessDb.getAccessType();
+            EntityType at=accessDb.getEntityType();
             switch (at){
                 case USER: {toReturn="UserRegisterFinal";break;}
                 case DEEDER:{toReturn="DeederRegisterFinal";break;}

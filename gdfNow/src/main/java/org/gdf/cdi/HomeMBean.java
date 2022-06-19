@@ -6,7 +6,7 @@
 package org.gdf.cdi;
 
 import org.gdf.model.Access;
-import org.gdf.model.AccessType;
+import org.gdf.model.EntityType;
 import org.gdf.util.GDFConstants;
 import org.gdf.util.GDFUtilWeb;
 import java.io.IOException;
@@ -59,7 +59,7 @@ public class HomeMBean implements Serializable {
         }else{
           try {
             Access access = (Access) session.getAttribute(GDFConstants.ACCESS);
-            AccessType acType = access.getAccessType();
+            EntityType acType = access.getEntityType();
             String reqCtxPath=request.getContextPath();
             LOGGER.info("request.getContextPath() is "+reqCtxPath);
             switch (acType) {

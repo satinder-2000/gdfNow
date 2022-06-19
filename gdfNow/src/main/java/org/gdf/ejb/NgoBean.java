@@ -6,7 +6,7 @@
 package org.gdf.ejb;
 
 import org.gdf.model.Access;
-import org.gdf.model.AccessType;
+import org.gdf.model.EntityType;
 import org.gdf.model.ActivityType;
 import org.gdf.model.Deed;
 import org.gdf.model.Deeder;
@@ -156,7 +156,7 @@ public class NgoBean implements NgoBeanLocal {
         em.flush();
         OnHold onHold=new OnHold();
         onHold.setEmail(ngo.getEmail());
-        onHold.setAccessType(AccessType.NGO);
+        onHold.setAccessType(EntityType.NGO);
         onHold.setEntityId(ngo.getId());
         onHold.setProfileFile(ngo.getLogoFile());
         onHold.setName(ngo.getName());

@@ -6,7 +6,7 @@
 package org.gdf.ejb;
 
 import org.gdf.model.Access;
-import org.gdf.model.AccessType;
+import org.gdf.model.EntityType;
 import org.gdf.model.Deed;
 import org.gdf.model.Deeder;
 import org.gdf.model.OnHold;
@@ -52,7 +52,7 @@ public class UserBean implements UserBeanLocal {
             int userId=user.getId();
             OnHold onHold=new OnHold();
             onHold.setEmail(user.getEmail());
-            onHold.setAccessType(AccessType.USER);
+            onHold.setAccessType(EntityType.USER);
             onHold.setEntityId(userId);
             onHold.setProfileFile(user.getProfileFile());
             onHold.setName(user.getFirstname().concat(" ").concat(user.getLastname()));
@@ -108,7 +108,7 @@ public class UserBean implements UserBeanLocal {
         Access access=new Access();
         access.setEmail(email);
         access.setPassword(encryptPW);
-        access.setAccessType(AccessType.USER);
+        access.setEntityType(EntityType.USER);
         access.setAttempts(0);
         em.persist(access);
         LOGGER.info("Access profile created to User: "+email);

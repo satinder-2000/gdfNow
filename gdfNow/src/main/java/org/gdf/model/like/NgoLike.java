@@ -17,7 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import org.gdf.model.AccessType;
+import org.gdf.model.EntityType;
 
 /**
  *
@@ -37,7 +37,7 @@ public class NgoLike implements Serializable{
     
     @Enumerated(EnumType.STRING)
     @Column(name = "ACCESS_TYPE")
-    private AccessType accessType;
+    private EntityType accessType;
     
     @Column(name = "LIKE_BY_NAME")
     private String likeByName;
@@ -60,11 +60,11 @@ public class NgoLike implements Serializable{
         this.ngo = ngo;
     }
 
-    public AccessType getAccessType() {
+    public EntityType getAccessType() {
         return accessType;
     }
 
-    public void setAccessType(AccessType accessType) {
+    public void setAccessType(EntityType accessType) {
         this.accessType = accessType;
     }
 

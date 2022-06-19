@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-  <Resource id="mail/gdf" type="javax.mail.Session">
+  <!--Resource id="mail/gdf" type="javax.mail.Session">
     mail.smtp.host=mail.privateemail.com
     mail.smtp.starttls.enable=true
     mail.smtp.port=587
@@ -8,13 +8,13 @@
     mail.smtp.auth=true
     mail.smtp.user=admin@gdfnow.org
     password=IL@ve2nu69
-  </Resource>
-  <!-- Resource id="mail/gdf" type="javax.mail.Session">
+  </Resource -->
+  <Resource id="mail/gdf" type="javax.mail.Session">
     mail.smtp.host=localhost
     mail.smtp.port=25
     mail.transport.protocol=smtp
     mail.smtp.user=admin@gdfNow.org
-  </Resource -->
+  </Resource>
   
   <Resource id="jdbc/gdf" type="DataSource">
       JdbcDriver=com.mysql.cj.jdbc.Driver
@@ -22,11 +22,11 @@
       UserName=root
       Password=IL@ve2nu69
   </Resource>
-  <!--Resource id="jdbc/gdfLocal" type="DataSource">
+  <Resource id="jdbc/gdfLocal" type="DataSource">
       JdbcDriver=com.mysql.cj.jdbc.Driver
       JdbcUrl=jdbc:mysql://localhost:3306/gdf
       UserName=root
       Password=IL@ve2nu69
       JtaManaged = false
-  </Resource-->
+  </Resource>
 </resources>

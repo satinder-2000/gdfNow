@@ -10,7 +10,7 @@ import org.gdf.ejb.DeederBeanLocal;
 import org.gdf.ejb.ReferenceDataBeanLocal;
 import org.gdf.ejb.UserDeederBeanLocal;
 import org.gdf.model.Access;
-import org.gdf.model.AccessType;
+import org.gdf.model.EntityType;
 import org.gdf.model.Deeder;
 import org.gdf.model.Country;
 import org.gdf.model.DeederAddress;
@@ -387,7 +387,7 @@ public class ReviewUserDeederMBean implements Serializable {
         LOGGER.log(Level.INFO, "Deeder persisted with ID: {0} and Address ID: {1}", new Object[]{deeder.getId(), deeder.getDeederAddress().getId()});
         //Initialise Access now because we are going to move to CreateAccess
         access=new Access();
-        access.setAccessType(AccessType.DEEDER);
+        access.setEntityType(EntityType.DEEDER);
         access.setAttempts(0);
         access.setCountryCode(deederAddress.getCountry().getCode());
         access.setCreatedOn(LocalDateTime.now());
@@ -438,7 +438,7 @@ public class ReviewUserDeederMBean implements Serializable {
     
     private void submitAccess(){
         Access accessDb=accessBeanLocal.createAccess(this.getAccess());
-        LOGGER.log(Level.INFO, "Access to {0}provided.", accessDb.getAccessType().toString());
+        LOGGER.log(Level.INFO, "Access to {0}provided.", accessDb.getEntityType().toString());
     }
     
     
