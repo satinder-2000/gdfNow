@@ -166,7 +166,7 @@ public class ViewBusinessOfferDetailsMBean implements Serializable {
         access = accessL.get(randIndex);
         LOGGER.warning("TEMPORARY CODE - ENDS");*/
         businessOfferComment.setPostedBy(access.getEmail());
-        businessOfferComment.setAccessType(access.getEntityType());
+        businessOfferComment.setAccessType(access.getAccessType());
         businessOffer.getBusinessOfferComments().add(businessOfferComment);
         LOGGER.log(Level.INFO, "Comment added :{0}", businessOfferComment.getText());
         businessBeanLocal.addBusinessOfferComment(businessOffer);
@@ -196,7 +196,7 @@ public class ViewBusinessOfferDetailsMBean implements Serializable {
         int randIndex = rand.nextInt(size);
         access = accessL.get(randIndex);
         LOGGER.warning("TEMPORARY CODE - ENDS");*/
-        boLike.setAccessType(access.getEntityType());
+        boLike.setAccessType(access.getAccessType());
         boLike.setAccessId(access.getEntityId());
         boLike.setLikeByName(access.getName());
         boLike.setTime(LocalDateTime.now());
@@ -251,7 +251,7 @@ public class ViewBusinessOfferDetailsMBean implements Serializable {
         access = accessL.get(randIndex);
         LOGGER.warning("TEMPORARY CODE - ENDS");*/
         dl.setAccessId(access.getEntityId());
-        dl.setAccessType(access.getEntityType());
+        dl.setAccessType(access.getAccessType());
         dl.setLikeByName(access.getName());
         dl.setTime(LocalDateTime.now());
         dl = deederBeanLocal.addDeederLike(dl);

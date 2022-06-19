@@ -39,8 +39,8 @@ public class Access implements Serializable {
     private String passwordConfirm;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "ENTITY_TYPE")
-    private EntityType entityType;
+    @Column(name = "ACCESS_TYPE")
+    private AccessType accessType;
 
     private int attempts;
     
@@ -99,13 +99,15 @@ public class Access implements Serializable {
         this.password = password;
     }
 
-    public EntityType getEntityType() {
-        return entityType;
+    public AccessType getAccessType() {
+        return accessType;
     }
 
-    public void setEntityType(EntityType entityType) {
-        this.entityType = entityType;
+    public void setAccessType(AccessType accessType) {
+        this.accessType = accessType;
     }
+
+    
 
     public int getAttempts() {
         return attempts;

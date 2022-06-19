@@ -8,7 +8,7 @@ package org.gdf.cdi;
 
 
 import org.gdf.model.Access;
-import org.gdf.model.EntityType;
+import org.gdf.model.AccessType;
 import org.gdf.ejb.AccessBeanLocal;
 import org.gdf.util.GDFConstants;
 import java.io.Serializable;
@@ -87,7 +87,7 @@ public class LoginMBean implements Serializable {
             }
             
             String profileFile = access.getProfileFile();
-            EntityType acType=access.getEntityType();
+            AccessType acType=access.getAccessType();
             
             switch (acType){
                 case USER : {

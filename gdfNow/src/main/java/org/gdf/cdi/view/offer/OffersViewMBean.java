@@ -9,7 +9,7 @@ package org.gdf.cdi.view.offer;
 import org.gdf.ejb.BusinessBeanLocal;
 import org.gdf.ejb.GovernmentBeanLocal;
 import org.gdf.ejb.NgoBeanLocal;
-import org.gdf.model.EntityType;
+import org.gdf.model.AccessType;
 import org.gdf.model.Business;
 import org.gdf.model.BusinessOffer;
 import org.gdf.model.Government;
@@ -142,7 +142,7 @@ public class OffersViewMBean {
                break;
             }
         }
-        EntityType ofr= EntityType.valueOf(offeror);
+        AccessType ofr= AccessType.valueOf(offeror);
         switch (ofr){
             case BUSINESS : {
                 return businessOfferDetails(offerId);

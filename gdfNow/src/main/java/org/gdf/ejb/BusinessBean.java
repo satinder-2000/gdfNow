@@ -6,7 +6,7 @@
 package org.gdf.ejb;
 
 import org.gdf.model.Access;
-import org.gdf.model.EntityType;
+import org.gdf.model.AccessType;
 import org.gdf.model.ActivityType;
 import org.gdf.model.Business;
 import org.gdf.model.BusinessCategory;
@@ -146,7 +146,7 @@ public class BusinessBean implements BusinessBeanLocal {
         em.flush();
         OnHold onHold=new OnHold();
         onHold.setEmail(business.getEmail());
-        onHold.setAccessType(EntityType.BUSINESS);
+        onHold.setAccessType(AccessType.BUSINESS);
         onHold.setEntityId(business.getId());
         onHold.setProfileFile(business.getLogoFile());
         onHold.setName(business.getName());

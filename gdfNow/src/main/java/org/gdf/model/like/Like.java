@@ -5,7 +5,7 @@
  */
 package org.gdf.model.like;
 
-import org.gdf.model.EntityType;
+import org.gdf.model.AccessType;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
@@ -35,7 +35,7 @@ public class Like implements Serializable {
     
     @Enumerated(EnumType.STRING)
     @Column(name = "ACCESS_TYPE")
-    private EntityType accessType;
+    private AccessType accessType;
     
     @Column(name = "LIKE_BY_NAME")
     private String likeByName;
@@ -64,11 +64,11 @@ public class Like implements Serializable {
         this.accessId = accessId;
     }
 
-    public EntityType getAccessType() {
+    public AccessType getAccessType() {
         return accessType;
     }
 
-    public void setAccessType(EntityType accessType) {
+    public void setAccessType(AccessType accessType) {
         this.accessType = accessType;
     }
 

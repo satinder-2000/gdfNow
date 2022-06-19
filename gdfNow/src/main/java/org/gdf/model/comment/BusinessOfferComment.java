@@ -5,7 +5,7 @@
  */
 package org.gdf.model.comment;
 
-import org.gdf.model.EntityType;
+import org.gdf.model.AccessType;
 import org.gdf.model.BusinessOffer;
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -46,7 +46,7 @@ public class BusinessOfferComment implements Serializable {
     
     @Enumerated(EnumType.STRING)
     @Column(name = "ACCESS_TYPE")
-    private EntityType accessType;
+    private AccessType accessType;
     
     @Column(name = "POSTED_BY")
     private String PostedBy;
@@ -84,11 +84,11 @@ public class BusinessOfferComment implements Serializable {
         this.date = date;
     }
 
-    public EntityType getAccessType() {
+    public AccessType getAccessType() {
         return accessType;
     }
 
-    public void setAccessType(EntityType accessType) {
+    public void setAccessType(AccessType accessType) {
         this.accessType = accessType;
     }
 

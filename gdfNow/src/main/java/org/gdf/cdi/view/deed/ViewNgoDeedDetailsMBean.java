@@ -9,7 +9,7 @@ import static org.gdf.cdi.view.deed.ViewDeederDeedDetailsMBean.LOGGER;
 import org.gdf.ejb.DeedBeanLocal;
 import org.gdf.ejb.NgoBeanLocal;
 import org.gdf.model.Access;
-import org.gdf.model.EntityType;
+import org.gdf.model.AccessType;
 import org.gdf.model.Deed;
 import org.gdf.model.Ngo;
 import org.gdf.model.comment.DeedComment;
@@ -149,7 +149,7 @@ public class ViewNgoDeedDetailsMBean implements Serializable {
         Object accessOb=session.getAttribute(GDFConstants.ACCESS);
         if (accessOb!=null){//A logged In user is liking the Deed.
             access = (Access) accessOb;
-            dLike.setAccessType(access.getEntityType());
+            dLike.setAccessType(access.getAccessType());
             dLike.setAccessId(access.getEntityId());
             dLike.setLikeByName(access.getName());
             dLike.setTime(LocalDateTime.now());
@@ -184,7 +184,7 @@ public class ViewNgoDeedDetailsMBean implements Serializable {
         HttpSession session=request.getSession();
         Access access=(Access) session.getAttribute(GDFConstants.ACCESS);
         deedComment.setPostedBy(access.getEmail());
-        EntityType accessType= access.getEntityType();
+        AccessType accessType= access.getAccessType();
         deedComment.setAccessType(accessType);
         deedComment.setAccessId(access.getEntityId());
         deed.getDeedComments().add(deedComment);

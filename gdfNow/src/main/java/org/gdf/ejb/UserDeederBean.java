@@ -6,7 +6,7 @@
 package org.gdf.ejb;
 
 import org.gdf.model.Access;
-import org.gdf.model.EntityType;
+import org.gdf.model.AccessType;
 import org.gdf.model.ActivityType;
 import org.gdf.model.Deeder;
 import org.gdf.model.OnHold;
@@ -61,7 +61,7 @@ public class UserDeederBean implements UserDeederBeanLocal {
         LOGGER.log(Level.INFO, "User Deeder persisited with Deeder ID: {0} User being: {1}", new Object[]{deeder.getId(), user.getId()});
         OnHold onHold=new OnHold();
         onHold.setEmail(deeder.getEmail());
-        onHold.setAccessType(EntityType.DEEDER);
+        onHold.setAccessType(AccessType.DEEDER);
         onHold.setEntityId(deeder.getId());
         onHold.setProfileFile(deeder.getProfileFile());
         onHold.setName(deeder.getFirstname().concat(" ").concat(deeder.getLastname()));

@@ -6,7 +6,7 @@
 package org.gdf.cdi;
 
 import org.gdf.model.Access;
-import org.gdf.model.EntityType;
+import org.gdf.model.AccessType;
 import org.gdf.util.GDFConstants;
 import java.io.Serializable;
 import java.util.Properties;
@@ -70,7 +70,7 @@ public class ProfileLocatorMBean implements Serializable{
             location = (String) profileMap.getProperty(email);
             name=access.getName();
             if (location == null) {
-                EntityType accessType = access.getEntityType();
+                AccessType accessType = access.getAccessType();
                 String profileFile = access.getProfileFile();
                 switch (accessType) {
                     case USER: {

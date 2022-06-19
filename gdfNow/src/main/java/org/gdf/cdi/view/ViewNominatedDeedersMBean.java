@@ -7,7 +7,7 @@ package org.gdf.cdi.view;
 
 import org.gdf.ejb.UserDeederBeanLocal;
 import org.gdf.model.Access;
-import org.gdf.model.EntityType;
+import org.gdf.model.AccessType;
 import org.gdf.model.Deeder;
 import org.gdf.util.GDFConstants;
 import org.gdf.util.ImageVO;

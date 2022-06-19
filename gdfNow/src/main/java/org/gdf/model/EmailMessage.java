@@ -18,7 +18,7 @@ import javax.persistence.Table;
  * @author root
  */
 @Entity
-@Table(name = "EMAIL_MESSAGES")
+@Table(name = "EMAIL_MESSAGE")
 public class EmailMessage implements Serializable {
     
     @Id

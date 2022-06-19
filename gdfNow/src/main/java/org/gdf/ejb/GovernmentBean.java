@@ -6,7 +6,7 @@
 package org.gdf.ejb;
 
 import org.gdf.model.Access;
-import org.gdf.model.EntityType;
+import org.gdf.model.AccessType;
 import org.gdf.model.ActivityType;
 import org.gdf.model.Deed;
 import org.gdf.model.Deeder;
@@ -63,7 +63,7 @@ public class GovernmentBean implements GovernmentBeanLocal {
         em.flush();
         OnHold onHold=new OnHold();
         onHold.setEmail(government.getEmail());
-        onHold.setAccessType(EntityType.GOVERNMENT);
+        onHold.setAccessType(AccessType.GOVERNMENT);
         onHold.setEntityId(government.getId());
         onHold.setProfileFile(government.getLogoFile());
         onHold.setName(government.getOfficeName());

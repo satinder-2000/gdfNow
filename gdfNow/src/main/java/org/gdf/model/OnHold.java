@@ -28,7 +28,7 @@ public class OnHold implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "ACCESS_TYPE")
-    private EntityType accessType;
+    private AccessType accessType;
 
     @Column(name = "ENTITY_ID")
     private int entityId;
@@ -51,11 +51,11 @@ public class OnHold implements Serializable {
         this.email = email;
     }
 
-    public EntityType getAccessType() {
+    public AccessType getAccessType() {
         return accessType;
     }
 
-    public void setAccessType(EntityType accessType) {
+    public void setAccessType(AccessType accessType) {
         this.accessType = accessType;
     }
 

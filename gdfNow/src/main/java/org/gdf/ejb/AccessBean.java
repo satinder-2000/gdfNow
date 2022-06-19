@@ -6,8 +6,8 @@
 package org.gdf.ejb;
 
 import org.gdf.model.Access;
-import org.gdf.model.EntityType;
-import static org.gdf.model.EntityType.DEEDER;
+import org.gdf.model.AccessType;
+import static org.gdf.model.AccessType.DEEDER;
 import org.gdf.model.Deeder;
 import org.gdf.model.OnHold;
 import org.gdf.util.PasswordUtil;
@@ -94,7 +94,7 @@ public class AccessBean implements AccessBeanLocal {
         TypedQuery<OnHold> tQ1=em.createQuery("select h from OnHold h where h.email=?1", OnHold.class);
         tQ1.setParameter(1, email);
         OnHold val= tQ1.getSingleResult();
-        access.setEntityType(val.getAccessType());
+        access.setAccessType(val.getAccessType());
         access.setEntityId(val.getEntityId());
         access.setCreatedOn(LocalDateTime.now());
         access.setUpdatedOn(LocalDateTime.now());
@@ -154,10 +154,10 @@ public class AccessBean implements AccessBeanLocal {
         TypedQuery<OnHold> tQ1=em.createQuery("select h from OnHold h where h.email=?1", OnHold.class);
         tQ1.setParameter(1, email);
         OnHold val= tQ1.getSingleResult();
-        EntityType acType=val.getAccessType();
+        AccessType acType=val.getAccessType();
         access.setCreatedOn(LocalDateTime.now());
         access.setUpdatedOn(LocalDateTime.now());
-        access.setEntityType(val.getAccessType());
+        access.setAccessType(val.getAccessType());
         access.setName(val.getName());
         access.setEntityId(val.getEntityId());
         access.setProfileFile(val.getProfileFile());
@@ -228,7 +228,7 @@ public class AccessBean implements AccessBeanLocal {
     public OnHold getOnHold(int entityId, String accessType) {
         TypedQuery<OnHold> tqN=em.createQuery("select oh from OnHold oh where oh.entityId=?1 and oh.accessType=?2", OnHold.class);
         tqN.setParameter(1, entityId);
-        EntityType acType=EntityType.valueOf(accessType);
+        AccessType acType=AccessType.valueOf(accessType);
         tqN.setParameter(2, acType);
         try{
            OnHold onHold=tqN.getSingleResult();
