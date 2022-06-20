@@ -178,8 +178,8 @@ public class GovernmentOfferMBean implements Serializable {
         government.getGovernmentOffers().add(governmentOffer);
         deed.getGovernmentOffers().add(governmentOffer);
         governmentOffer = governmentBeanLocal.createGovernmentOffer(governmentOffer, government, deed);
-        String message=governmentOffer.getOfferType().concat(" offer made by Government: ").concat(governmentOffer.getGovernment().getOfficeName());
-        activityRecorderBeanLocal.add(ActivityType.GOVERNMENT_OFFER,governmentOffer.getId(), message,governmentOffer.getGovernment().getOfficeName());
+        String message=governmentOffer.getOfferType().concat(" offer made by Government: ").concat(governmentOffer.getGovernment().getName());
+        activityRecorderBeanLocal.add(ActivityType.GOVERNMENT_OFFER,governmentOffer.getId(), message,governmentOffer.getGovernment().getName());
         LOGGER.log(Level.INFO, "Government Offer created on :{0}", governmentOffer.getOfferedOn());
         return "/flowreturns/GovernmentOffer-return?faces-redirect=true";
     }

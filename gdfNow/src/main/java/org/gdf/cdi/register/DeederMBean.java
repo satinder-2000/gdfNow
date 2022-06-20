@@ -282,6 +282,15 @@ public class DeederMBean implements Serializable {
                 throw new RuntimeException(ex.getMessage());
             }
         }
+        //We would need to display the Image in the ConfirmPage, which is next in the Flow.
+        //There is no solution for that - only a workaround.
+        //We put this image in the session for now and once the Deeder data has been persisted in the Database the image from the session will be removed.
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = request.getSession(true);
+        String imgType=deeder.getProfileFile().substring(deeder.getProfileFile().indexOf('.')+1);
+        ImageVO imageVO=new ImageVO(imgType,deeder.getImage());
+        session.setAttribute(GDFConstants.TEMP_IMAGE, imageVO);//This Image will be removed from Session once the data has been persisted.
+    
     }
 
     public String deederAddressSave() {

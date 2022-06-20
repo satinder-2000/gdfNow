@@ -208,7 +208,7 @@ public class EmailerBean {
         StringBuilder sb=new StringBuilder();
         sb.append(map.get("subject")).append("\n");
         sb.append(String.format(map.get("dearGovernment"),government.getEmail())).append("\n");
-        sb.append(String.format(map.get("successfullyReg"),government.getOfficeName())).append("\n");
+        sb.append(String.format(map.get("successfullyReg"),government.getName())).append("\n");
         sb.append(map.get("setPasswordLinkMsg")).append("\n");
         sb.append(protocol).append(webURI).append(accessConfirmURI).append(government.getEmail());
         try {
@@ -310,7 +310,7 @@ public class EmailerBean {
         }
         StringBuilder sb=new StringBuilder();
         sb.append(map.get("subject")).append("\n");
-        sb.append(String.format(map.get("changesApplied"),government.getOfficeName())).append("\n");
+        sb.append(String.format(map.get("changesApplied"),government.getName())).append("\n");
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(sender));
@@ -386,6 +386,7 @@ public class EmailerBean {
                 map.put(msg.getMessageTitle(), msg.getText());
         }
         String subject=String.format(map.get("subject"), bOffer.getBusiness().getName());
+        //String subject=map.get("subject");
         sb.append(subject).append("\n");
         String congratsMsg=String.format(map.get("congratsMsg"), deeder.getEmail(),bOffer.getBusiness().getName());
         sb.append(congratsMsg).append("\n");
@@ -414,9 +415,9 @@ public class EmailerBean {
         for (EmailMessage msg:regMessages){
                 map.put(msg.getMessageTitle(), msg.getText());
         }
-        String subject=String.format(map.get("subject"), gOffer.getGovernment().getOfficeName());
+        String subject=String.format(map.get("subject"), gOffer.getGovernment().getName());
         sb.append(subject).append("\n");
-        String congratsMsg=String.format(map.get("congratsMsg"), deeder.getEmail(), gOffer.getGovernment().getOfficeName());
+        String congratsMsg=String.format(map.get("congratsMsg"), deeder.getEmail(), gOffer.getGovernment().getName());
         sb.append(congratsMsg).append("\n");
         sb.append(map.get("viewOfferLinkMsg")).append("\n");
         sb.append(protocol).append(webURI).append("/view/ViewGovernmentOfferDetails.xhtml?offerId=").append(gOffer.getId());
@@ -499,7 +500,7 @@ public class EmailerBean {
             map.put(msg.getMessageTitle(), msg.getText());
         }
         sb.append(map.get("subject")).append("\n");
-        sb.append(String.format(map.get("dearGovernment"), governmentOffer.getGovernment().getOfficeName())).append("\n");
+        sb.append(String.format(map.get("dearGovernment"), governmentOffer.getGovernment().getName())).append("\n");
         sb.append(map.get("thanksMsg")).append("\n");
         sb.append(map.get("visitOfferLinkMsg")).append("\n");
         sb.append(protocol).append(webURI).append("/view/ViewGovernmentOfferDetails.xhtml?offerId=").append(governmentOffer.getId());

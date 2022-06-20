@@ -26,7 +26,7 @@
                                         <div class="form-group">
                                             <h:outputLabel for="name" value="Department Name*" styleClass="control-label col-sm-5"/>
                                             <div class="col-sm-5">
-                                                <h:inputText id="name" value="#{governmentMBean.government.officeName}" label="Business Name*"  pt:placeholder="2-150 chars"   styleClass="form-control" />
+                                                <h:inputText id="name" value="#{governmentMBean.government.name}" label="Business Name*"  pt:placeholder="2-150 chars"   styleClass="form-control" />
                                             </div>
 
                                         </div>
@@ -52,10 +52,11 @@
                                             </div>
                                         </div>
                                         <!-- Government Description -->
+                                        <!-- Business Description -->
                                         <div class="form-group">
-                                            <h:outputLabel for="desc" value="Office Function*" styleClass="control-label col-sm-5" />
+                                            <h:outputLabel for="desc" value="Department/Agency Description*" styleClass="control-label col-sm-5" />
                                             <div class="col-sm-5">
-                                                <h:inputTextarea id="desc" value="#{governmentMBean.government.officeFunction}" pt:placeholder="2- 250 chars" rows="5" styleClass="form-control" />
+                                                <h:inputTextarea id="desc" value="#{governmentMBean.government.description}" pt:placeholder="2 - 250 chars" rows="5" styleClass="form-control" />
                                             </div>
                                         </div>
                                         <!-- Government Type -->
@@ -157,7 +158,7 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="form-group">
-                                            <h:outputLabel value="Phone 2*"  styleClass="control-label col-sm-5"/>
+                                            <h:outputLabel value="Phone 2"  styleClass="control-label col-sm-5"/>
                                             <div class="col-sm-5">
                                                 <h:inputText id="Phone2" value="#{governmentMBean.governmentAddress.phone2}" label="Phone 2" pt:placeholder="incl. area code"   styleClass="form-control"/>
                                             </div>

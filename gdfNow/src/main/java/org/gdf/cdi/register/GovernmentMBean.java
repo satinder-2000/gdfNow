@@ -113,7 +113,7 @@ public class GovernmentMBean implements Serializable {
         governmentAddress.setGovernment(government);
         LOGGER.info("Government and GovernmentAddress initialized");
 
-        return "GovernmentDetails?faces-redirect=true";
+        return "GovernmentDetails";
 
     }
 
@@ -148,7 +148,7 @@ public class GovernmentMBean implements Serializable {
     }
 
     private void validateDetails() {
-        String name = government.getOfficeName().trim();
+        String name = government.getName().trim();
         if (name.isEmpty() || name.length() < 2) {
             FacesContext.getCurrentInstance().addMessage("governmentName", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Department Name required.", "Department Name is required"));
         } else if (name.length() > 150) {
@@ -203,13 +203,6 @@ public class GovernmentMBean implements Serializable {
             FacesContext.getCurrentInstance().addMessage("contact", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Contact exceeds 100 chars.", "Contact exceeds 100 chars."));
         }
 
-        String description = government.getOfficeFunction().trim();
-        if (description.isEmpty() || description.length() < 2) {
-            FacesContext.getCurrentInstance().addMessage("desc", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Valid Description required", "Valid Description required"));
-        } else if (description.length() > 250) {
-            FacesContext.getCurrentInstance().addMessage("desc", new FacesMessage(FacesMessage.SEVERITY_ERROR, "At most 250 chars", "Description must be less than 250 chars long."));
-        }
-
         //Address Validation
         String line1 = governmentAddress.getLine1().trim();
         if (line1.isEmpty() || line1.length() < 2) {//Line 1 is Mandatory
@@ -238,9 +231,7 @@ public class GovernmentMBean implements Serializable {
             }
         }
         String phone2 = governmentAddress.getPhone2().trim();//not mandatory
-        if (phone2.isEmpty()) {
-            FacesContext.getCurrentInstance().addMessage("phone2", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Phone 2 required", "Phone 2 is required"));
-        } else {
+        if (!phone2.isEmpty()) {
             Matcher ph2M = pPhone.matcher(phone2);
             boolean matchesPh2 = ph2M.find();
             if (!matchesPh2) {

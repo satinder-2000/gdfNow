@@ -66,15 +66,15 @@ public class GovernmentBean implements GovernmentBeanLocal {
         onHold.setAccessType(AccessType.GOVERNMENT);
         onHold.setEntityId(government.getId());
         onHold.setProfileFile(government.getLogoFile());
-        onHold.setName(government.getOfficeName());
+        onHold.setName(government.getName());
         onHold.setCountryCode(government.getGovernmentAddress().getCountry().getCode());
         onHold.setImage(government.getImage());
         em.persist(onHold);
         em.flush();
         LOGGER.log(Level.INFO, "Government  persisted successfuuly with ID:{0} and Address ID: {1}", new Object[]{government.getId(), government.getGovernmentAddress().getId()});
         emailerBean.sendGovernmentRegConfirmEmail(government);
-        String message="Government Department Registered: ".concat(government.getOfficeName());
-        activityRecorderBeanLocal.add(ActivityType.GOVERNMENT,government.getId(), message,government.getOfficeName());
+        String message="Government Department Registered: ".concat(government.getName());
+        activityRecorderBeanLocal.add(ActivityType.GOVERNMENT,government.getId(), message,government.getName());
         
         return government;
     }
@@ -100,8 +100,8 @@ public class GovernmentBean implements GovernmentBeanLocal {
         em.merge(deed);
         em.flush();
         LOGGER.log(Level.INFO, "New Government Offer created with id:{0}", governmentOffer.getId());
-        String message=governmentOffer.getOfferType().concat(" made by ").concat(governmentOffer.getGovernment().getOfficeName()).concat(" on Deed ").concat(governmentOffer.getDeed().getTitle());
-        activityRecorderBeanLocal.add(ActivityType.GOVERNMENT_OFFER,governmentOffer.getId(),message,governmentOffer.getGovernment().getOfficeName());
+        String message=governmentOffer.getOfferType().concat(" made by ").concat(governmentOffer.getGovernment().getName()).concat(" on Deed ").concat(governmentOffer.getDeed().getTitle());
+        activityRecorderBeanLocal.add(ActivityType.GOVERNMENT_OFFER,governmentOffer.getId(),message,governmentOffer.getGovernment().getName());
         emailerBean.notifyDeederOfGovernmentOffer(governmentOffer);
         emailerBean.notifyGovernmentOfOffer(governmentOffer);
         

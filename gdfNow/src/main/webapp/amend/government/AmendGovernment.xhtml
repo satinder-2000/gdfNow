@@ -61,7 +61,7 @@
 
                                             <h:outputLabel for="name" value="Department Name*" styleClass="control-label col-sm-3"/>
                                             <div class="col-sm-5">
-                                                <h:inputText id="name" value="#{governmentAmendMBean.government.officeName}" label="Business Name*"  styleClass="form-control" />
+                                                <h:inputText id="name" value="#{governmentAmendMBean.government.name}" label="Business Name*"  styleClass="form-control" />
                                             </div>
 
                                         </div>
@@ -87,12 +87,6 @@
                                             </div>
                                         </div>
                                         <!-- government Description -->
-                                        <div class="form-group">
-                                            <h:outputLabel for="desc" value="Description" styleClass="control-label col-sm-3" />
-                                            <div class="col-sm-5">
-                                                <h:inputTextarea id="desc" value="#{governmentAmendMBean.government.officeFunction}" rows="5" styleClass="form-control" />
-                                            </div>
-                                        </div>
                                         <!-- government Type -->
                                         <div class="form-group">
                                             <h:outputLabel value="Ministry*" for="gTyp" styleClass="control-label col-sm-3" />

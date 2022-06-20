@@ -130,7 +130,7 @@ public class GovernmentAmendMBean implements Serializable{
     
     
     private void validateDetailsAndAddress(){
-        String name=government.getOfficeName().trim();
+        String name=government.getName().trim();
         if (name.isEmpty()){
             FacesContext.getCurrentInstance().addMessage("governmentName",new FacesMessage(FacesMessage.SEVERITY_ERROR,"Department Name required.","Department Name is required"));
         }else if (name.length()<4 || name.length()>250){
@@ -155,15 +155,6 @@ public class GovernmentAmendMBean implements Serializable{
         String contact=government.getContactName().trim();
         if (contact.isEmpty()){
             FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR,"Contact required.","Contact Name is required."));
-        }
-        
-        String description=government.getOfficeFunction().trim();
-        if (description.isEmpty()){
-            FacesContext.getCurrentInstance().addMessage("desc",new FacesMessage(FacesMessage.SEVERITY_ERROR,"Description required","Description is required."));
-        }else if (description.length()<10){
-            FacesContext.getCurrentInstance().addMessage("desc",new FacesMessage(FacesMessage.SEVERITY_ERROR,"At least 10 chars","Description must be atleast 10 chars long."));
-        }else if (description.length()>250){
-            FacesContext.getCurrentInstance().addMessage("desc",new FacesMessage(FacesMessage.SEVERITY_ERROR,"At most 250 chars","Description must be less than 250 chars long."));
         }
         
         //Address Validation

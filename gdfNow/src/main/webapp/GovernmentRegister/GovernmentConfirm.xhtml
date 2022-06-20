@@ -27,7 +27,7 @@
                                             <div class="well">
                                                 <!-- Name -->
                                                 <p class="text-left"><h:outputLabel value="Department / Agency Name"/><br/>
-                                                    <h:outputText value="#{governmentMBean.government.officeName}"/>
+                                                    <h:outputText value="#{governmentMBean.government.name}"/>
                                                 </p>
                                                 <!-- Email -->
                                                 <p class="text-left"><h:outputLabel value="Email:"/><br/><h:outputText value="#{governmentMBean.government.email}"/><br/>
@@ -42,7 +42,7 @@
                                             
                                             <h:outputLabel for="name" value="Department Name*" styleClass="control-label col-sm-5"/>
                                             <div class="col-sm-5">
-                                            <h:outputText id="name" value="#{governmentMBean.government.officeName}" styleClass="form-control" />
+                                            <h:outputText id="name" value="#{governmentMBean.government.name}" styleClass="form-control" />
                                             </div>
                                         
                                         </div>
@@ -68,12 +68,11 @@
                                             </div>
                                         </div>
                                         <!-- Government Description -->
+                                         <!-- Business Description -->
                                         <div class="form-group">
-                                            <h:outputLabel for="desc" value="Office Function*" styleClass="control-label col-sm-5" />
+                                            <h:outputLabel for="desc" value="Department Description*" styleClass="control-label col-sm-5" />
                                             <div class="col-sm-5">
-                                                <p class="form-control">
-                                                    <h:outputText value="#{governmentMBean.government.officeFunction}" /> 
-                                                </p>
+                                                <h:inputTextarea id="desc" value="#{governmentMBean.government.description}" disabled="true" rows="5" styleClass="form-control" />
                                             </div>
                                         </div>
                                         <!-- Government Type -->

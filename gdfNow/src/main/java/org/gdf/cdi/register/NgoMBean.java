@@ -228,19 +228,12 @@ public class NgoMBean implements Serializable {
         }
     
         //Phones now
-        String phone1=ngoAddress.getPhone1().trim();//This is mandatory
+        String phone1=ngoAddress.getPhone().trim();//This is mandatory
         Pattern pPhone=Pattern.compile(GDFConstants.PHONE_REGEX); 
         Matcher ph1M = pPhone.matcher(phone1);
         boolean matchesPh1 = ph1M.find();
         if (!matchesPh1) {
             FacesContext.getCurrentInstance().addMessage("phone1", new FacesMessage(FacesMessage.SEVERITY_ERROR,"Invalid Phone 1","Phone 1 is invalid"));
-        }
-        
-        String phone2 = ngoAddress.getPhone2().trim();//mandatory
-        Matcher ph2M = pPhone.matcher(phone2);
-        boolean matchesPh2 = ph2M.find();
-        if (!matchesPh2) {
-            FacesContext.getCurrentInstance().addMessage("phone2", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Invalid Phone 2", "Phone 2 is invalid"));
         }
         
         //Before validating Country specific PostCodes, ensure Country itself is valid

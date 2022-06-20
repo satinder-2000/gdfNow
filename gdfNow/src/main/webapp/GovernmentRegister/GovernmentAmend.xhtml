@@ -28,7 +28,7 @@
 
                                             <h:outputLabel for="name" value="Department Name*" styleClass="control-label col-sm-5"/>
                                             <div class="col-sm-5">
-                                                <h:inputText id="name" value="#{governmentMBean.government.officeName}" label="Department Name*"   pt:placeholder="2-150 chars"  styleClass="form-control" />
+                                                <h:inputText id="name" value="#{governmentMBean.government.name}" label="Department Name*"   pt:placeholder="2-150 chars"  styleClass="form-control" />
                                             </div>
 
                                         </div>
@@ -55,9 +55,9 @@
                                         </div>
                                         <!-- Government Description -->
                                         <div class="form-group">
-                                            <h:outputLabel for="desc" value="Office Function*" styleClass="control-label col-sm-5" />
+                                            <h:outputLabel for="desc" value="Department/Agency Description*" styleClass="control-label col-sm-5" />
                                             <div class="col-sm-5">
-                                                <h:inputTextarea id="desc" value="#{governmentMBean.government.officeFunction}" pt:placeholder="2 - 250 chars" rows="5" styleClass="form-control" />
+                                                <h:inputTextarea id="desc" value="#{governmentMBean.government.description}" pt:placeholder="2 - 250 chars" rows="5" styleClass="form-control" />
                                             </div>
                                         </div>
                                         <!-- Government Type -->
