@@ -55,7 +55,7 @@ public class HomeMBean implements Serializable {
         HttpSession session=request.getSession(true);
         //Object typeOb=session.getAttribute(GDFConstants.ACCESS_TYPE);
         if (session.getAttribute(GDFConstants.ACCESS)==null){
-           homePage = request.getContextPath() + "home?faces-redirect=true"; 
+           homePage = request.getContextPath() + "/home.xhtml?faces-redirect=true"; 
         }else{
           try {
             Access access = (Access) session.getAttribute(GDFConstants.ACCESS);
@@ -84,7 +84,7 @@ public class HomeMBean implements Serializable {
                     break;
                 }
                 default: {
-                    homePage = request.getContextPath() + "home.xhtml?faces-redirect=true";
+                    homePage = request.getContextPath() + "/home.xhtml?faces-redirect=true";
                     break;
                 }
             }

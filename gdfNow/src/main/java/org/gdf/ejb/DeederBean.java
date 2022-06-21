@@ -54,7 +54,7 @@ public class DeederBean implements DeederBeanLocal {
     @Override
     public Deeder amendDeeder(Deeder deeder) {
         deeder.setUpdatedOn(LocalDateTime.now());   
-        Access access=accessBeanLocal.getAccess(deeder.getEmail());
+        Access access=accessBeanLocal.getAccess(deeder.getEmail().toLowerCase());
         if (!access.getProfileFile().equals(deeder.getProfileFile())){//implying profile file has been changed. Replication change applied in MBean in the FE. updateProfileFile()
            access.setProfileFile(deeder.getProfileFile());
            access.setImage(deeder.getImage());
@@ -68,7 +68,7 @@ public class DeederBean implements DeederBeanLocal {
     @Override
     public Deeder getDeeder(String email) {
         TypedQuery<Deeder> tq=em.createQuery("select d from Deeder d where d.email=?1", Deeder.class);
-        tq.setParameter(1, email);
+        tq.setParameter(1, email.toLowerCase());
         return tq.getSingleResult();
     }
 
@@ -76,7 +76,7 @@ public class DeederBean implements DeederBeanLocal {
     public boolean deederExists(String email) {
         boolean exists=false;
         TypedQuery<Deeder> tq=em.createQuery("select d from Deeder d where d.email=?1", Deeder.class);
-        tq.setParameter(1, email);
+        tq.setParameter(1, email.toLowerCase());
         List<Deeder> deeders= tq.getResultList();
         if (deeders.size()>0) exists=true;
         return exists;
@@ -88,7 +88,7 @@ public class DeederBean implements DeederBeanLocal {
         em.flush();
         LOGGER.log(Level.INFO, "Deeder perseristed with ID: {0} and Address: {1}", new Object[]{deeder.getId(), deeder.getDeederAddress().getId()});
         OnHold onHold=new OnHold();
-        onHold.setEmail(deeder.getEmail());
+        onHold.setEmail(deeder.getEmail().toLowerCase());
         onHold.setAccessType(AccessType.DEEDER);
         onHold.setEntityId(deeder.getId());
         onHold.setProfileFile(deeder.getProfileFile());

@@ -46,7 +46,7 @@ public class AccessBean implements AccessBeanLocal {
         LOGGER.log(Level.INFO, "Access sought for:{0} with {1}", new Object[]{email, password});
         Access toReturn=null;
         TypedQuery aTq=em.createQuery("select a from Access a where a.email=?1", Access.class);
-        aTq.setParameter(1, email);
+        aTq.setParameter(1, email.toLowerCase());
         List<Access> aList= aTq.getResultList();
         if (aList.isEmpty()){
             toReturn=new Access();
@@ -92,7 +92,7 @@ public class AccessBean implements AccessBeanLocal {
         access.setPassword(PasswordUtil.generateSecurePassword(password, email));
         //Remove from OnHold table now
         TypedQuery<OnHold> tQ1=em.createQuery("select h from OnHold h where h.email=?1", OnHold.class);
-        tQ1.setParameter(1, email);
+        tQ1.setParameter(1, email.toLowerCase());
         OnHold val= tQ1.getSingleResult();
         access.setAccessType(val.getAccessType());
         access.setEntityId(val.getEntityId());
@@ -111,7 +111,7 @@ public class AccessBean implements AccessBeanLocal {
     @Override
     public boolean isEmailOnHold(String email) {
         TypedQuery<OnHold> tqN=em.createQuery("select oh from OnHold oh where oh.email=?1", OnHold.class);
-        tqN.setParameter(1, email);
+        tqN.setParameter(1, email.toLowerCase());
         List<OnHold> oHL=tqN.getResultList();
         if(oHL!=null && !oHL.isEmpty()){
            return true; 
@@ -122,7 +122,7 @@ public class AccessBean implements AccessBeanLocal {
 
     @Override
     public Access changePassword(Access access, String password) {
-        String securePW=PasswordUtil.generateSecurePassword(password, access.getEmail());
+        String securePW=PasswordUtil.generateSecurePassword(password, access.getEmail().toLowerCase());
         access.setPassword(securePW);
         access= em.merge(access);
         em.flush();
@@ -133,7 +133,7 @@ public class AccessBean implements AccessBeanLocal {
     @Override
     public OnHold getOnHold(String email) {
         TypedQuery<OnHold> tqN=em.createQuery("select oh from OnHold oh where oh.email=?1", OnHold.class);
-        tqN.setParameter(1, email);
+        tqN.setParameter(1, email.toLowerCase());
         try{
            OnHold onHold=tqN.getSingleResult();
            return onHold;
@@ -152,7 +152,7 @@ public class AccessBean implements AccessBeanLocal {
         access.setPassword(PasswordUtil.generateSecurePassword(password, email));
         //Remove from OnHold table now
         TypedQuery<OnHold> tQ1=em.createQuery("select h from OnHold h where h.email=?1", OnHold.class);
-        tQ1.setParameter(1, email);
+        tQ1.setParameter(1, email.toLowerCase());
         OnHold val= tQ1.getSingleResult();
         AccessType acType=val.getAccessType();
         access.setCreatedOn(LocalDateTime.now());
@@ -195,7 +195,7 @@ public class AccessBean implements AccessBeanLocal {
 
     @Override
     public Access updateAccess(Access access) {
-        access.setPassword(PasswordUtil.generateSecurePassword(access.getPassword(), access.getEmail()));
+        access.setPassword(PasswordUtil.generateSecurePassword(access.getPassword(), access.getEmail().toLowerCase()));
         access=em.merge(access);
         em.flush();
         return access;
@@ -205,7 +205,7 @@ public class AccessBean implements AccessBeanLocal {
     public Access getAccess(String email) {
         Access toReturn=null;
         TypedQuery aTq=em.createQuery("select a from Access a where a.email=?1", Access.class);
-        aTq.setParameter(1, email);
+        aTq.setParameter(1, email.toLowerCase());
         List<Access> aList= aTq.getResultList();
         if (!aList.isEmpty()){
             toReturn=aList.get(0);
@@ -216,7 +216,7 @@ public class AccessBean implements AccessBeanLocal {
     @Override
     public boolean dispatchPasswordReset(String email) {
         try{
-            emailerBean.setPasswordResetEmail(email);
+            emailerBean.setPasswordResetEmail(email.toLowerCase());
             return true;
         }catch(Exception ex){
             ex.printStackTrace();

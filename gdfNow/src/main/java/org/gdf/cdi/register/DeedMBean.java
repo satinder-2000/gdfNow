@@ -41,6 +41,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.gdf.util.URLShortner;
 
 /**
  *
@@ -182,15 +183,18 @@ public class DeedMBean implements Serializable {
                 FacesContext.getCurrentInstance().addMessage("link1", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Poor URL", "Invalid Link 1 URL"));
             } else {
                 //try connecting to the link now.
-                if (!link1.startsWith("http://") && !link1.startsWith("https://")) {
-                    deed.setLink1("http://" + deed.getLink1());
-                    link1 = deed.getLink1();
-                }
+                String tinyLink;
                 try {
-                    processExternalLink(link1, p);
-
+                    if (!link1.startsWith("http://") && !link1.startsWith("https://")) {
+                        link1="http://" + deed.getLink1();
+                        tinyLink = URLShortner.shorter(link1);
+                    }else{
+                        tinyLink = URLShortner.shorter(link1);
+                    }
+                    deed.setLink1(tinyLink);
+                    processExternalLink(tinyLink, p);
                 } catch (IOException ex) {
-                    FacesContext.getCurrentInstance().addMessage("link1", new FacesMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage(), ex.getMessage()));
+                    Logger.getLogger(DeedMBean.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -198,27 +202,35 @@ public class DeedMBean implements Serializable {
         String link2=deed.getLink2();
         if (!link2.trim().isEmpty()) {
             //try connecting to the link now.
-            if (!link2.startsWith("http://") && !link2.startsWith("https://")) {
-                deed.setLink2("http://" + deed.getLink2());
-                link2 = deed.getLink2();
-            }
+            String tinyLink;
             try {
-                processExternalLink(link2, p);
+                if (!link2.startsWith("http://") && !link2.startsWith("https://")) {
+                    link2 = "http://" + deed.getLink2();
+                    tinyLink = URLShortner.shorter(link2);
+                } else {
+                    tinyLink = URLShortner.shorter(link2);
+                }
+                deed.setLink2(tinyLink);
+                processExternalLink(tinyLink, p);
             } catch (IOException ex) {
-                FacesContext.getCurrentInstance().addMessage("link2", new FacesMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage(), ex.getMessage()));
+                Logger.getLogger(DeedMBean.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         String link3=deed.getLink3();
         if (!link3.trim().isEmpty()) {
             //try connecting to the link now.
-            if (!link3.startsWith("http://") && !link3.startsWith("https://")) {
-                deed.setLink3("http://" + deed.getLink3());
-                link3 = deed.getLink3();
-            }
+            String tinyLink;
             try {
-                processExternalLink(link3, p);
+                if (!link3.startsWith("http://") && !link3.startsWith("https://")) {
+                    link3 = "http://" + deed.getLink3();
+                    tinyLink = URLShortner.shorter(link3);
+                } else {
+                    tinyLink = URLShortner.shorter(link3);
+                }
+                deed.setLink3(tinyLink);
+                processExternalLink(tinyLink, p);
             } catch (IOException ex) {
-                FacesContext.getCurrentInstance().addMessage("link3", new FacesMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage(), ex.getMessage()));
+                Logger.getLogger(DeedMBean.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
@@ -506,7 +518,4 @@ public class DeedMBean implements Serializable {
         
     }
 
-
-    
-    
 }

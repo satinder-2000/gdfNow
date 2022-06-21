@@ -145,42 +145,17 @@
                             </p>
                         </div>
                     </div>
-                <!-- Line 3 -->
-                <div class="col-sm-12">
-                    <div class="col-sm-5">
-                        <p class="text-left">
-                            <h:outputLabel value="Line 3:"/>
-                        </p>
-                    </div>
-                    <div class="col-sm-7">
-                        <p class="text-left">
-                            <h:outputText value="#{viewNgoDetailsMBean.ngo.ngoAddress.line3}" />
-                        </p>
-                    </div>
-                </div>
+               
                 <!-- Phone 1 -->
                 <div class="col-sm-12">
                     <div class="col-sm-5">
                         <p class="text-left">
-                            <h:outputLabel value="Phone 1:"/>
+                            <h:outputLabel value="Phone:"/>
                         </p>
                     </div>
                     <div class="col-sm-5">
                         <p class="text-left">
-                            <h:outputText value="#{viewNgoDetailsMBean.ngo.ngoAddress.phone1}" />
-                        </p>
-                    </div>
-                </div>
-                <!-- Phone 2 -->
-                <div class="col-sm-12">
-                    <div class="col-sm-5">
-                        <p class="text-left">
-                            <h:outputLabel value="Phone 2:"/>
-                        </p>
-                    </div>
-                    <div class="col-sm-5">
-                        <p class="text-left">
-                            <h:outputText value="#{viewNgoDetailsMBean.ngo.ngoAddress.phone2}" />
+                            <h:outputText value="#{viewNgoDetailsMBean.ngo.ngoAddress.phone}" />
                         </p>
                     </div>
                 </div>
@@ -257,7 +232,7 @@
                             <div class="col-sm-6">
                                 <p class="text-center">
                                     <h:form styleClass="form-horizontal">
-                                    <h:commandButton value="Go Back" action="#{homeMBean.redirectToSiteHome}" styleClass="btn btn-primary" />
+                                    <h:commandButton value="Home" action="#{homeMBean.redirectToHome}" styleClass="btn btn-primary" />
                                     </h:form>
                                 </p>
                             </div>

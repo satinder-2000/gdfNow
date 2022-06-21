@@ -184,7 +184,7 @@ public class EmailerBean {
         String str2=String.format(map.get("successfullyReg"),business.getName());
         System.out.println(str2);
         sb.append(str2).append("\n");
-        sb.append(map.get("setPasswordLinkMsg")).append("\n");
+        sb.append(map.get("setPassword")).append("\n");
         sb.append(protocol).append(webURI).append(accessConfirmURI).append(business.getEmail());
         try {
             MimeMessage message = new MimeMessage(session);
@@ -209,7 +209,7 @@ public class EmailerBean {
         sb.append(map.get("subject")).append("\n");
         sb.append(String.format(map.get("dearGovernment"),government.getEmail())).append("\n");
         sb.append(String.format(map.get("successfullyReg"),government.getName())).append("\n");
-        sb.append(map.get("setPasswordLinkMsg")).append("\n");
+        sb.append(map.get("setPassword")).append("\n");
         sb.append(protocol).append(webURI).append(accessConfirmURI).append(government.getEmail());
         try {
             MimeMessage message = new MimeMessage(session);
@@ -235,7 +235,7 @@ public class EmailerBean {
         sb.append(map.get("subject")).append("\n");
         sb.append(String.format(map.get("dearNgo"),ngo.getEmail())).append("\n");
         sb.append(String.format(map.get("successfullyReg"),ngo.getName())).append("\n");
-        sb.append(map.get("setPasswordLinkMsg")).append("\n");
+        sb.append(map.get("setPassword")).append("\n");
         sb.append(protocol).append(webURI).append(accessConfirmURI).append(ngo.getEmail());
         try {
             MimeMessage message = new MimeMessage(session);

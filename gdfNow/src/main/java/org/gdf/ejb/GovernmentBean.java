@@ -62,7 +62,7 @@ public class GovernmentBean implements GovernmentBeanLocal {
         em.persist(government);
         em.flush();
         OnHold onHold=new OnHold();
-        onHold.setEmail(government.getEmail());
+        onHold.setEmail(government.getEmail().toLowerCase());
         onHold.setAccessType(AccessType.GOVERNMENT);
         onHold.setEntityId(government.getId());
         onHold.setProfileFile(government.getLogoFile());
@@ -82,7 +82,8 @@ public class GovernmentBean implements GovernmentBeanLocal {
     @Override
     public void amendGovernment(Government government) {
         government.setUpdatedOn(LocalDateTime.now());
-        Access access=accessBeanLocal.getAccess(government.getEmail());
+        Access access=accessBeanLocal.getAccess(government.getEmail().toLowerCase()
+        );
         if (!access.getProfileFile().equals(government.getLogoFile())){//implying profile file has been changed. Replication change applied in MBean in the FE. updateProfileFile()
            access.setProfileFile(government.getLogoFile());
            access.setImage(government.getImage());

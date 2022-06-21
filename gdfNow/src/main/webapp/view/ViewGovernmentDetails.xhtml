@@ -92,29 +92,16 @@
                     </div>
                 </div>
                 <div class="col-sm-9">
-                    <!-- Email 1 -->
+                    <!-- Email -->
                     <div class="col-sm-12">
                         <div class="col-sm-5">
                             <p class="text-left">
-                                <h:outputLabel value="Email 1:"/>
+                                <h:outputLabel value="Email:"/>
                             </p>
                         </div>
                         <div class="col-sm-7">
                             <p class="text-left">
                                 <h:outputText value="#{viewGovernmentDetailsMBean.government.email}" />
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Email 2 -->
-                    <div class="col-sm-12">
-                        <div class="col-sm-5">
-                            <p class="text-left">
-                                <h:outputLabel value="Email 2:"/>
-                            </p>
-                        </div>
-                        <div class="col-sm-7">
-                            <p class="text-left">
-                                <h:outputText value="#{viewGovernmentDetailsMBean.government.email2}" />
                             </p>
                         </div>
                     </div>
@@ -279,7 +266,7 @@
                             <div class="col-sm-6">
                                 <p class="text-left">
                                     <h:form styleClass="form-horizontal">
-                                        <h:commandButton value="Go Back" action="#{homeMBean.redirectToSiteHome}" styleClass="btn btn-primary" />
+                                        <h:commandButton value="Home" action="#{homeMBean.redirectToHome}" styleClass="btn btn-primary" />
                                     </h:form>
                                 </p>
                             </div>

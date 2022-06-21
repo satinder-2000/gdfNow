@@ -51,7 +51,7 @@ public class UserBean implements UserBeanLocal {
             em.flush();
             int userId=user.getId();
             OnHold onHold=new OnHold();
-            onHold.setEmail(user.getEmail());
+            onHold.setEmail(user.getEmail().toLowerCase());
             onHold.setAccessType(AccessType.USER);
             onHold.setEntityId(userId);
             onHold.setProfileFile(user.getProfileFile());
@@ -75,7 +75,7 @@ public class UserBean implements UserBeanLocal {
     public boolean userExists(String email) {
         boolean exists=false;
         TypedQuery<User> tq=em.createQuery("select u from User u where u.email=?1", User.class);
-        tq.setParameter(1, email);
+        tq.setParameter(1, email.toLowerCase());
         List<User> users= tq.getResultList();
         if (users.size()>0) exists=true;
         return exists;
@@ -85,7 +85,7 @@ public class UserBean implements UserBeanLocal {
     @Override
     public User amendUser(User user) {
         user.setUpdatedOn(LocalDateTime.now());
-        Access access=accessBeanLocal.getAccess(user.getEmail());
+        Access access=accessBeanLocal.getAccess(user.getEmail().toLowerCase());
         if (!access.getProfileFile().equals(user.getProfileFile())){//implying profile file has been changed. Replication change applied in MBean in the FE. updateProfileFile()
            access.setProfileFile(user.getProfileFile());
            access.setImage(user.getImage());
@@ -104,7 +104,7 @@ public class UserBean implements UserBeanLocal {
 
     @Override
     public void setUserPassword(String email, String password) {
-        String encryptPW= PasswordUtil.generateSecurePassword(password, email);
+        String encryptPW= PasswordUtil.generateSecurePassword(password, email.toLowerCase());
         Access access=new Access();
         access.setEmail(email);
         access.setPassword(encryptPW);
@@ -117,14 +117,14 @@ public class UserBean implements UserBeanLocal {
     @Override
     public User getUser(String email) {
         TypedQuery<User> tq=em.createQuery("select u from User u where u.email=?1", User.class);
-        tq.setParameter(1, email);
+        tq.setParameter(1, email.toLowerCase());
         return tq.getSingleResult();
     }
 
     @Override
     public List<Deeder> getUserDeeders(String email) {
         TypedQuery<Deeder> tq=em.createQuery("select d from Deeder d join UserDeeder ud on d.id=ud.deederId join User u on ud.userId=u.id where u.email=?1", Deeder.class);
-        tq.setParameter(1, email);
+        tq.setParameter(1, email.toLowerCase());
         return tq.getResultList();
     }
 

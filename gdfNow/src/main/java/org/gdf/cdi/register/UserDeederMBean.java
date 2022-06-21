@@ -48,6 +48,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.gdf.util.URLShortner;
 
 /**
  *
@@ -431,7 +432,16 @@ public class UserDeederMBean implements Serializable {
             } else {
                 //try connecting to the link now.
                 if (!link1.startsWith("http://") && !link1.startsWith("https://")) {
-                    deed.setLink1("http://" + deed.getLink1());
+                    String longLink="http://" + deed.getLink1();
+                    String tinyLink;
+                    try {
+                        tinyLink = URLShortner.shorter(longLink);
+                        deed.setLink1(tinyLink);
+                    } catch (IOException ex) {
+                        Logger.getLogger(UserDeederMBean.class.getName()).log(Level.SEVERE, null, ex);
+                        FacesContext.getCurrentInstance().addMessage("link1", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Service failure while processing Link 1", "Service failure while processing Link 1"));
+                    }
+                    
                     link1 = deed.getLink1();
                 }
                 try {
@@ -447,7 +457,15 @@ public class UserDeederMBean implements Serializable {
         if (!link2.trim().isEmpty()) {
             //try connecting to the link now.
             if (!link2.startsWith("http://") && !link2.startsWith("https://")) {
-                deed.setLink2("http://" + deed.getLink2());
+                String longLink="http://" + deed.getLink2();
+                String tinyLink;
+                try {
+                    tinyLink = URLShortner.shorter(longLink);
+                    deed.setLink2(tinyLink);
+                } catch (IOException ex) {
+                    Logger.getLogger(UserDeederMBean.class.getName()).log(Level.SEVERE, null, ex);
+                    FacesContext.getCurrentInstance().addMessage("link2", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Service failure while processing Link 2", "Service failure while processing Link 2"));
+                }
                 link2 = deed.getLink2();
             }
             try {
@@ -460,7 +478,15 @@ public class UserDeederMBean implements Serializable {
         if (!link3.trim().isEmpty()) {
             //try connecting to the link now.
             if (!link3.startsWith("http://") && !link3.startsWith("https://")) {
-                deed.setLink3("http://" + deed.getLink3());
+                String longLink="http://" + deed.getLink3();
+                String tinyLink;
+                try {
+                    tinyLink = URLShortner.shorter(longLink);
+                    deed.setLink3(tinyLink);
+                } catch (IOException ex) {
+                    Logger.getLogger(UserDeederMBean.class.getName()).log(Level.SEVERE, null, ex);
+                    FacesContext.getCurrentInstance().addMessage("link3", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Service failure while processing Link 3", "Service failure while processing Link 3"));
+                }
                 link3 = deed.getLink3();
             }
             try {
